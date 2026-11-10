@@ -92,6 +92,18 @@ app.use(session({
 // Apply general API rate limiting
 app.use('/api', apiLimiter);
 
+// Ensure database connection is ready for API routes in serverless
+app.use(async (req, res, next) => {
+  if (req.path.startsWith('/api') && req.path !== '/api/health') {
+    try {
+      await connectDB();
+    } catch (err) {
+      console.warn('[DB Middleware] Connection attempt:', err.message);
+    }
+  }
+  next();
+});
+
 // API Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);

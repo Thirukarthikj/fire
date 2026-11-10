@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+// Disable command buffering so queries fail immediately or fall back cleanly instead of hanging for 10 seconds
+mongoose.set('bufferCommands', false);
+
 let cachedConnection = null;
 
 // Catch unhandled database driver rejections so serverless lambdas never crash
@@ -10,6 +13,10 @@ process.on('unhandledRejection', (reason) => {
 const isRemoteMongoUri = (uri) => {
   if (!uri || typeof uri !== 'string') return false;
   return uri.startsWith('mongodb+srv://') || (uri.startsWith('mongodb://') && !uri.includes('localhost') && !uri.includes('127.0.0.1'));
+};
+
+const isDBConnected = () => {
+  return mongoose.connection.readyState === 1;
 };
 
 const connectDB = async () => {
@@ -56,3 +63,5 @@ mongoose.connection.on('error', (err) => {
 });
 
 module.exports = connectDB;
+module.exports.connectDB = connectDB;
+module.exports.isDBConnected = isDBConnected;

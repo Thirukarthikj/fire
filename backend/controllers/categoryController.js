@@ -1,9 +1,19 @@
 const Category = require('../models/Category');
 const Product = require('../models/Product');
+const mongoose = require('mongoose');
+const { FALLBACK_CATEGORIES } = require('../data/fallbackData');
 
 // GET /api/categories
 exports.getCategories = async (req, res, next) => {
   try {
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(200).json({
+        success: true,
+        data: FALLBACK_CATEGORIES,
+        fallback: true
+      });
+    }
+
     const categories = await Category.find({ isActive: true })
       .sort({ displayOrder: 1, name: 1 });
 
@@ -13,7 +23,11 @@ exports.getCategories = async (req, res, next) => {
       data: categories
     });
   } catch (error) {
-    next(error);
+    res.status(200).json({
+      success: true,
+      data: FALLBACK_CATEGORIES,
+      fallback: true
+    });
   }
 };
 
@@ -21,6 +35,12 @@ exports.getCategories = async (req, res, next) => {
 exports.getCategoryByIdOrSlug = async (req, res, next) => {
   try {
     const { id } = req.params;
+
+    if (mongoose.connection.readyState !== 1) {
+      const cat = FALLBACK_CATEGORIES.find(c => c.slug === id || c._id === id);
+      if (cat) return res.status(200).json({ success: true, data: cat, fallback: true });
+    }
+
     let query;
 
     if (id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -31,6 +51,9 @@ exports.getCategoryByIdOrSlug = async (req, res, next) => {
 
     const category = await Category.findOne(query);
     if (!category) {
+      const fallback = FALLBACK_CATEGORIES.find(c => c.slug === id || c._id === id);
+      if (fallback) return res.status(200).json({ success: true, data: fallback, fallback: true });
+
       return res.status(404).json({
         success: false,
         message: 'Category not found'
@@ -42,6 +65,8 @@ exports.getCategoryByIdOrSlug = async (req, res, next) => {
       data: category
     });
   } catch (error) {
+    const fallback = FALLBACK_CATEGORIES.find(c => c.slug === req.params.id || c._id === req.params.id);
+    if (fallback) return res.status(200).json({ success: true, data: fallback, fallback: true });
     next(error);
   }
 };
