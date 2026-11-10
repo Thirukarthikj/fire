@@ -49,3 +49,4 @@ files.forEach(file => {
 });
 
 console.log('Menu cleanup completed across all frontend templates.');
+
