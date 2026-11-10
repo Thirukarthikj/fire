@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Festive Seasonal Price List 2026 — Firecrackers Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div id="notification-container"></div>
+
+  <!-- Search Overlay Drawer -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-overlay-header">
+      <span class="text-sm font-semibold" style="color: var(--color-gold);">SEARCH SIVAKASI FESTIVE CATALOGUE</span>
+      <button class="modal-close" id="search-close-btn" aria-label="Close search" style="color: #ffffff;">✕</button>
+    </div>
+    <div class="search-box-large">
+      <span class="search-box-icon">🔍</span>
+      <input type="text" id="search-overlay-input" placeholder="Search sparklers, chakkars, aerial cakes... (Press Enter)">
+    </div>
+  </div>
+
+  <!-- Site Header (Sticky Multi-Tier Real E-Commerce Storefront) -->
+  <div class="site-header-wrapper" id="site-header-wrapper">
+    <!-- 1. Top Utility Announcement & Hotline Bar -->
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div class="top-bar-left">
+          <span class="top-bar-badge">Diwali 2026</span>
+          <span class="top-bar-text">🎉 Sivakasi Factory Direct Wholesale Booking Open | Up to 70% Off Factory MRP</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="top-bar-item">🌱 100% CSIR-NEERI Green Certified</span>
+          <a href="tel:+919876543210" class="top-bar-item top-bar-link">📞 +91 98765 43210</a>
+          <a href="/orders.html" class="top-bar-item top-bar-link">📦 Track Consignment</a>
+          <a href="/faq.html?tab=safety" class="top-bar-item top-bar-link">🛡️ Safety Advisory</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Main Brand & Search Row -->
+    <header class="header-main" id="main-header">
+      <div class="container header-main-container">
+        <!-- Brand Logo -->
+        <a href="/" class="brand-logo" aria-label="Firecrackers Sivakasi Home">
+          <span class="brand-logo-icon">🎆</span>
+          <div class="brand-logo-text">
+            <span class="brand-name">Fire<span class="brand-name-accent">crackers</span></span>
+            <span class="brand-sub">SIVAKASI DIRECT WHOLESALE</span>
+          </div>
+        </a>
+
+        <!-- Central Search Bar (Wide, Unshrinkable, Real E-Commerce) -->
+        <form class="header-search-form" action="/products.html" method="GET">
+          <div class="search-input-wrapper">
+            <span class="search-icon-lens">🔍</span>
+            <input 
+              type="text" 
+              name="search" 
+              id="header-search-input" 
+              class="header-search-input" 
+              placeholder="Search sparklers, flower pots, ground chakkars, sky shots, gift boxes..." 
+              autocomplete="off"
+              aria-label="Search fireworks"
+            >
+            <button type="submit" class="search-submit-btn" aria-label="Search">Search</button>
+          </div>
+        </form>
+
+        <!-- Right Side User Actions -->
+        <div class="header-main-actions">
+          <!-- Quick Wholesale Price List CTA with 70% OFF Badge -->
+          <a href="/price-list.html" class="header-pricelist-btn" title="View 2026 Price List">
+            <span class="pricelist-icon">📋</span>
+            <div class="pricelist-copy">
+              <span class="pricelist-title">Price List 2026</span>
+              <span class="pricelist-badge">70% OFF</span>
+            </div>
+          </a>
+
+          <!-- Wishlist Link -->
+          <a href="/wishlist.html" class="header-action-icon-link" id="wishlist-link" title="Wishlist" aria-label="Wishlist">
+            <div class="action-icon-wrap">
+              <span>🤍</span>
+              <span class="action-counter" id="wishlist-count" style="display:none">0</span>
+            </div>
+            <span class="action-text-label">Wishlist</span>
+          </a>
+
+          <!-- Cart Link -->
+          <a href="/cart.html" class="header-action-icon-link" id="cart-icon" title="View Cart" aria-label="Cart">
+            <div class="action-icon-wrap">
+              <span>🛒</span>
+              <span class="action-counter" id="cart-count" style="display:none">0</span>
+            </div>
+            <span class="action-text-label">Cart</span>
+          </a>
+
+          <!-- User / Account Menu -->
+          <div class="header-user-menu" id="user-menu">
+            <a href="/login.html" class="btn-signin-pill">
+              <span>👤</span>
+              <span>Sign In</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. Category & Department Navigation Strip -->
+    <nav class="nav-strip" id="nav-strip" aria-label="Department Navigation">
+      <div class="container nav-strip-container">
+        <!-- Mega Menu Trigger -->
+        <div class="all-categories-dropdown">
+          <button class="all-categories-btn" id="all-categories-toggle" type="button">
+            <span>☰</span>
+            <span>All Categories</span>
+            <span style="font-size:0.7rem;">▼</span>
+          </button>
+          <div class="categories-mega-menu" id="categories-mega-menu">
+            <div class="mega-menu-grid">
+              <a href="/products.html?category=sparklers" class="mega-cat-item">
+                <span class="mega-cat-icon">✨</span>
+                <div class="mega-cat-info">
+                  <strong>Sparklers</strong>
+                  <span>Gold, Silver & Neon Sparklers</span>
+                </div>
+              </a>
+              <a href="/products.html?category=flower-pots" class="mega-cat-item">
+                <span class="mega-cat-icon">🪴</span>
+                <div class="mega-cat-info">
+                  <strong>Flower Pots</strong>
+                  <span>Ashoka & Colour Fountains</span>
+                </div>
+              </a>
+              <a href="/products.html?category=ground-chakkars" class="mega-cat-item">
+                <span class="mega-cat-icon">🌀</span>
+                <div class="mega-cat-info">
+                  <strong>Ground Chakkars</strong>
+                  <span>Deluxe Rotating Wheels</span>
+                </div>
+              </a>
+              <a href="/products.html?category=sky-shots" class="mega-cat-item">
+                <span class="mega-cat-icon">🎆</span>
+                <div class="mega-cat-info">
+                  <strong>Sky Shots & Cakes</strong>
+                  <span>12 & 30-Shot Aerial Starbursts</span>
+                </div>
+              </a>
+              <a href="/products.html?category=rockets" class="mega-cat-item">
+                <span class="mega-cat-icon">🚀</span>
+                <div class="mega-cat-info">
+                  <strong>Rockets</strong>
+                  <span>Whistle & Sound Rockets</span>
+                </div>
+              </a>
+              <a href="/products.html?category=bombs" class="mega-cat-item">
+                <span class="mega-cat-icon">💥</span>
+                <div class="mega-cat-info">
+                  <strong>Sound Bombs</strong>
+                  <span>Classic Hydro Reports</span>
+                </div>
+              </a>
+              <a href="/products.html?category=gift-boxes" class="mega-cat-item">
+                <span class="mega-cat-icon">🎁</span>
+                <div class="mega-cat-info">
+                  <strong>Diwali Gift Boxes</strong>
+                  <span>Curated Family Hampers</span>
+                </div>
+              </a>
+              <a href="/products.html?category=fancy-items" class="mega-cat-item">
+                <span class="mega-cat-icon">🦚</span>
+                <div class="mega-cat-info">
+                  <strong>Fancy Items</strong>
+                  <span>Peacock Fountains & Spinners</span>
+                </div>
+              </a>
+              <a href="/products.html?category=multi-sound-crackers" class="mega-cat-item">
+                <span class="mega-cat-icon">⚡</span>
+                <div class="mega-cat-info">
+                  <strong>Multi-Sound Crackers</strong>
+                  <span>2 & 3-Sound Rhythms</span>
+                </div>
+              </a>
+              <a href="/products.html?category=kids-crackers" class="mega-cat-item">
+                <span class="mega-cat-icon">🎈</span>
+                <div class="mega-cat-info">
+                  <strong>Kids Special</strong>
+                  <span>Low-Decibel Pops & Caps</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horizontal Links -->
+        <div class="nav-links-scrollable" id="nav">
+          <a href="/" class="nav-strip-link">Home</a>
+          <a href="/products.html" class="nav-strip-link">Buy Crackers</a>
+          <a href="/products.html?category=sparklers" class="nav-strip-link">Sparklers</a>
+          <a href="/products.html?category=flower-pots" class="nav-strip-link">Flower Pots</a>
+          <a href="/products.html?category=ground-chakkars" class="nav-strip-link">Chakkars</a>
+          <a href="/products.html?category=sky-shots" class="nav-strip-link">Sky Shots</a>
+          <a href="/products.html?category=gift-boxes" class="nav-strip-link">Gift Hampers</a>
+          <a href="/price-list.html" class="nav-strip-link active" style="color:#dc2626; font-weight:700;">Price List 2026</a>
+          <a href="/#brand-showcase" class="nav-strip-link">Brands</a>
+          <a href="/about.html" class="nav-strip-link">About Us</a>
+          <a href="/faq.html?tab=safety" class="nav-strip-link">Safety Guidelines</a>
+          <a href="/contact.html" class="nav-strip-link">Contact</a>
+        </div>
+
+        <!-- Right Quick Fast Order Link -->
+        <a href="/price-list.html" class="fast-booking-link">
+          <span>⚡ Express Order</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="main">
+    <div class="container section">
+      <div class="flex-between" style="margin-bottom: var(--space-6); flex-wrap: wrap; gap: var(--space-4);">
+        <div>
+          <span class="badge badge-accent" style="margin-bottom: 8px;">SEASON 2026 FACTORY RATES</span>
+          <h1 style="margin-bottom: 4px; font-size: 2.3rem;">Sivakasi Festive Rate Card</h1>
+          <p style="margin-bottom: 0;">Transparent factory direct rates. F.O.R. Sivakasi with net festival discounts up to 70%.</p>
+        </div>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+          <button onclick="window.print()" class="btn btn-secondary btn-sm">🖨️ Print / Save PDF</button>
+          <a href="/products.html" class="btn btn-outline btn-sm">Catalogue View →</a>
+        </div>
+      </div>
+
+      <div class="price-list-container" id="price-list-wrapper">
+        <p class="text-light">Loading complete festive price catalogue...</p>
+      </div>
+
+      <!-- Sticky Quick-Order Calculator Bar -->
+      <div class="floating-order-bar" id="order-bar" style="display:none;">
+        <div>
+          <span class="text-xs" style="color: #94a3b8; display:block;">ESTIMATE SELECTED</span>
+          <span id="order-bar-items" class="font-bold" style="color:#f59e0b;">0 items</span> • 
+          <span id="order-bar-total" class="font-bold" style="font-size:1.35rem; color:#ffffff;">₹0</span>
+        </div>
+        <div style="display:flex; gap:12px;">
+          <button onclick="PriceListApp.addAllToCart()" class="btn btn-primary btn-lg" style="box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);">
+            🛒 Add All to Cart →
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2026 Firecrackers Store. All rights reserved.</p>
+        <p class="safety-note">⚠️ Fireworks must be operated exclusively under adult supervision in open outdoor spaces.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script>
+    const PriceListApp = {
+      products: [],
+      selectedItems: {},
+
+      async init() {
+        const wrapper = document.getElementById('price-list-wrapper');
+        try {
+          const res = await API.get('/products?limit=100');
+          if (!res.success || !res.data) throw new Error('Failed to load items');
+
+          // Group by category
+          const groups = {};
+          res.data.forEach(p => {
+            const catName = p.category ? p.category.name : 'Other Celebrations';
+            if (!groups[catName]) groups[catName] = [];
+            groups[catName].push(p);
+          });
+
+          let html = '';
+          for (const [catName, products] of Object.entries(groups)) {
+            html += `
+              <div class="price-cat-header">
+                <span>${App.escapeHtml(catName)}</span>
+                <span class="text-xs font-semibold" style="color:#b45309; background:#fef3c7; padding:2px 8px; border-radius:4px;">${products.length} Items</span>
+              </div>
+              <div class="table-container">
+                <table class="price-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 40px;">#</th>
+                      <th>Firecracker Description</th>
+                      <th>Brand</th>
+                      <th>Factory MRP</th>
+                      <th>Net Rate</th>
+                      <th>Savings</th>
+                      <th style="width: 140px; text-align: center;">Order Qty</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    ${products.map((p, idx) => {
+                      const hasCompare = p.comparePrice && p.comparePrice > p.price;
+                      const discount = hasCompare ? Math.round(((p.comparePrice - p.price) / p.comparePrice) * 100) : p.discount;
+                      return `
+                        <tr>
+                          <td style="color: #94a3b8; font-weight: 600;">${idx + 1}</td>
+                          <td>
+                            <strong style="color: #0f172a; display: block; font-size: 0.95rem;">${App.escapeHtml(p.name)}</strong>
+                            <span class="text-xs text-light">${p.sku}</span>
+                          </td>
+                          <td style="color: #d97706; font-size: 0.8rem; font-weight: 700;">${App.escapeHtml(p.brand || 'Standard')}</td>
+                          <td style="color: #94a3b8; text-decoration: line-through;">
+                            ${hasCompare ? App.formatPrice(p.comparePrice) : '-'}
+                          </td>
+                          <td style="color: #b91c1c; font-weight: 800; font-size: 1.05rem;">
+                            ${App.formatPrice(p.price)}
+                          </td>
+                          <td>
+                            ${discount > 0 ? `<span class="badge badge-accent">-${discount}%</span>` : '-'}
+                          </td>
+                          <td style="text-align: center;">
+                            <div class="qty-control" style="border-radius: var(--radius-sm); margin: 0 auto;">
+                              <button class="qty-btn" onclick="PriceListApp.changeQty('${p._id}', -1)" style="width:30px;height:32px;">-</button>
+                              <input type="text" id="qty-${p._id}" class="qty-input" value="0" style="width:36px;" readonly>
+                              <button class="qty-btn" onclick="PriceListApp.changeQty('${p._id}', 1)" style="width:30px;height:32px;">+</button>
+                            </div>
+                          </td>
+                        </tr>
+                      `;
+                    }).join('')}
+                  </tbody>
+                </table>
+              </div>
+            `;
+          }
+
+          wrapper.innerHTML = html;
+          this.products = res.data;
+        } catch (err) {
+          wrapper.innerHTML = `<p class="text-error">Failed to load price list: ${err.message}</p>`;
+        }
+      },
+
+      changeQty(id, delta) {
+        const input = document.getElementById(`qty-${id}`);
+        if (!input) return;
+        let qty = parseInt(input.value, 10) || 0;
+        qty = Math.max(0, qty + delta);
+        input.value = qty;
+
+        const product = this.products.find(p => p._id === id);
+        if (qty > 0) {
+          this.selectedItems[id] = { product, qty };
+        } else {
+          delete this.selectedItems[id];
+        }
+        this.updateOrderBar();
+      },
+
+      updateOrderBar() {
+        const bar = document.getElementById('order-bar');
+        const itemsCountEl = document.getElementById('order-bar-items');
+        const totalEl = document.getElementById('order-bar-total');
+
+        const keys = Object.keys(this.selectedItems);
+        let totalItems = 0;
+        let totalPrice = 0;
+
+        keys.forEach(k => {
+          const item = this.selectedItems[k];
+          totalItems += item.qty;
+          totalPrice += (item.product.price * item.qty);
+        });
+
+        if (totalItems > 0) {
+          bar.style.display = 'flex';
+          itemsCountEl.textContent = `${totalItems} units (${keys.length} items)`;
+          totalEl.textContent = App.formatPrice(totalPrice);
+        } else {
+          bar.style.display = 'none';
+        }
+      },
+
+      async addAllToCart() {
+        const keys = Object.keys(this.selectedItems);
+        if (keys.length === 0) return;
+
+        App.showNotification('Adding selected items to your cart...', 'info');
+        try {
+          for (const k of keys) {
+            const item = this.selectedItems[k];
+            await API.post('/cart/add', { productId: item.product._id, quantity: item.qty });
+          }
+          App.showNotification('All festive items added to your cart!', 'success');
+          App.updateCartBadge();
+          setTimeout(() => {
+            window.location.href = '/cart.html';
+          }, 800);
+        } catch (err) {
+          App.showNotification('Failed to add some items. Please ensure you are signed in.', 'warning');
+        }
+      }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      PriceListApp.init();
+    });
+  </script>
+</body>
+</html>

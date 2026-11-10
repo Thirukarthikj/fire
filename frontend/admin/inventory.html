@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="admin-body">
+  <div id="notification-container"></div>
+
+  <!-- Admin Sidebar -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-header">
+      <a href="/admin/dashboard.html" class="logo">🎆 Admin<span>Fire</span></a>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/admin/dashboard.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="/admin/products.html" class="sidebar-link">📦 Products</a>
+      <a href="/admin/categories.html" class="sidebar-link">🏷️ Categories</a>
+      <a href="/admin/inventory.html" class="sidebar-link active">📋 Inventory</a>
+      <a href="/admin/orders.html" class="sidebar-link">🛒 Orders</a>
+      <a href="/admin/payments.html" class="sidebar-link">💳 Payments & Refunds</a>
+      <a href="/admin/customers.html" class="sidebar-link">👥 Customers</a>
+      <a href="/admin/coupons.html" class="sidebar-link">🎟️ Coupons</a>
+      <a href="/admin/support.html" class="sidebar-link">💬 Support</a>
+      <a href="/admin/content.html" class="sidebar-link">📝 Website Content</a>
+      <a href="/admin/reports.html" class="sidebar-link">📈 Analytics & Reports</a>
+      <a href="/admin/administrators.html" class="sidebar-link">🔐 Administrators</a>
+      <a href="/admin/settings.html" class="sidebar-link">⚙️ Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/" target="_blank" class="sidebar-link" style="margin-bottom: 6px;">🌐 View Storefront</a>
+      <button onclick="AdminApp.logout()" class="sidebar-link logout-link">🚪 Logout</button>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-header">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+        <h2 style="font-size: 1.25rem; margin-bottom: 0;">Stock & Warehousing Controls</h2>
+      </div>
+      <div>
+        <span class="text-sm font-semibold" id="admin-name">Administrator</span>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      <!-- Quick Stock Metrics -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-label">Total Catalogued SKUs</span>
+          <span class="stat-value" id="inv-total">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Low Stock SKUs</span>
+          <span class="stat-value text-warning" id="inv-low">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Depleted / Out of Stock</span>
+          <span class="stat-value text-error" id="inv-out">0</span>
+        </div>
+      </div>
+
+      <div class="card" style="padding: 24px;">
+        <div class="flex-between" style="margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+          <h3 style="font-size: 1.15rem; margin-bottom: 0;">Warehouse Stock Levels</h3>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <label class="text-sm font-semibold">Filter Status:</label>
+            <select id="inventory-status-filter" class="form-select" style="width: auto; padding: 0.4rem 0.8rem;">
+              <option value="">All Stock States</option>
+              <option value="low">Low Stock Alerts Only</option>
+              <option value="out">Out of Stock Only</option>
+              <option value="ok">Adequate Stock</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Product Title</th>
+                <th>SKU</th>
+                <th>Current Units</th>
+                <th>Alert Threshold</th>
+                <th>Inventory Status</th>
+                <th>Adjustment</th>
+              </tr>
+            </thead>
+            <tbody id="inventory-tbody">
+              <tr><td colspan="6" class="text-center">Loading stock status...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Adjust Stock Modal -->
+  <div class="modal-overlay" id="adjust-modal">
+    <div class="modal" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3>Adjust Warehouse Stock</h3>
+        <button class="modal-close" onclick="AdminApp.closeAdjustStockModal()">✕</button>
+      </div>
+      <form onsubmit="AdminApp.submitStockAdjustment(event)">
+        <div class="modal-body">
+          <input type="hidden" id="adjust-prod-id">
+          <div style="margin-bottom: 16px; background: #f9fafb; padding: 12px; border-radius: 8px;">
+            <strong id="adjust-prod-name">Product</strong><br>
+            <span class="text-xs text-light">Current Stock: <span id="adjust-current-stock" class="font-bold">0</span> units</span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Adjustment Type</label>
+            <select id="adjust-type" class="form-select">
+              <option value="addition">Addition (Stock Replenishment)</option>
+              <option value="reduction">Reduction (Manual Correction)</option>
+              <option value="damage">Damage / Expired / Soak</option>
+              <option value="adjustment">Set Exact Physical Count</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Quantity</label>
+            <input type="number" id="adjust-quantity" class="form-control" min="1" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Audit Reason / Order Ref</label>
+            <textarea id="adjust-reason" class="form-control" placeholder="E.g., Sivakasi shipment batch #402 received"></textarea>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="AdminApp.closeAdjustStockModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Apply Adjustment</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AdminApp.init('initInventory');
+    });
+  </script>
+</body>
+</html>
+

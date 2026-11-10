@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout & Payment — Firecrackers Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/checkout.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+  <div id="notification-container"></div>
+
+  <!-- Checkout Focused Header -->
+  <header class="header" id="main-header" style="position: sticky; top: 0; background: #ffffff; border-bottom: 1px solid #e2e8f0; height: auto; padding: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); z-index: 1000;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="/" class="brand-logo">
+        <span class="brand-logo-icon">🎆</span>
+        <div class="brand-logo-text">
+          <span class="brand-name">Fire<span class="brand-name-accent">crackers</span></span>
+          <span class="brand-sub">SIVAKASI DIRECT WHOLESALE</span>
+        </div>
+      </a>
+      <div style="font-size: 0.85rem; font-weight: 700; color: #15803d; display: flex; align-items: center; gap: 6px; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 6px 14px; border-radius: var(--radius-full);">
+        <span>🔒</span> 256-Bit SSL Encrypted Checkout
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="container section">
+      <div style="margin-bottom: var(--space-6);">
+        <span class="badge badge-accent" style="margin-bottom: 8px;">FINAL STEP</span>
+        <h1 style="margin-bottom: 4px; font-size: 2.2rem;">Secure Checkout</h1>
+        <p style="margin-bottom: 0;">Specify your surface cargo dispatch branch address and complete order payment.</p>
+      </div>
+
+      <div class="checkout-container">
+        <!-- Delivery Address Selection -->
+        <div>
+          <div class="card" style="padding: var(--space-6); margin-bottom: 24px;">
+            <div class="flex-between" style="margin-bottom: 16px;">
+              <h3 style="font-size: 1.25rem; margin-bottom: 0; color: #0f172a;">1. Select Delivery Destination</h3>
+              <button onclick="Checkout.openAddAddressModal()" class="btn btn-outline btn-sm">+ Add New Address</button>
+            </div>
+            <div class="address-grid" id="checkout-addresses-grid">
+              <p class="text-sm text-light">Loading delivery addresses...</p>
+            </div>
+          </div>
+
+          <div class="card" style="padding: var(--space-6);">
+            <div class="flex-between" style="margin-bottom: 16px;">
+              <h3 style="font-size: 1.25rem; margin-bottom: 0; color: #0f172a;">2. Payment Method</h3>
+              <span class="badge badge-success">0% Processing Fee</span>
+            </div>
+
+            <!-- Payment Method Tabs/Selectors -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+              <label class="pay-method-pill active" id="pill-method-upi" onclick="Checkout.selectPaymentMethod('upi_qr')" style="border: 1.5px solid #dc2626; border-radius: var(--radius-md); padding: 12px 14px; cursor: pointer; background: #fff5f5; transition: all 0.2s ease;">
+                <input type="radio" name="payment_method" value="upi_qr" checked style="display:none;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 1.35rem;">📱</span>
+                  <div>
+                    <strong style="display:block; font-size: 0.95rem; color:#0f172a;">Google Pay / UPI QR</strong>
+                    <span style="font-size: 0.75rem; color: #16a34a; font-weight:600;">Recommended • Instant</span>
+                  </div>
+                </div>
+              </label>
+
+              <label class="pay-method-pill" id="pill-method-gateway" onclick="Checkout.selectPaymentMethod('razorpay')" style="border: 1.5px solid #cbd5e1; border-radius: var(--radius-md); padding: 12px 14px; cursor: pointer; background: #f8fafc; transition: all 0.2s ease;">
+                <input type="radio" name="payment_method" value="razorpay" style="display:none;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 1.35rem;">💳</span>
+                  <div>
+                    <strong style="display:block; font-size: 0.95rem; color:#0f172a;">Online Gateway</strong>
+                    <span style="font-size: 0.75rem; color: #64748b;">Cards / Net Banking</span>
+                  </div>
+                </div>
+              </label>
+            </div>
+
+            <!-- UPI QR Container -->
+            <div id="upi-qr-panel" style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: var(--radius-lg); padding: 24px; text-align: center;">
+              <div style="display:flex; justify-content:center; align-items:center; gap:8px; margin-bottom: 8px; flex-wrap: wrap;">
+                <span class="badge badge-secondary" style="background:#e0f2fe; color:#0369a1; font-weight:700;">Google Pay</span>
+                <span class="badge badge-secondary" style="background:#f3e8ff; color:#7e22ce; font-weight:700;">PhonePe</span>
+                <span class="badge badge-secondary" style="background:#ecfdf5; color:#047857; font-weight:700;">Paytm</span>
+                <span class="badge badge-secondary" style="background:#fef3c7; color:#b45309; font-weight:700;">BHIM UPI</span>
+              </div>
+              <h4 style="font-size: 1.15rem; color: #0f172a; margin-bottom: 4px;">Scan & Pay with Google Pay / UPI</h4>
+              <p class="text-xs text-light" style="margin-bottom: 16px;">Scan this QR code with Google Pay or any UPI app to complete your wholesale booking.</p>
+
+              <!-- Dynamic Branded Google Pay Card Container -->
+              <div style="background: #ffffff; border: 2px solid #e2e8f0; border-radius: 20px; padding: 18px 20px; display: inline-block; margin-bottom: 16px; box-shadow: 0 10px 25px -5px rgba(0,0,0,0.06); max-width: 320px; width: 100%;">
+                <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #f1f5f9; padding-bottom: 10px; margin-bottom: 10px;">
+                  <div style="text-align: left;">
+                    <div style="font-weight: 800; font-size: 0.85rem; color: #0f172a; letter-spacing: 0.02em;">SIVAKASI DIRECT WHOLESALE</div>
+                    <div class="text-xs" style="color: #16a34a; font-weight: 600;">✓ Verified Merchant Account</div>
+                  </div>
+                  <span style="font-size: 0.8rem; font-weight: 700; color: #1a73e8; background: #eff6ff; padding: 2px 8px; border-radius: 6px;">Google Pay</span>
+                </div>
+
+                <!-- 5-Minute Session Expiration Timer Banner -->
+                <div id="upi-timer-badge" style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 6px 12px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
+                  <span style="font-size: 0.75rem; font-weight: 600; color: #1e40af; display: flex; align-items: center; gap: 5px;">
+                    <span>⏱️</span> Valid For:
+                  </span>
+                  <span id="upi-countdown-timer" style="font-family: monospace; font-size: 0.95rem; font-weight: 800; color: #1d4ed8; letter-spacing: 0.05em;">
+                    05:00
+                  </span>
+                </div>
+
+                <!-- Live Auto-Calculated QR Image with Expired Overlay -->
+                <div style="position: relative; display: inline-block; background: #ffffff; padding: 4px; border-radius: 8px; overflow: hidden;" id="gpay-qr-wrapper">
+                  <img id="gpay-qr-img" src="/images/gpay-qr.jpeg" alt="Google Pay Dynamic QR Code" style="width: 240px; height: 240px; object-fit: contain; display: block; margin: 0 auto; border-radius: 8px;">
+
+                  <!-- 5-Minute Expiration Overlay -->
+                  <div id="qr-expired-overlay" style="display: none; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(4px); border-radius: 8px; flex-direction: column; align-items: center; justify-content: center; padding: 14px; text-align: center; box-sizing: border-box; z-index: 10;">
+                    <span style="font-size: 2.2rem; margin-bottom: 4px;">⏰</span>
+                    <strong style="color: #991b1b; font-size: 0.92rem; margin-bottom: 2px;">QR Code Expired</strong>
+                    <p style="font-size: 0.72rem; color: #64748b; margin-bottom: 10px; line-height: 1.3;">Session timed out after 5 minutes to prevent duplicate charges.</p>
+                    <button type="button" onclick="Checkout.refreshUpiQrSession()" class="btn btn-primary btn-sm" style="background: #dc2626; border-color: #dc2626; padding: 6px 14px; font-size: 0.78rem; border-radius: 6px;">
+                      🔄 Refresh QR Code
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Instant Amount Badge on Scan -->
+                <div style="margin-top: 10px; font-size: 0.78rem; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 10px;">
+                  ⚡ Auto-fills <strong id="qr-scanned-amount" style="color: #dc2626;">₹0</strong> directly on scan
+                </div>
+              </div>
+
+              <!-- Direct UPI App Button (for mobile shoppers) -->
+              <div style="margin-bottom: 16px;" id="gpay-direct-wrap">
+                <a id="gpay-direct-app-btn" href="#" onclick="Checkout.handleMobileUpiClick(event)" class="btn btn-block" style="background: #1a73e8; color: #ffffff; font-weight: 700; border-radius: 8px; padding: 10px 16px; display: none; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
+                  <span>⚡</span>
+                  <span id="gpay-direct-label">Pay via Google Pay / UPI App</span>
+                </a>
+              </div>
+
+              <!-- UPI ID Row with Copy Button -->
+              <div style="background: #f1f5f9; border-radius: 8px; padding: 10px 16px; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; justify-content: center;">
+                <span style="font-size: 0.85rem; color: #475569;">UPI ID: <strong id="upi-id-text" style="color: #0f172a; font-family: monospace; font-size: 0.95rem;">jthirukarthick@oksbi</strong></span>
+                <button type="button" onclick="Checkout.copyUpiId()" class="btn btn-outline btn-sm" style="padding: 3px 10px; font-size: 0.75rem; background: #ffffff;">📋 Copy UPI ID</button>
+              </div>
+
+              <!-- Live Amount Banner -->
+              <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 10px; margin-bottom: 12px;">
+                <span style="font-size: 0.85rem; color: #991b1b; font-weight: 600;">Amount Payable: <strong id="qr-payable-amount" style="font-size: 1.25rem; color: #b91c1c;">₹0</strong></span>
+              </div>
+
+              <!-- Live Payment Detection Box -->
+              <div id="upi-live-detect-box" style="background: #f0fdf4; border: 1.5px solid #86efac; border-radius: 12px; padding: 14px 18px; margin-top: 14px; text-align: left; display: flex; align-items: center; gap: 14px;">
+                <div style="position: relative; width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                  <span class="upi-pulse-radar" style="position: absolute; width: 100%; height: 100%; border-radius: 50%; background: rgba(22, 163, 74, 0.4); animation: upiRadarPulse 2s infinite ease-out;"></span>
+                  <span style="width: 10px; height: 10px; background: #16a34a; border-radius: 50%; display: block; z-index: 2;"></span>
+                </div>
+                <div style="flex: 1;">
+                  <div id="upi-live-status-title" style="font-weight: 700; color: #166534; font-size: 0.92rem; display: flex; align-items: center; gap: 8px;">
+                    <span>Auto-Detecting Payment...</span>
+                    <span class="badge" style="background: #dcfce7; color: #15803d; font-size: 0.7rem; padding: 2px 6px;">Live</span>
+                  </div>
+                  <div id="upi-live-status-desc" style="font-size: 0.8rem; color: #15803d; margin-top: 2px; line-height: 1.4;">
+                    Once payment is completed in Google Pay, <strong>your order will be placed automatically</strong>.
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" id="btn-manual-confirm-upi" onclick="Checkout.triggerAutoPaymentCompleted('Instant Confirmation')" class="btn btn-outline btn-sm" style="margin-top: 10px; width: 100%; border-color: #bbf7d0; color: #166534; font-size: 0.78rem; background: #ffffff; padding: 6px 12px; border-radius: 6px;">
+                ⚡ Already Paid on Google Pay? Click for Instant Auto-Place
+              </button>
+            </div>
+
+            <!-- Gateway Container (hidden when UPI QR active) -->
+            <div id="gateway-panel" style="display: none; background: #f8fafc; border: 1.5px solid #cbd5e1; padding: 20px; border-radius: var(--radius-md);">
+              <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 12px;">
+                <span style="font-size: 1.75rem;">💳</span>
+                <div>
+                  <strong style="color: #0f172a; font-size: 1rem;">Online Cards & Net Banking</strong>
+                  <div style="font-size: 0.825rem; color: #64748b;">Visa, MasterCard, RuPay cards, and 50+ NetBanking options.</div>
+                </div>
+              </div>
+              <p class="text-xs text-light" style="margin-bottom: 0;">You will be redirected to the secure payment dialog to complete card or netbanking authorization.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Order Summary & Action -->
+        <div class="summary-card">
+          <h3 class="summary-title">Review Order</h3>
+          <div id="checkout-items-list" style="margin-bottom: 16px; max-height: 220px; overflow-y: auto;"></div>
+
+          <div class="summary-row">
+            <span>Items Subtotal</span>
+            <span id="checkout-subtotal" class="font-bold" style="color:#0f172a;">₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Festive Discount</span>
+            <span id="checkout-discount" class="text-success font-bold">₹0</span>
+          </div>
+
+          <div class="summary-row">
+            <span>Surface Cargo Delivery</span>
+            <span id="checkout-shipping">₹100</span>
+          </div>
+
+          <div class="summary-row total">
+            <span>Total Payable</span>
+            <span id="checkout-total" style="color: #b91c1c; font-size: 1.4rem;">₹0</span>
+          </div>
+
+          <button id="btn-place-order" onclick="Checkout.handlePlaceOrder()" class="btn btn-primary btn-lg btn-block" style="margin-top: 24px; box-shadow: 0 4px 14px rgba(220, 38, 38, 0.35);">
+            Proceed to Payment →
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Add Address Modal -->
+  <div class="modal-overlay" id="address-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 style="color: #0f172a;">Add Delivery Address</h3>
+        <button class="modal-close" onclick="Checkout.closeAddAddressModal()">✕</button>
+      </div>
+      <form onsubmit="Checkout.submitNewAddress(event)">
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Full Recipient Name</label>
+              <input type="text" id="new-addr-name" class="form-control" required placeholder="e.g. Anand Kumar">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Contact Mobile</label>
+              <input type="tel" id="new-addr-phone" class="form-control" required placeholder="e.g. 9876543210">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Address Line 1 (House/Building/Street)</label>
+            <input type="text" id="new-addr-line1" class="form-control" required placeholder="e.g. Flat 402, Sai Residency, Main Road">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Address Line 2 (Landmark/Area)</label>
+            <input type="text" id="new-addr-line2" class="form-control" placeholder="e.g. Near Gandhi Statue">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">City</label>
+              <input type="text" id="new-addr-city" class="form-control" required placeholder="e.g. Chennai">
+            </div>
+            <div class="form-group">
+              <label class="form-label">State</label>
+              <input type="text" id="new-addr-state" class="form-control" required placeholder="e.g. Tamil Nadu">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Pincode</label>
+              <input type="text" id="new-addr-pincode" class="form-control" required placeholder="e.g. 600001">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" onclick="Checkout.closeAddAddressModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save & Select</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2026 Firecrackers Store. Regulated festive e-commerce platform direct from Sivakasi.</p>
+        <p class="safety-note">⚠️ Dispatch strictly through licensed surface cargo operators to booking branch hubs.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/checkout.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Checkout.init();
+    });
+  </script>
+</body>
+</html>

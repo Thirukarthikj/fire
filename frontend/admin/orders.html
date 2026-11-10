@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orders Management — Admin Panel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/admin.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body class="admin-body">
+  <div id="notification-container"></div>
+
+  <!-- Admin Sidebar -->
+  <aside class="admin-sidebar" id="admin-sidebar">
+    <div class="sidebar-header">
+      <a href="/admin/dashboard.html" class="logo">🎆 Admin<span>Fire</span></a>
+    </div>
+    <nav class="sidebar-nav">
+      <a href="/admin/dashboard.html" class="sidebar-link">📊 Dashboard</a>
+      <a href="/admin/products.html" class="sidebar-link">📦 Products</a>
+      <a href="/admin/categories.html" class="sidebar-link">🏷️ Categories</a>
+      <a href="/admin/inventory.html" class="sidebar-link">📋 Inventory</a>
+      <a href="/admin/orders.html" class="sidebar-link active">🛒 Orders</a>
+      <a href="/admin/payments.html" class="sidebar-link">💳 Payments & Refunds</a>
+      <a href="/admin/customers.html" class="sidebar-link">👥 Customers</a>
+      <a href="/admin/coupons.html" class="sidebar-link">🎟️ Coupons</a>
+      <a href="/admin/support.html" class="sidebar-link">💬 Support</a>
+      <a href="/admin/content.html" class="sidebar-link">📝 Website Content</a>
+      <a href="/admin/reports.html" class="sidebar-link">📈 Analytics & Reports</a>
+      <a href="/admin/administrators.html" class="sidebar-link">🔐 Administrators</a>
+      <a href="/admin/settings.html" class="sidebar-link">⚙️ Settings</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/" target="_blank" class="sidebar-link" style="margin-bottom: 6px;">🌐 View Storefront</a>
+      <button onclick="AdminApp.logout()" class="sidebar-link logout-link">🚪 Logout</button>
+    </div>
+  </aside>
+
+  <div class="admin-main">
+    <header class="admin-header">
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <button class="sidebar-toggle" id="sidebar-toggle">☰</button>
+        <h2 style="font-size: 1.25rem; margin-bottom: 0;">Order Processing & Lifecycle</h2>
+      </div>
+      <div>
+        <span class="text-sm font-semibold" id="admin-name">Administrator</span>
+      </div>
+    </header>
+
+    <div class="admin-content">
+      <div class="card" style="padding: 24px;">
+        <div class="flex-between" style="margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+          <h3 style="font-size: 1.15rem; margin-bottom: 0;">Customer Orders</h3>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <label class="text-sm font-semibold">Filter Status:</label>
+            <select id="order-filter-status" class="form-select" style="width: auto; padding: 0.4rem 0.8rem;">
+              <option value="all">All Statuses</option>
+              <option value="pending">Pending</option>
+              <option value="confirmed">Confirmed</option>
+              <option value="processing">Processing</option>
+              <option value="shipped">Shipped</option>
+              <option value="delivered">Delivered</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-container">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Order Number</th>
+                <th>Recipient</th>
+                <th>Placed Date</th>
+                <th>Total Value</th>
+                <th>Fulfilment</th>
+                <th>Payment</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="admin-orders-tbody">
+              <tr><td colspan="7" class="text-center">Loading orders...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order Details / Status Transition Modal -->
+  <div class="modal-overlay" id="order-detail-modal">
+    <div class="modal" style="max-width: 600px;">
+      <div class="modal-header">
+        <h3>Manage Order #<span id="modal-order-number">---</span></h3>
+        <button class="modal-close" onclick="AdminApp.closeOrderDetailModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="margin-bottom: 16px; background: #f9fafb; padding: 14px; border-radius: 8px;">
+          <div style="margin-bottom: 6px;"><strong>Customer:</strong> <span id="modal-order-customer"></span></div>
+          <div style="margin-bottom: 6px;"><strong>Address:</strong> <span id="modal-order-address" class="text-sm"></span></div>
+          <div style="margin-bottom: 6px;"><strong>Order Value:</strong> <span id="modal-order-total" class="font-bold text-accent"></span></div>
+          <div style="margin-bottom: 6px;"><strong>Payment Method:</strong> <span id="modal-order-payment-method" style="font-weight: 600;"></span></div>
+          <div style="margin-bottom: 6px;"><strong>UPI UTR / Reference:</strong> <span id="modal-order-upi-utr" style="font-family: monospace; font-weight: 700; color: #dc2626;"></span></div>
+          <div style="display: flex; gap: 8px; margin-top: 10px;">
+            <span id="modal-order-status-badge"></span>
+            <span id="modal-payment-status-badge"></span>
+          </div>
+        </div>
+
+        <h4 style="font-size: 0.95rem; margin-bottom: 8px;">Statutory Status Transition</h4>
+        <div class="form-group">
+          <label class="form-label">Permitted Next Status</label>
+          <select id="new-order-status" class="form-select"></select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Audit Log Note / Dispatch Tracking Number</label>
+          <textarea id="status-transition-note" class="form-control" placeholder="E.g., Dispatched via VRL Logistics AWB #987654"></textarea>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="AdminApp.closeOrderDetailModal()">Close</button>
+        <button type="button" id="btn-update-status" class="btn btn-primary">Update Status Transition</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/orders.js"></script>
+  <script src="/js/admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      AdminApp.init('initOrders');
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Orders — Firecrackers Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+  <style>
+    .order-tab {
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      color: #64748b;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      transition: all var(--transition-fast);
+    }
+    .order-tab:hover {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .order-tab.active {
+      background-color: var(--color-accent);
+      color: #ffffff;
+      border-color: var(--color-accent);
+    }
+  </style>
+</head>
+<body>
+  <div id="notification-container"></div>
+
+  <!-- Search Overlay Drawer -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-overlay-header">
+      <span class="text-sm font-semibold" style="color: var(--color-gold);">SEARCH THE FESTIVE CATALOGUE</span>
+      <button class="modal-close" id="search-close-btn" aria-label="Close search" style="color: #ffffff;">✕</button>
+    </div>
+    <div class="search-box-large">
+      <span class="search-box-icon">🔍</span>
+      <input type="text" id="search-overlay-input" placeholder="Search sparklers, chakkars, aerial cakes... (Press Enter)">
+    </div>
+  </div>
+
+  <!-- Site Header (Sticky Multi-Tier Real E-Commerce Storefront) -->
+  <div class="site-header-wrapper" id="site-header-wrapper">
+    <!-- 1. Top Utility Announcement & Hotline Bar -->
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div class="top-bar-left">
+          <span class="top-bar-badge">Diwali 2026</span>
+          <span class="top-bar-text">🎉 Sivakasi Factory Direct Wholesale Booking Open | Up to 70% Off Factory MRP</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="top-bar-item">🌱 100% CSIR-NEERI Green Certified</span>
+          <a href="tel:+919876543210" class="top-bar-item top-bar-link">📞 +91 98765 43210</a>
+          <a href="/orders.html" class="top-bar-item top-bar-link">📦 Track Consignment</a>
+          <a href="/faq.html?tab=safety" class="top-bar-item top-bar-link">🛡️ Safety Advisory</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Main Brand & Search Row -->
+    <header class="header-main" id="main-header">
+      <div class="container header-main-container">
+        <!-- Brand Logo -->
+        <a href="/" class="brand-logo" aria-label="Firecrackers Sivakasi Home">
+          <span class="brand-logo-icon">🎆</span>
+          <div class="brand-logo-text">
+            <span class="brand-name">Fire<span class="brand-name-accent">crackers</span></span>
+            <span class="brand-sub">SIVAKASI DIRECT WHOLESALE</span>
+          </div>
+        </a>
+
+        <!-- Central Search Bar (Wide, Unshrinkable, Real E-Commerce) -->
+        <form class="header-search-form" action="/products.html" method="GET">
+          <div class="search-input-wrapper">
+            <span class="search-icon-lens">🔍</span>
+            <input 
+              type="text" 
+              name="search" 
+              id="header-search-input" 
+              class="header-search-input" 
+              placeholder="Search sparklers, flower pots, ground chakkars, sky shots, gift boxes..." 
+              autocomplete="off"
+              aria-label="Search fireworks"
+            >
+            <button type="submit" class="search-submit-btn" aria-label="Search">Search</button>
+          </div>
+        </form>
+
+        <!-- Right Side User Actions -->
+        <div class="header-main-actions">
+          <!-- Quick Wholesale Price List CTA with 70% OFF Badge -->
+          <a href="/price-list.html" class="header-pricelist-btn" title="View 2026 Price List">
+            <span class="pricelist-icon">📋</span>
+            <div class="pricelist-copy">
+              <span class="pricelist-title">Price List 2026</span>
+              <span class="pricelist-badge">70% OFF</span>
+            </div>
+          </a>
+
+          <!-- Wishlist Link -->
+          <a href="/wishlist.html" class="header-action-icon-link" id="wishlist-link" title="Wishlist" aria-label="Wishlist">
+            <div class="action-icon-wrap">
+              <span>🤍</span>
+              <span class="action-counter" id="wishlist-count" style="display:none">0</span>
+            </div>
+            <span class="action-text-label">Wishlist</span>
+          </a>
+
+          <!-- Cart Link -->
+          <a href="/cart.html" class="header-action-icon-link" id="cart-icon" title="View Cart" aria-label="Cart">
+            <div class="action-icon-wrap">
+              <span>🛒</span>
+              <span class="action-counter" id="cart-count" style="display:none">0</span>
+            </div>
+            <span class="action-text-label">Cart</span>
+          </a>
+
+          <!-- User / Account Menu -->
+          <div class="header-user-menu" id="user-menu">
+            <a href="/login.html" class="btn-signin-pill">
+              <span>👤</span>
+              <span>Sign In</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. Category & Department Navigation Strip -->
+    <nav class="nav-strip" id="nav-strip" aria-label="Department Navigation">
+      <div class="container nav-strip-container">
+        <!-- Mega Menu Trigger -->
+        <div class="all-categories-dropdown">
+          <button class="all-categories-btn" id="all-categories-toggle" type="button">
+            <span>☰</span>
+            <span>All Categories</span>
+            <span style="font-size:0.7rem;">▼</span>
+          </button>
+          <div class="categories-mega-menu" id="categories-mega-menu">
+            <div class="mega-menu-grid">
+              <a href="/products.html?category=sparklers" class="mega-cat-item">
+                <span class="mega-cat-icon">✨</span>
+                <div class="mega-cat-info">
+                  <strong>Sparklers</strong>
+                  <span>Gold, Silver & Neon Sparklers</span>
+                </div>
+              </a>
+              <a href="/products.html?category=flower-pots" class="mega-cat-item">
+                <span class="mega-cat-icon">🪴</span>
+                <div class="mega-cat-info">
+                  <strong>Flower Pots</strong>
+                  <span>Ashoka & Colour Fountains</span>
+                </div>
+              </a>
+              <a href="/products.html?category=ground-chakkars" class="mega-cat-item">
+                <span class="mega-cat-icon">🌀</span>
+                <div class="mega-cat-info">
+                  <strong>Ground Chakkars</strong>
+                  <span>Deluxe Rotating Wheels</span>
+                </div>
+              </a>
+              <a href="/products.html?category=sky-shots" class="mega-cat-item">
+                <span class="mega-cat-icon">🎆</span>
+                <div class="mega-cat-info">
+                  <strong>Sky Shots & Cakes</strong>
+                  <span>12 & 30-Shot Aerial Starbursts</span>
+                </div>
+              </a>
+              <a href="/products.html?category=rockets" class="mega-cat-item">
+                <span class="mega-cat-icon">🚀</span>
+                <div class="mega-cat-info">
+                  <strong>Rockets</strong>
+                  <span>Whistle & Sound Rockets</span>
+                </div>
+              </a>
+              <a href="/products.html?category=bombs" class="mega-cat-item">
+                <span class="mega-cat-icon">💥</span>
+                <div class="mega-cat-info">
+                  <strong>Sound Bombs</strong>
+                  <span>Classic Hydro Reports</span>
+                </div>
+              </a>
+              <a href="/products.html?category=gift-boxes" class="mega-cat-item">
+                <span class="mega-cat-info">🎁</span>
+                <div class="mega-cat-info">
+                  <strong>Diwali Gift Boxes</strong>
+                  <span>Curated Family Hampers</span>
+                </div>
+              </a>
+              <a href="/products.html?category=fancy-items" class="mega-cat-item">
+                <span class="mega-cat-icon">🦚</span>
+                <div class="mega-cat-info">
+                  <strong>Fancy Items</strong>
+                  <span>Peacock Fountains & Spinners</span>
+                </div>
+              </a>
+              <a href="/products.html?category=multi-sound-crackers" class="mega-cat-item">
+                <span class="mega-cat-icon">⚡</span>
+                <div class="mega-cat-info">
+                  <strong>Multi-Sound Crackers</strong>
+                  <span>2 & 3-Sound Rhythms</span>
+                </div>
+              </a>
+              <a href="/products.html?category=kids-crackers" class="mega-cat-item">
+                <span class="mega-cat-icon">🎈</span>
+                <div class="mega-cat-info">
+                  <strong>Kids Special</strong>
+                  <span>Low-Decibel Pops & Caps</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horizontal Links -->
+        <div class="nav-links-scrollable" id="nav">
+          <a href="/" class="nav-strip-link">Home</a>
+          <a href="/products.html" class="nav-strip-link">Buy Crackers</a>
+          <a href="/products.html?category=sparklers" class="nav-strip-link">Sparklers</a>
+          <a href="/products.html?category=flower-pots" class="nav-strip-link">Flower Pots</a>
+          <a href="/products.html?category=ground-chakkars" class="nav-strip-link">Chakkars</a>
+          <a href="/products.html?category=sky-shots" class="nav-strip-link">Sky Shots</a>
+          <a href="/products.html?category=gift-boxes" class="nav-strip-link">Gift Hampers</a>
+          <a href="/price-list.html" class="nav-strip-link" style="color:#dc2626; font-weight:700;">Price List</a>
+          <a href="/#brand-showcase" class="nav-strip-link">Brands</a>
+          <a href="/about.html" class="nav-strip-link">About Us</a>
+          <a href="/faq.html?tab=safety" class="nav-strip-link">Safety Guidelines</a>
+          <a href="/contact.html" class="nav-strip-link">Contact</a>
+        </div>
+
+        <!-- Right Quick Fast Order Link -->
+        <a href="/price-list.html" class="fast-booking-link">
+          <span>⚡ Express Order</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="main">
+    <div class="container section">
+      <div style="display: grid; grid-template-columns: 260px 1fr; gap: 32px; align-items: start;">
+        <!-- Account Sidebar -->
+        <aside class="card" style="padding: 24px;">
+          <h3 style="font-size: 1.15rem; margin-bottom: 4px; color: #0f172a;">Customer Portal</h3>
+          <p class="text-xs text-light" style="margin-bottom: 20px;">Manage Orders & Details</p>
+
+          <nav style="display: flex; flex-direction: column; gap: 8px;">
+            <a href="/profile.html" class="btn btn-secondary btn-sm" style="justify-content: flex-start;">👤 My Profile</a>
+            <a href="/addresses.html" class="btn btn-secondary btn-sm" style="justify-content: flex-start;">📍 Delivery Addresses</a>
+            <a href="/orders.html" class="btn btn-primary btn-sm" style="justify-content: flex-start;">📦 My Orders</a>
+            <button onclick="App.logout()" class="btn btn-secondary btn-sm" style="justify-content: flex-start; margin-top: 16px; color: #dc2626;">🚪 Sign Out</button>
+          </nav>
+        </aside>
+
+        <!-- Orders View -->
+        <div>
+          <div style="margin-bottom: 24px;">
+            <span class="badge badge-accent" style="margin-bottom: 8px;">BOOKING ARCHIVE</span>
+            <h2 style="font-size: 1.6rem; margin-bottom: 6px; color: #0f172a;">Festive Order History</h2>
+            <p class="text-sm text-light" style="margin-bottom: 20px;">Track consignment progress, surface transport status, and booking details.</p>
+
+            <!-- Status Tabs -->
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; background-color: #f1f5f9; padding: 6px; border-radius: var(--radius-md); width: fit-content;">
+              <button class="order-tab active" data-status="all">All Orders</button>
+              <button class="order-tab" data-status="confirmed">Confirmed</button>
+              <button class="order-tab" data-status="processing">Processing</button>
+              <button class="order-tab" data-status="shipped">Shipped</button>
+              <button class="order-tab" data-status="delivered">Delivered</button>
+              <button class="order-tab" data-status="cancelled">Cancelled</button>
+            </div>
+          </div>
+
+          <div id="orders-list">
+            <p class="text-sm text-light">Loading orders...</p>
+          </div>
+
+          <div class="pagination" id="orders-pagination"></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>© 2026 Firecrackers Store. Regulated festive e-commerce platform.</p>
+        <p class="safety-note">⚠️ Fireworks must be operated exclusively under adult supervision in open outdoor spaces.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/orders.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      Orders.initOrders();
+    });
+  </script>
+</body>
+</html>
