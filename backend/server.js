@@ -54,13 +54,13 @@ app.use(sanitizeInput);
 
 // Session Configuration
 let sessionStore;
-try {
-  const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/firecrackers_ecommerce';
-  if (process.env.VERCEL && !process.env.MONGO_URI) {
-    console.warn('[Session] MONGO_URI not configured in Vercel. Using default memory session store.');
-  } else {
+const mongoUri = process.env.MONGO_URI;
+const isRemoteUri = mongoUri && (mongoUri.startsWith('mongodb+srv://') || (!mongoUri.includes('localhost') && !mongoUri.includes('127.0.0.1')));
+
+if (!process.env.VERCEL || isRemoteUri) {
+  try {
     sessionStore = MongoStore.create({
-      mongoUrl: mongoUri,
+      mongoUrl: mongoUri || 'mongodb://localhost:27017/firecrackers_ecommerce',
       touchAfter: 24 * 3600,
       mongoOptions: {
         serverSelectionTimeoutMS: 5000
@@ -69,9 +69,11 @@ try {
     sessionStore.on('error', (err) => {
       console.warn('[Session] Session store warning:', err.message);
     });
+  } catch (storeErr) {
+    console.warn('[Session] Session store initialization warning:', storeErr.message);
   }
-} catch (storeErr) {
-  console.warn('[Session] Session store initialization warning:', storeErr.message);
+} else {
+  console.warn('[Session] Running on Vercel without remote MONGO_URI. Using standard in-memory session store.');
 }
 
 app.use(session({
