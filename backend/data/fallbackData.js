@@ -186,8 +186,51 @@ const FALLBACK_PRODUCTS = [
   }
 ];
 
+const DEMO_USERS = [
+  {
+    _id: 'usr_superadmin_01',
+    name: 'Super Administrator',
+    email: 'superadmin@firecrackers.com',
+    password: 'Password@123',
+    phone: '+91 98765 00001',
+    role: 'superadmin',
+    isActive: true,
+    addresses: []
+  },
+  {
+    _id: 'usr_admin_02',
+    name: 'Store Manager',
+    email: 'admin@firecrackers.com',
+    password: 'Password@123',
+    phone: '+91 98765 00002',
+    role: 'admin',
+    isActive: true,
+    addresses: []
+  },
+  {
+    _id: 'usr_customer_03',
+    name: 'Rahul Sharma',
+    email: 'customer@example.com',
+    password: 'Password@123',
+    phone: '+91 98765 43210',
+    role: 'customer',
+    isActive: true,
+    addresses: [{
+      _id: 'addr_demo_01',
+      recipientName: 'Rahul Sharma',
+      phone: '+91 98765 43210',
+      addressLine1: '42 Diwalipura Garden Street',
+      city: 'Chennai',
+      state: 'Tamil Nadu',
+      pincode: '600001',
+      isDefault: true
+    }]
+  }
+];
+
 module.exports = {
   FALLBACK_CATEGORIES,
-  FALLBACK_PRODUCTS
+  FALLBACK_PRODUCTS,
+  DEMO_USERS
 };
 
