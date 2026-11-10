@@ -16,3 +16,4 @@ try {
   console.error('[Build] Error synchronizing frontend assets:', err);
   process.exit(1);
 }
+
