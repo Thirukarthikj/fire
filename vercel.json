@@ -3,6 +3,11 @@
   "version": 2,
   "buildCommand": "node scripts/build.js",
   "outputDirectory": "public",
+  "functions": {
+    "api/index.js": {
+      "includeFiles": "backend/**"
+    }
+  },
   "rewrites": [
     {
       "source": "/api/(.*)",
