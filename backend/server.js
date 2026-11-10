@@ -30,6 +30,9 @@ const reviewRoutes = require('./routes/reviewRoutes');
 
 const app = express();
 
+// Trust reverse proxy for secure cookies on Vercel and cloud deployments
+app.set('trust proxy', 1);
+
 // Connect to Database
 connectDB();
 
@@ -108,18 +111,20 @@ app.get('*', (req, res, next) => {
 // Centralized Error Handling
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => {
-  console.log(`[Server] Firecrackers E-Commerce running in ${process.env.NODE_ENV || 'development'} mode on http://localhost:${PORT}`);
-});
-
-// Graceful Shutdown
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received: closing HTTP server');
-  server.close(() => {
-    console.log('HTTP server closed');
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 5000;
+  const server = app.listen(PORT, () => {
+    console.log(`[Server] Firecrackers E-Commerce running in ${process.env.NODE_ENV || 'development'} mode on http://localhost:${PORT}`);
   });
-});
+
+  // Graceful Shutdown
+  process.on('SIGTERM', () => {
+    console.log('SIGTERM signal received: closing HTTP server');
+    server.close(() => {
+      console.log('HTTP server closed');
+    });
+  });
+}
 
 module.exports = app;
 

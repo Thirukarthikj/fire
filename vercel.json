@@ -1,0 +1,29 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/index.js"
+    },
+    {
+      "source": "/",
+      "destination": "/frontend/index.html"
+    },
+    {
+      "source": "/admin",
+      "destination": "/frontend/admin/dashboard.html"
+    },
+    {
+      "source": "/admin/",
+      "destination": "/frontend/admin/dashboard.html"
+    },
+    {
+      "source": "/admin/:path*",
+      "destination": "/frontend/admin/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/frontend/$1"
+    }
+  ]
+}

@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js",
+    "build": "echo 'Build completed for Vercel'",
+    "vercel-build": "echo 'Build completed for Vercel'",
     "seed": "node backend/seed/seedData.js",
     "view-db": "node backend/utils/viewDb.js"
   },
