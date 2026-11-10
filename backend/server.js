@@ -53,15 +53,32 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(sanitizeInput);
 
 // Session Configuration
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/firecrackers_ecommerce';
+let sessionStore;
+try {
+  const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/firecrackers_ecommerce';
+  if (process.env.VERCEL && !process.env.MONGO_URI) {
+    console.warn('[Session] MONGO_URI not configured in Vercel. Using default memory session store.');
+  } else {
+    sessionStore = MongoStore.create({
+      mongoUrl: mongoUri,
+      touchAfter: 24 * 3600,
+      mongoOptions: {
+        serverSelectionTimeoutMS: 5000
+      }
+    });
+    sessionStore.on('error', (err) => {
+      console.warn('[Session] Session store warning:', err.message);
+    });
+  }
+} catch (storeErr) {
+  console.warn('[Session] Session store initialization warning:', storeErr.message);
+}
+
 app.use(session({
   secret: process.env.SESSION_SECRET || 'firecrackers_secret_session_key_2024',
   resave: false,
   saveUninitialized: false,
-  store: MongoStore.create({
-    mongoUrl: mongoUri,
-    touchAfter: 24 * 3600 // Lazy session update
-  }),
+  store: sessionStore,
   cookie: {
     maxAge: 24 * 60 * 60 * 1000, // 24 hours
     httpOnly: true,
@@ -97,6 +114,7 @@ app.get('/api/health', (req, res) => {
 
 // Static Assets
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../frontend')));
 
 // SPA fallback for HTML pages if needed

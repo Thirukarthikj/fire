@@ -7,6 +7,12 @@ const connectDB = async () => {
     return cachedConnection;
   }
 
+  // In Vercel serverless, if MONGO_URI is not provided yet, warn without crashing
+  if (process.env.VERCEL && !process.env.MONGO_URI) {
+    console.warn('[MongoDB] Warning: MONGO_URI environment variable is not defined in Vercel. Database features will be unavailable until added.');
+    return null;
+  }
+
   try {
     const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/firecrackers_ecommerce';
     const conn = await mongoose.connect(mongoUri, {

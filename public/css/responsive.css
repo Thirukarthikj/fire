@@ -1,0 +1,356 @@
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS — CRISP WHITE THEME REAL E-COMMERCE
+   Mobile (< 768px), Tablet (768px - 1024px), Desktop (> 1024px)
+   ========================================================================== */
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+@media (max-width: 1280px) {
+  .grid-5 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .top-bar-right {
+    display: none;
+  }
+
+  .header-pricelist-btn {
+    display: none;
+  }
+
+  .nav-strip {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .nav-strip::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-strip-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: max-content;
+    padding: 6px 12px;
+  }
+
+  .all-categories-dropdown {
+    display: none;
+  }
+
+  .mobile-toggle-btn {
+    display: none !important;
+  }
+
+  .header-main-container {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .header-search-form {
+    order: 3;
+    width: 100%;
+    max-width: 100%;
+    min-width: 100%;
+    margin: 4px 0 0;
+  }
+
+  .grid-5, .grid-4 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-8);
+  }
+
+  .hero-commercial-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-4);
+  }
+
+  .category-tray-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+
+  .admin-sidebar {
+    transform: translateX(-100%);
+    transition: transform var(--transition-normal);
+    z-index: 2000;
+  }
+
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+
+  .admin-main {
+    margin-left: 0 !important;
+  }
+
+  .sidebar-toggle {
+    display: inline-flex !important;
+  }
+
+  .nav-item-dropdown .nav-dropdown-menu {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --header-height: 68px;
+  }
+
+  .top-bar-links {
+    display: none;
+  }
+
+  .top-bar-content {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .header .container {
+    padding-left: var(--space-4);
+    padding-right: var(--space-4);
+    gap: var(--space-2);
+  }
+
+  .logo {
+    font-size: 1.15rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .logo-sub {
+    display: none;
+  }
+
+  .header-actions {
+    gap: var(--space-2);
+  }
+
+  .header-actions .btn-sm {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  h1 { font-size: var(--font-size-3xl); }
+  h2 { font-size: var(--font-size-2xl); }
+  h3 { font-size: var(--font-size-xl); }
+
+  .section {
+    padding: var(--space-8) 0;
+  }
+
+  .grid-5, .grid-4, .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+
+  .trust-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .category-tray-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  /* Crisp White Real-Site Mobile Navigation */
+  .nav {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    border-bottom: 2px solid #e2e8f0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-4) var(--space-6);
+    gap: 0;
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.12);
+    transform: translateY(-160%);
+    transition: transform var(--transition-normal);
+    z-index: 999;
+    max-height: calc(100vh - var(--header-height));
+    overflow-y: auto;
+  }
+
+  .nav.active {
+    transform: translateY(0);
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: var(--space-3) 0;
+    font-size: 1rem;
+    color: #0f172a;
+    font-weight: 600;
+    border-bottom: 1px solid #f1f5f9;
+  }
+
+  .nav-link:hover, .nav-link.active {
+    color: var(--color-accent);
+  }
+
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-3);
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .checkout-container, .product-detail-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .promo-glass-banner {
+    grid-template-columns: 1fr;
+    padding: 28px 16px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-5, .grid-4, .grid-3, .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .category-tray-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .cat-circle-card {
+    padding: 12px 6px;
+  }
+
+  .cat-circle-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .brand-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .brand-card {
+    padding: 12px 8px;
+  }
+
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .cart-item {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .cart-item-price {
+    align-self: flex-end;
+  }
+
+  .hero-commercial {
+    padding: 32px 0 24px;
+  }
+
+  .hero-title {
+    font-size: 2rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo {
+    font-size: 1.05rem;
+  }
+
+  .header-actions {
+    gap: 4px;
+  }
+
+  .header-actions .btn-sm {
+    padding: 0.3rem 0.55rem;
+    font-size: 0.75rem;
+  }
+}

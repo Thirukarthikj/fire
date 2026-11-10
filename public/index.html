@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firecrackers Store — Sivakasi Direct Festive Wholesale 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/responsive.css">
+</head>
+<body>
+  <div id="notification-container"></div>
+
+  <!-- Search Overlay Drawer -->
+  <div class="search-overlay" id="search-overlay">
+    <div class="search-overlay-header">
+      <span class="text-sm font-semibold" style="color: var(--color-gold);">SEARCH SIVAKASI FESTIVE CATALOGUE</span>
+      <button class="modal-close" id="search-close-btn" aria-label="Close search" style="color: #ffffff;">✕</button>
+    </div>
+    <div class="search-box-large">
+      <span class="search-box-icon">🔍</span>
+      <input type="text" id="search-overlay-input" placeholder="Search sparklers, chakkars, aerial cakes, gift boxes... (Press Enter)">
+    </div>
+    <div class="container" style="max-width: 720px; margin-top: 24px; text-align: center;">
+      <p class="text-xs" style="color: #cbd5e1; margin-bottom: 10px;">POPULAR SEARCHES</p>
+      <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;">
+        <a href="/products.html?category=gift-boxes" class="badge badge-secondary" style="background:#ffffff; color:#0f172a;">Gift Boxes</a>
+        <a href="/products.html?category=sparklers" class="badge badge-secondary" style="background:#ffffff; color:#0f172a;">Electric Sparklers</a>
+        <a href="/products.html?category=flower-pots" class="badge badge-secondary" style="background:#ffffff; color:#0f172a;">Ashoka Flower Pots</a>
+        <a href="/products.html?category=sky-shots" class="badge badge-secondary" style="background:#ffffff; color:#0f172a;">Aerial Sky Shots</a>
+        <a href="/products.html?brand=Standard+Fireworks" class="badge badge-secondary" style="background:#ffffff; color:#0f172a;">Standard Fireworks</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header (Sticky Multi-Tier Real E-Commerce Storefront) -->
+  <div class="site-header-wrapper" id="site-header-wrapper">
+    <!-- 1. Top Utility Announcement & Hotline Bar -->
+    <div class="top-bar">
+      <div class="container top-bar-content">
+        <div class="top-bar-left">
+          <span class="top-bar-badge">Diwali 2026</span>
+          <span class="top-bar-text">🎉 Sivakasi Factory Direct Wholesale Booking Open | Up to 70% Off Factory MRP</span>
+        </div>
+        <div class="top-bar-right">
+          <span class="top-bar-item">🌱 100% CSIR-NEERI Green Certified</span>
+          <a href="tel:+919876543210" class="top-bar-item top-bar-link">📞 +91 98765 43210</a>
+          <a href="/orders.html" class="top-bar-item top-bar-link">📦 Track Consignment</a>
+          <a href="/faq.html?tab=safety" class="top-bar-item top-bar-link">🛡️ Safety Advisory</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Main Brand & Search Row -->
+    <header class="header-main" id="main-header">
+      <div class="container header-main-container">
+        <!-- Brand Logo -->
+        <a href="/" class="brand-logo" aria-label="Firecrackers Sivakasi Home">
+          <span class="brand-logo-icon">🎆</span>
+          <div class="brand-logo-text">
+            <span class="brand-name">Fire<span class="brand-name-accent">crackers</span></span>
+            <span class="brand-sub">SIVAKASI DIRECT WHOLESALE</span>
+          </div>
+        </a>
+
+        <!-- Central Search Bar (Wide, Unshrinkable, Real E-Commerce) -->
+        <form class="header-search-form" action="/products.html" method="GET">
+          <div class="search-input-wrapper">
+            <span class="search-icon-lens">🔍</span>
+            <input 
+              type="text" 
+              name="search" 
+              id="header-search-input" 
+              class="header-search-input" 
+              placeholder="Search sparklers, flower pots, ground chakkars, sky shots, gift boxes..." 
+              autocomplete="off"
+              aria-label="Search fireworks"
+            >
+            <button type="submit" class="search-submit-btn" aria-label="Search">Search</button>
+          </div>
+        </form>
+
+        <!-- Right Side User Actions -->
+        <div class="header-main-actions">
+          <!-- Quick Wholesale Price List CTA with 70% OFF Badge -->
+          <a href="/price-list.html" class="header-pricelist-btn" title="View 2026 Price List">
+            <span class="pricelist-icon">📋</span>
+            <div class="pricelist-copy">
+              <span class="pricelist-title">Price List 2026</span>
+              <span class="pricelist-badge">70% OFF</span>
+            </div>
+          </a>
+
+          <!-- Wishlist Link -->
+          <a href="/wishlist.html" class="header-action-icon-link" id="wishlist-link" title="Wishlist" aria-label="Wishlist">
+            <div class="action-icon-wrap">
+              <span>🤍</span>
+              <span class="action-counter" id="wishlist-count" style="display:none">0</span>
+            </div>
+            <span class="action-text-label">Wishlist</span>
+          </a>
+
+          <!-- Cart Link -->
+          <a href="/cart.html" class="header-action-icon-link" id="cart-icon" title="View Cart" aria-label="Cart">
+            <div class="action-icon-wrap">
+              <span>🛒</span>
+              <span class="action-counter" id="cart-count" style="display:none">0</span>
+            </div>
+            <span class="action-text-label">Cart</span>
+          </a>
+
+          <!-- User / Account Menu -->
+          <div class="header-user-menu" id="user-menu">
+            <a href="/login.html" class="btn-signin-pill">
+              <span>👤</span>
+              <span>Sign In</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 3. Category & Department Navigation Strip -->
+    <nav class="nav-strip" id="nav-strip" aria-label="Department Navigation">
+      <div class="container nav-strip-container">
+        <!-- Mega Menu Trigger -->
+        <div class="all-categories-dropdown">
+          <button class="all-categories-btn" id="all-categories-toggle" type="button">
+            <span>☰</span>
+            <span>All Categories</span>
+            <span style="font-size:0.7rem;">▼</span>
+          </button>
+          <div class="categories-mega-menu" id="categories-mega-menu">
+            <div class="mega-menu-grid">
+              <a href="/products.html?category=sparklers" class="mega-cat-item">
+                <span class="mega-cat-icon">✨</span>
+                <div class="mega-cat-info">
+                  <strong>Sparklers</strong>
+                  <span>Gold, Silver & Neon Sparklers</span>
+                </div>
+              </a>
+              <a href="/products.html?category=flower-pots" class="mega-cat-item">
+                <span class="mega-cat-icon">🪴</span>
+                <div class="mega-cat-info">
+                  <strong>Flower Pots</strong>
+                  <span>Ashoka & Colour Fountains</span>
+                </div>
+              </a>
+              <a href="/products.html?category=ground-chakkars" class="mega-cat-item">
+                <span class="mega-cat-icon">🌀</span>
+                <div class="mega-cat-info">
+                  <strong>Ground Chakkars</strong>
+                  <span>Deluxe Rotating Wheels</span>
+                </div>
+              </a>
+              <a href="/products.html?category=sky-shots" class="mega-cat-item">
+                <span class="mega-cat-icon">🎆</span>
+                <div class="mega-cat-info">
+                  <strong>Sky Shots & Cakes</strong>
+                  <span>12 & 30-Shot Aerial Starbursts</span>
+                </div>
+              </a>
+              <a href="/products.html?category=rockets" class="mega-cat-item">
+                <span class="mega-cat-icon">🚀</span>
+                <div class="mega-cat-info">
+                  <strong>Rockets</strong>
+                  <span>Whistle & Sound Rockets</span>
+                </div>
+              </a>
+              <a href="/products.html?category=bombs" class="mega-cat-item">
+                <span class="mega-cat-icon">💥</span>
+                <div class="mega-cat-info">
+                  <strong>Sound Bombs</strong>
+                  <span>Classic Hydro Reports</span>
+                </div>
+              </a>
+              <a href="/products.html?category=gift-boxes" class="mega-cat-item">
+                <span class="mega-cat-icon">🎁</span>
+                <div class="mega-cat-info">
+                  <strong>Diwali Gift Boxes</strong>
+                  <span>Curated Family Hampers</span>
+                </div>
+              </a>
+              <a href="/products.html?category=fancy-items" class="mega-cat-item">
+                <span class="mega-cat-icon">🦚</span>
+                <div class="mega-cat-info">
+                  <strong>Fancy Items</strong>
+                  <span>Peacock Fountains & Spinners</span>
+                </div>
+              </a>
+              <a href="/products.html?category=multi-sound-crackers" class="mega-cat-item">
+                <span class="mega-cat-icon">⚡</span>
+                <div class="mega-cat-info">
+                  <strong>Multi-Sound Crackers</strong>
+                  <span>2 & 3-Sound Rhythms</span>
+                </div>
+              </a>
+              <a href="/products.html?category=kids-crackers" class="mega-cat-item">
+                <span class="mega-cat-icon">🎈</span>
+                <div class="mega-cat-info">
+                  <strong>Kids Special</strong>
+                  <span>Low-Decibel Pops & Caps</span>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Horizontal Links -->
+        <div class="nav-links-scrollable" id="nav">
+          <a href="/" class="nav-strip-link active">Home</a>
+          <a href="/products.html" class="nav-strip-link">Buy Crackers</a>
+          <a href="/products.html?category=sparklers" class="nav-strip-link">Sparklers</a>
+          <a href="/products.html?category=flower-pots" class="nav-strip-link">Flower Pots</a>
+          <a href="/products.html?category=ground-chakkars" class="nav-strip-link">Chakkars</a>
+          <a href="/products.html?category=sky-shots" class="nav-strip-link">Sky Shots</a>
+          <a href="/products.html?category=gift-boxes" class="nav-strip-link">Gift Hampers</a>
+          <a href="/price-list.html" class="nav-strip-link" style="color:#dc2626; font-weight:700;">Price List</a>
+          <a href="/#brand-showcase" class="nav-strip-link">Brands</a>
+          <a href="/about.html" class="nav-strip-link">About Us</a>
+          <a href="/faq.html?tab=safety" class="nav-strip-link">Safety Guidelines</a>
+          <a href="/contact.html" class="nav-strip-link">Contact</a>
+        </div>
+
+        <!-- Right Quick Fast Order Link -->
+        <a href="/price-list.html" class="fast-booking-link">
+          <span>⚡ Express Order</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <main class="main">
+    <!-- Real-Site Commercial Hero Section -->
+    <section class="hero-commercial">
+      <div class="container">
+        <div class="hero-commercial-grid">
+          <div>
+            <div class="hero-badge-festive">
+              <span>🎆</span> DIRECT SIVAKASI FACTORY DISPATCH • 2026 SEASON OPEN
+            </div>
+            <h1 class="hero-title-main">
+              Pure Festive Celebrations Direct from <span>Sivakasi</span>
+            </h1>
+            <p class="hero-desc">
+              Experience authentic Diwali pyrotechnic craft with <strong>100% CSIR-NEERI Certified Green Crackers</strong>. Order at transparent factory net rates with up to 70% discount off MRP, dispatched via licensed surface transport across India.
+            </p>
+
+            <div class="hero-highlights">
+              <div class="hero-highlight-pill">
+                <span>✓</span> Factory MRP Struck-Out Rates
+              </div>
+              <div class="hero-highlight-pill">
+                <span>✓</span> Minimum Order ₹1,500
+              </div>
+              <div class="hero-highlight-pill">
+                <span>✓</span> Free Surface Cargo on ₹3,000+
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="/products.html" class="btn btn-primary btn-lg">
+                🔥 Shop Festival Catalogue
+              </a>
+              <a href="/price-list.html" class="btn btn-secondary btn-lg">
+                📋 Interactive Seasonal Price List →
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Right Spotlight Card -->
+          <div>
+            <div class="hero-banner-card">
+              <span class="hero-banner-tag">Diwali Bestseller Hamper</span>
+              <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?w=600&auto=format&fit=crop&q=80" alt="Diwali Family Gift Box" style="width: 100%; height: 210px; object-fit: cover; border-radius: var(--radius-md); margin-bottom: 16px;">
+              <h3 style="font-size: 1.25rem; margin-bottom: 6px; color: #0f172a;">Royal Family Festive Gift Box</h3>
+              <p class="text-xs text-light" style="margin-bottom: 12px;">50 Assorted CSIR-NEERI Green Crackers • Sparklers, Pots, Chakkars, Shots</p>
+              
+              <div style="display: flex; align-items: baseline; justify-content: center; gap: 10px; margin-bottom: 16px;">
+                <span style="font-size: 1.75rem; font-weight: 800; color: #b91c1c;">₹1,499</span>
+                <span style="font-size: 0.95rem; color: #94a3b8; text-decoration: line-through;">MRP ₹4,500</span>
+                <span class="badge badge-success">66% OFF</span>
+              </div>
+
+              <a href="/products.html?category=gift-boxes" class="btn btn-primary btn-block">
+                View Festive Gift Boxes →
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 Real-Site Trust Pillars -->
+    <section class="trust-strip">
+      <div class="container">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <div class="trust-icon-box">🏭</div>
+            <div>
+              <div class="trust-title">Direct Sivakasi Rates</div>
+              <div class="trust-desc">Genuine factory wholesale rates without middleman markup.</div>
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon-box">🌱</div>
+            <div>
+              <div class="trust-title">CSIR-NEERI Certified</div>
+              <div class="trust-desc">100% green formulations with 30% lower emissions.</div>
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon-box">🛡️</div>
+            <div>
+              <div class="trust-title">PESO Licensed Safety</div>
+              <div class="trust-desc">Manufactured strictly under statutory pyrotechnic testing.</div>
+            </div>
+          </div>
+
+          <div class="trust-item">
+            <div class="trust-icon-box">🚚</div>
+            <div>
+              <div class="trust-title">Surface Parcel Cargo</div>
+              <div class="trust-desc">Safe transport from Sivakasi to your city branch hub.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10 Canonical Category Discovery Tray -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-accent" style="margin-bottom: 8px;">FESTIVE TAXONOMY</span>
+          <h2>Explore By Firecracker Category</h2>
+          <p>Discover Sivakasi's complete pyrotechnic spectrum, from child-friendly sparkle pencils to thunderous night sky aerial cakes.</p>
+        </div>
+
+        <div class="category-tray-grid">
+          <a href="/products.html?category=sparklers" class="cat-circle-card">
+            <div class="cat-circle-icon">✨</div>
+            <div class="cat-circle-name">Sparklers</div>
+            <div class="cat-circle-count">4 Varieties • From ₹45</div>
+          </a>
+
+          <a href="/products.html?category=flower-pots" class="cat-circle-card">
+            <div class="cat-circle-icon">🪴</div>
+            <div class="cat-circle-name">Flower Pots</div>
+            <div class="cat-circle-count">4 Varieties • From ₹75</div>
+          </a>
+
+          <a href="/products.html?category=ground-chakkars" class="cat-circle-card">
+            <div class="cat-circle-icon">🌀</div>
+            <div class="cat-circle-name">Ground Chakkars</div>
+            <div class="cat-circle-count">4 Varieties • From ₹60</div>
+          </a>
+
+          <a href="/products.html?category=rockets" class="cat-circle-card">
+            <div class="cat-circle-icon">🚀</div>
+            <div class="cat-circle-name">Rockets</div>
+            <div class="cat-circle-count">4 Varieties • From ₹90</div>
+          </a>
+
+          <a href="/products.html?category=bombs" class="cat-circle-card">
+            <div class="cat-circle-icon">💣</div>
+            <div class="cat-circle-name">Hydro Bombs</div>
+            <div class="cat-circle-count">2 Varieties • From ₹85</div>
+          </a>
+
+          <a href="/products.html?category=gift-boxes" class="cat-circle-card">
+            <div class="cat-circle-icon">🎁</div>
+            <div class="cat-circle-name">Family Gift Boxes</div>
+            <div class="cat-circle-count">2 Hampers • From ₹1,499</div>
+          </a>
+
+          <a href="/products.html?category=fancy-items" class="cat-circle-card">
+            <div class="cat-circle-icon">🦚</div>
+            <div class="cat-circle-name">Fancy Novelties</div>
+            <div class="cat-circle-count">2 Varieties • From ₹110</div>
+          </a>
+
+          <a href="/products.html?category=sky-shots" class="cat-circle-card">
+            <div class="cat-circle-icon">🎆</div>
+            <div class="cat-circle-name">Aerial Sky Shots</div>
+            <div class="cat-circle-count">4 Varieties • From ₹180</div>
+          </a>
+
+          <a href="/products.html?category=multi-sound-crackers" class="cat-circle-card">
+            <div class="cat-circle-icon">💥</div>
+            <div class="cat-circle-name">Multi Sound</div>
+            <div class="cat-circle-count">2 Varieties • From ₹55</div>
+          </a>
+
+          <a href="/products.html?category=kids-crackers" class="cat-circle-card">
+            <div class="cat-circle-icon">🪄</div>
+            <div class="cat-circle-name">Kids Crackers</div>
+            <div class="cat-circle-count">2 Varieties • From ₹40</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curated Bestsellers Showcase (Live API) -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="flex-between" style="margin-bottom: var(--space-8); flex-wrap: wrap; gap: var(--space-4);">
+          <div>
+            <span class="badge badge-accent" style="margin-bottom: 8px;">POPULAR DISPATCHES</span>
+            <h2 style="margin-bottom: 4px;">Top Selling Festive Firecrackers</h2>
+            <p style="margin-bottom: 0;">Verified CSIR-NEERI green formulations with dual factory MRP savings.</p>
+          </div>
+          <a href="/products.html" class="btn btn-outline">View All Products →</a>
+        </div>
+
+        <div class="grid-4" id="home-best-sellers-grid">
+          <div class="skeleton skeleton-card" style="height: 380px;"></div>
+          <div class="skeleton skeleton-card" style="height: 380px;"></div>
+          <div class="skeleton skeleton-card" style="height: 380px;"></div>
+          <div class="skeleton skeleton-card" style="height: 380px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Split Promotional Banners -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2">
+          <div class="promo-banner promo-banner-amber">
+            <div style="max-width: 340px;">
+              <span class="badge badge-gold" style="margin-bottom: 10px;">FAMILY CELEBRATION</span>
+              <h3 style="font-size: 1.6rem; margin-bottom: 8px; color: #78350f;">Curated Diwali Gift Boxes</h3>
+              <p style="font-size: 0.9rem; color: #92400e; margin-bottom: 20px;">Complete celebration hampers with sparklers, pots, chakkars, and whistling novelties.</p>
+              <a href="/products.html?category=gift-boxes" class="btn btn-primary">Shop Gift Hampers →</a>
+            </div>
+            <div style="font-size: 5rem;">🎁</div>
+          </div>
+
+          <div class="promo-banner promo-banner-red">
+            <div style="max-width: 340px;">
+              <span class="badge badge-accent" style="margin-bottom: 10px;">NIGHT SKY SPECTACULAR</span>
+              <h3 style="font-size: 1.6rem; margin-bottom: 8px; color: #7f1d1d;">Grand Aerial Cakes & Shots</h3>
+              <p style="font-size: 0.9rem; color: #991b1b; margin-bottom: 20px;">7 to 120 repeating bursts with gold brocade, silver palms, and crackling dragon eggs.</p>
+              <a href="/products.html?category=sky-shots" class="btn btn-primary">Explore Sky Shots →</a>
+            </div>
+            <div style="font-size: 5rem;">🎆</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Real-Site Interactive Price List Promo Banner -->
+    <section class="section section-alt">
+      <div class="container">
+        <div style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); border-radius: var(--radius-xl); padding: 48px; color: #ffffff; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 32px;">
+          <div style="max-width: 620px;">
+            <span class="badge" style="background: #dc2626; color: #ffffff; margin-bottom: 12px;">FAVORITE FEATURE</span>
+            <h2 style="color: #ffffff; font-size: 2.2rem; margin-bottom: 12px;">Sivakasi Seasonal 2026 Price List</h2>
+            <p style="color: #cbd5e1; font-size: 1rem; line-height: 1.7; margin-bottom: 20px;">
+              Love selecting from a traditional wholesale price sheet? Browse our 10-category interactive rate card with live quantity steppers, automatic instant subtotal calculator, and 1-click batch ordering.
+            </p>
+            <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+              <a href="/price-list.html" class="btn btn-primary btn-lg">
+                📋 Open Interactive Price List
+              </a>
+              <a href="/price-list.html" class="btn btn-secondary btn-lg" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); color: #ffffff;">
+                🖨️ Printable PDF Rate Sheet
+              </a>
+            </div>
+          </div>
+          <div style="text-align: center; background: rgba(255, 255, 255, 0.05); padding: 28px; border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.1);">
+            <div style="font-size: 2.5rem; font-weight: 800; color: #f59e0b; margin-bottom: 4px;">UP TO 70%</div>
+            <div style="font-size: 0.85rem; color: #cbd5e1; text-transform: uppercase; letter-spacing: 0.06em;">Factory Discount Off MRP</div>
+            <div style="margin-top: 16px; font-size: 0.75rem; color: #94a3b8;">F.O.R Sivakasi Surface Dispatch</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Authorised Sivakasi Brands -->
+    <section class="section" id="brand-showcase">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-accent" style="margin-bottom: 8px;">VERIFIED FACTORY PARTNERS</span>
+          <h2>Authorized Sivakasi Pyrotechnic Brands</h2>
+          <p>We stock 100% genuine products directly sourced from premier licensed factories in Sivakasi.</p>
+        </div>
+
+        <div class="brand-grid">
+          <a href="/products.html?brand=Standard+Fireworks" class="brand-card">
+            <span style="font-size: 2rem; margin-bottom: 8px;">🏆</span>
+            <div class="brand-logo-text">Standard</div>
+            <span class="brand-badge">Authorized</span>
+          </a>
+
+          <a href="/products.html?brand=Anil+Celebrations" class="brand-card">
+            <span style="font-size: 2rem; margin-bottom: 8px;">⭐</span>
+            <div class="brand-logo-text">Anil Crackers</div>
+            <span class="brand-badge">Authorized</span>
+          </a>
+
+          <a href="/products.html?brand=Ayyan+Fireworks" class="brand-card">
+            <span style="font-size: 2rem; margin-bottom: 8px;">✨</span>
+            <div class="brand-logo-text">Ayyan</div>
+            <span class="brand-badge">Authorized</span>
+          </a>
+
+          <a href="/products.html?brand=Vanitha+Fireworks" class="brand-card">
+            <span style="font-size: 2rem; margin-bottom: 8px;">🦚</span>
+            <div class="brand-logo-text">Vanitha</div>
+            <span class="brand-badge">Authorized</span>
+          </a>
+
+          <a href="/products.html?brand=Sony+Fireworks" class="brand-card">
+            <span style="font-size: 2rem; margin-bottom: 8px;">💥</span>
+            <div class="brand-logo-text">Sony</div>
+            <span class="brand-badge">Authorized</span>
+          </a>
+
+          <a href="/products.html?brand=Sri+Krishna+Fireworks" class="brand-card">
+            <span style="font-size: 2rem; margin-bottom: 8px;">🎆</span>
+            <div class="brand-logo-text">Sri Krishna</div>
+            <span class="brand-badge">Authorized</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Customer Reviews & Testimonials -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-gold" style="margin-bottom: 8px;">VERIFIED BUYERS</span>
+          <h2>What Festive Shoppers Say About Us</h2>
+          <p>Over 10,000+ satisfied families receive their Diwali cracker bookings safely every festive season.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">
+              "Ordered our family Diwali box directly to Bangalore. Arrived via VRL parcel hub 4 days before Diwali. Packing was double-cushioned and crackers were 100% genuine Standard Fireworks!"
+            </div>
+            <div class="testimonial-author">Anand Kumar</div>
+            <div class="testimonial-city">Bengaluru, Karnataka</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">
+              "The interactive price list is a game changer! Selected all 35 items for our apartment celebration and added everything to cart in one click. Saved over ₹8,000 compared to local Chennai stalls."
+            </div>
+            <div class="testimonial-author">Priya Sundaram</div>
+            <div class="testimonial-city">Chennai, Tamil Nadu</div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">
+              "Low smoke flower pots and neon sparklers were fantastic for my kids. Safe, zero bad odor, and genuine CSIR-NEERI green cracker logos on every pack. Highly recommended store!"
+            </div>
+            <div class="testimonial-author">Rajeshwar Reddy</div>
+            <div class="testimonial-city">Hyderabad, Telangana</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How Surface Cargo Transport Ordering Works in India -->
+    <section class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-accent" style="margin-bottom: 8px;">ORDERING PROCESS</span>
+          <h2>How Direct Sivakasi Ordering Works</h2>
+          <p>As per statutory Supreme Court guidelines, fireworks cannot be shipped by air or regular courier. Here is our 100% compliant process.</p>
+        </div>
+
+        <div class="grid-4">
+          <div class="card" style="padding: 24px; text-align: center;">
+            <div style="font-size: 2.2rem; margin-bottom: 12px;">1️⃣</div>
+            <h4 style="font-size: 1.05rem; margin-bottom: 6px; color: #0f172a;">Select & Estimate</h4>
+            <p class="text-xs text-light" style="margin-bottom: 0;">Add your favorite sparklers, pots, and sky shots or use our bulk price list.</p>
+          </div>
+
+          <div class="card" style="padding: 24px; text-align: center;">
+            <div style="font-size: 2.2rem; margin-bottom: 12px;">2️⃣</div>
+            <h4 style="font-size: 1.05rem; margin-bottom: 6px; color: #0f172a;">Secure Checkout</h4>
+            <p class="text-xs text-light" style="margin-bottom: 0;">Provide your city address and complete payment via instant UPI, GPay, or Cards.</p>
+          </div>
+
+          <div class="card" style="padding: 24px; text-align: center;">
+            <div style="font-size: 2.2rem; margin-bottom: 12px;">3️⃣</div>
+            <h4 style="font-size: 1.05rem; margin-bottom: 6px; color: #0f172a;">CCTV Factory Packing</h4>
+            <p class="text-xs text-light" style="margin-bottom: 0;">Consignments are packed with explosive-grade safety buffers in Sivakasi.</p>
+          </div>
+
+          <div class="card" style="padding: 24px; text-align: center;">
+            <div style="font-size: 2.2rem; margin-bottom: 12px;">4️⃣</div>
+            <h4 style="font-size: 1.05rem; margin-bottom: 6px; color: #0f172a;">Branch Hub Pickup</h4>
+            <p class="text-xs text-light" style="margin-bottom: 0;">Collect your sealed parcel from your local transport branch hub with SMS LR tracking.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Safety & Regulatory Compliance Section -->
+    <section class="section section-alt">
+      <div class="container" style="text-align: center; max-width: 840px;">
+        <span style="font-size: 2.8rem; display: block; margin-bottom: 12px;">🛡️</span>
+        <h2 style="color: #0f172a; margin-bottom: 12px;">100% PESO Licensed & CSIR-NEERI Green Certified</h2>
+        <p style="color: #475569; line-height: 1.8; margin-bottom: 24px; font-size: 0.95rem;">
+          Firecrackers are regulated products. We adhere 100% to Supreme Court directives, CSIR-NEERI chemical formulation benchmarks, and PESO transport protocols. Every batch features genuine QR codes for instant laboratory verification. Consignments are dispatched exclusively via licensed hazardous material surface cargo operators to booking branch hubs.
+        </p>
+        <div style="display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;">
+          <a href="/faq.html?policy=safety" class="btn btn-outline">Read Safety Advisory →</a>
+          <a href="/faq.html?policy=delivery" class="btn btn-secondary">Surface Transport Logistics</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Comprehensive Corporate White/Slate Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h3>🎆 Fire<span style="color: var(--color-accent);">crackers</span></h3>
+          <p>India's premier certified e-commerce platform for genuine green fireworks, sparklers, and celebratory aerial displays direct from Sivakasi factories.</p>
+          <p class="text-xs" style="color: #fde68a; margin-top: 8px;">PESO Licensed • CSIR-NEERI Certified • Safe Surface Transit</p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore Fireworks</h4>
+          <a href="/products.html">All Firecrackers</a>
+          <a href="/products.html?category=sparklers">Electric Sparklers</a>
+          <a href="/products.html?category=flower-pots">Flower Pots & Fountains</a>
+          <a href="/products.html?category=sky-shots">Sky Shots & Cakes</a>
+          <a href="/products.html?category=gift-boxes">Diwali Gift Boxes</a>
+          <a href="/price-list.html">Seasonal 2026 Price List</a>
+        </div>
+        <div class="footer-col">
+          <h4>Authorised Brands</h4>
+          <a href="/products.html?brand=Standard+Fireworks">Standard Fireworks</a>
+          <a href="/products.html?brand=Anil+Celebrations">Anil Celebrations</a>
+          <a href="/products.html?brand=Ayyan+Fireworks">Ayyan Fireworks</a>
+          <a href="/products.html?brand=Vanitha+Fireworks">Vanitha Fireworks</a>
+          <a href="/products.html?brand=Sony+Fireworks">Sony Fireworks</a>
+        </div>
+        <div class="footer-col">
+          <h4>Customer Care & Safety</h4>
+          <a href="/about.html">About Sivakasi Heritage</a>
+          <a href="/faq.html?policy=safety">Complete Safety Advisory</a>
+          <a href="/faq.html?policy=delivery">Surface Cargo Logistics</a>
+          <a href="/faq.html?policy=refund">Refund Policy</a>
+          <a href="/contact.html">Customer Support (Sivakasi Hub)</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Firecrackers Store. All rights reserved. Pure Vanilla JavaScript & Node.js Architecture.</p>
+        <p class="safety-note">⚠️ Fireworks must be operated exclusively under adult supervision in open outdoor spaces.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/js/api.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/products.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Connect main search input in header to catalogue redirect
+      const mainSearchInput = document.getElementById('main-search-input');
+      if (mainSearchInput) {
+        mainSearchInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            const query = mainSearchInput.value.trim();
+            if (query) {
+              window.location.href = `/products.html?search=${encodeURIComponent(query)}`;
+            }
+          }
+        });
+      }
+
+      try {
+        const bestSellersRes = await API.get('/products?limit=8&sort=popular');
+        const bestGrid = document.getElementById('home-best-sellers-grid');
+        if (bestGrid && bestSellersRes.success && bestSellersRes.data) {
+          bestGrid.innerHTML = bestSellersRes.data.slice(0, 8).map(p => Products.renderProductCard(p)).join('');
+        }
+      } catch (err) {
+        console.warn('Failed to load home products', err);
+      }
+    });
+  </script>
+</body>
+</html>
