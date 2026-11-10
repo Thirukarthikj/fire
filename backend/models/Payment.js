@@ -4,9 +4,7 @@ const Schema = mongoose.Schema;
 const paymentSchema = new Schema({
   order: { type: Schema.Types.ObjectId, ref: 'Order', required: true },
   user: { type: Schema.Types.ObjectId, ref: 'User', required: true },
-  razorpayOrderId: { type: String, required: false },
-  razorpayPaymentId: String,
-  razorpaySignature: String,
+  transactionId: { type: String, trim: true },
   upiTransactionId: { type: String, trim: true },
   amount: { type: Number, required: true },
   currency: { type: String, default: 'INR' },
@@ -15,7 +13,7 @@ const paymentSchema = new Schema({
     enum: ['created', 'authorized', 'captured', 'failed', 'refunded', 'partially_refunded'],
     default: 'created'
   },
-  method: String,
+  method: { type: String, default: 'Google Pay / UPI QR' },
   refunds: [{
     refundId: String,
     amount: Number,
@@ -24,12 +22,6 @@ const paymentSchema = new Schema({
     createdAt: { type: Date, default: Date.now }
   }],
   totalRefunded: { type: Number, default: 0 },
-  webhookEvents: [{
-    event: String,
-    payload: Object,
-    receivedAt: { type: Date, default: Date.now },
-    processed: { type: Boolean, default: false }
-  }],
   errorMessage: String
 }, {
   timestamps: true,
@@ -38,8 +30,8 @@ const paymentSchema = new Schema({
 });
 
 // Indexes
-paymentSchema.index({ razorpayOrderId: 1 });
-paymentSchema.index({ razorpayPaymentId: 1 });
+paymentSchema.index({ transactionId: 1 });
+paymentSchema.index({ upiTransactionId: 1 });
 paymentSchema.index({ order: 1 });
 paymentSchema.index({ status: 1 });
 

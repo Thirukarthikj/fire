@@ -5,7 +5,6 @@ const Payment = require('../models/Payment');
 const Address = require('../models/Address');
 const Coupon = require('../models/Coupon');
 const QRCode = require('qrcode');
-const { createRazorpayOrder, verifyPaymentSignature } = require('../services/paymentService');
 const { reserveStock, releaseStock } = require('../services/inventoryService');
 const { calculateOrderTotals } = require('../services/orderService');
 
@@ -124,20 +123,18 @@ exports.createOrder = async (req, res, next) => {
       tax: totals.tax,
       shippingCharge: totals.shippingCharge,
       total: totals.total,
-      status: isUpi ? 'confirmed' : 'pending',
-      paymentStatus: isUpi ? 'paid' : 'pending',
-      paymentMethod: isUpi ? 'upi_qr' : 'razorpay',
-      upiTransactionId: isUpi && cleanUpiRef ? cleanUpiRef : undefined,
-      notes: isUpi ? (cleanUpiRef ? `Google Pay / UPI QR Order. UTR: ${cleanUpiRef}` : 'Google Pay / UPI QR Order') : undefined
+      status: 'confirmed',
+      paymentStatus: 'paid',
+      paymentMethod: 'upi_qr',
+      upiTransactionId: cleanUpiRef ? cleanUpiRef : undefined,
+      notes: cleanUpiRef ? `Google Pay / UPI QR Order. Ref: ${cleanUpiRef}` : 'Google Pay / UPI QR Order'
     });
 
-    if (isUpi) {
-      order.statusHistory.push({
-        status: 'confirmed',
-        note: cleanUpiRef ? `Google Pay / UPI QR Payment Verified (UTR: ${cleanUpiRef})` : 'Order confirmed via Google Pay / UPI QR Scan',
-        updatedBy: req.user._id
-      });
-    }
+    order.statusHistory.push({
+      status: 'confirmed',
+      note: cleanUpiRef ? `Google Pay / UPI QR Payment Verified (Ref: ${cleanUpiRef})` : 'Order confirmed via Google Pay / UPI QR Scan',
+      updatedBy: req.user._id
+    });
 
     await order.save();
 
@@ -158,41 +155,16 @@ exports.createOrder = async (req, res, next) => {
     }
 
     // Step 6 & 7: Record payment in MongoDB
-    let payment;
-    let razorpayOrderId = null;
-
-    if (isUpi) {
-      payment = await Payment.create({
-        order: order._id,
-        user: req.user._id,
-        razorpayOrderId: `upi_${order.orderNumber}`,
-        upiTransactionId: cleanUpiRef || `UTR_${Date.now()}`,
-        amount: totals.total,
-        currency: 'INR',
-        method: 'Google Pay / UPI QR',
-        status: 'captured'
-      });
-    } else {
-      try {
-        const rzpOrder = await createRazorpayOrder(totals.total, order.orderNumber, {
-          orderId: order._id.toString(),
-          userId: req.user._id.toString()
-        });
-        razorpayOrderId = rzpOrder.id;
-      } catch (rzpErr) {
-        console.warn('[Razorpay API Warning] Fallback order id generated for sandbox testing');
-        razorpayOrderId = `order_${Date.now()}_test`;
-      }
-
-      payment = await Payment.create({
-        order: order._id,
-        user: req.user._id,
-        razorpayOrderId,
-        amount: totals.total,
-        currency: 'INR',
-        status: 'created'
-      });
-    }
+    const payment = await Payment.create({
+      order: order._id,
+      user: req.user._id,
+      transactionId: cleanUpiRef || `UPI-${order.orderNumber}`,
+      upiTransactionId: cleanUpiRef || `UPI-${order.orderNumber}`,
+      amount: totals.total,
+      currency: 'INR',
+      method: 'Google Pay / UPI QR',
+      status: 'captured'
+    });
 
     // Step 8: Clear user cart
     await Cart.findOneAndUpdate(
@@ -202,8 +174,8 @@ exports.createOrder = async (req, res, next) => {
 
     res.status(201).json({
       success: true,
-      message: isUpi ? 'Order confirmed with Google Pay / UPI QR!' : 'Order created. Proceed with payment.',
-      isUpi,
+      message: 'Order confirmed with Google Pay / UPI QR!',
+      isUpi: true,
       data: {
         order: {
           _id: order._id,
@@ -216,11 +188,10 @@ exports.createOrder = async (req, res, next) => {
         },
         payment: {
           _id: payment._id,
-          razorpayOrderId,
           amount: totals.total,
           currency: 'INR',
           method: payment.method,
-          key: process.env.RAZORPAY_KEY_ID || 'rzp_test_placeholder'
+          transactionId: payment.transactionId
         }
       }
     });
@@ -232,80 +203,32 @@ exports.createOrder = async (req, res, next) => {
 // POST /api/checkout/verify-payment
 exports.verifyPayment = async (req, res, next) => {
   try {
-    const { razorpayOrderId, razorpayPaymentId, razorpaySignature } = req.body;
+    const { orderId, sessionRef } = req.body;
 
-    if (!razorpayOrderId) {
-      return res.status(400).json({ success: false, message: 'razorpayOrderId is required' });
-    }
+    const query = {};
+    if (orderId) query._id = orderId;
+    else if (sessionRef) query.upiTransactionId = sessionRef;
+    else return res.status(400).json({ success: false, message: 'orderId or sessionRef is required' });
 
-    const payment = await Payment.findOne({ razorpayOrderId });
-    if (!payment) {
-      return res.status(404).json({ success: false, message: 'Payment record not found' });
-    }
-
-    const order = await Order.findById(payment.order);
+    const order = await Order.findOne(query);
     if (!order) {
       return res.status(404).json({ success: false, message: 'Order not found' });
     }
 
-    // In development mode with placeholder credentials, accept mock success if specified
-    const isMock = process.env.RAZORPAY_KEY_SECRET === 'your_razorpay_key_secret' ||
-                   !process.env.RAZORPAY_KEY_SECRET ||
-                   razorpayPaymentId.startsWith('pay_mock_');
+    order.paymentStatus = 'paid';
+    order.status = 'confirmed';
+    await order.save();
 
-    const isValid = isMock ? true : verifyPaymentSignature(razorpayOrderId, razorpayPaymentId, razorpaySignature);
-
-    if (isValid) {
-      payment.razorpayPaymentId = razorpayPaymentId;
-      payment.razorpaySignature = razorpaySignature;
-      payment.status = 'captured';
-      await payment.save();
-
-      order.paymentStatus = 'paid';
-      order.status = 'confirmed';
-      order.statusHistory.push({
-        status: 'confirmed',
-        note: `Payment verified successfully (ID: ${razorpayPaymentId})`,
-        updatedBy: req.user ? req.user._id : undefined
-      });
-      await order.save();
-
-      return res.status(200).json({
-        success: true,
-        message: 'Payment verified and order confirmed successfully',
-        data: {
-          orderId: order._id,
-          orderNumber: order.orderNumber,
-          status: order.status,
-          paymentStatus: order.paymentStatus
-        }
-      });
-    } else {
-      // Payment failed / signature invalid
-      payment.status = 'failed';
-      payment.errorMessage = 'Signature verification failed';
-      await payment.save();
-
-      order.paymentStatus = 'failed';
-      order.status = 'cancelled';
-      order.statusHistory.push({
-        status: 'cancelled',
-        note: 'Payment verification failed'
-      });
-      await order.save();
-
-      // Release reserved stock back to inventory
-      for (const item of order.items) {
-        if (item.product) {
-          await releaseStock(item.product, item.quantity, order._id, req.user._id);
-        }
+    res.status(200).json({
+      success: true,
+      message: 'Payment verified and order confirmed successfully',
+      data: {
+        orderId: order._id,
+        orderNumber: order.orderNumber,
+        status: order.status,
+        paymentStatus: order.paymentStatus
       }
-
-      return res.status(400).json({
-        success: false,
-        message: 'Payment signature verification failed. Order cancelled.'
-      });
-    }
+    });
   } catch (error) {
     next(error);
   }

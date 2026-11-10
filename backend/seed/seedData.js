@@ -746,7 +746,7 @@ const seedDatabase = async () => {
       {
         type: 'faq',
         title: 'What payment modes are accepted?',
-        content: 'We support all major payment modes including UPI, Net Banking, Credit/Debit cards through Razorpay in permissible jurisdictions.',
+        content: 'We support all major UPI payment apps including Google Pay, PhonePe, Paytm, and BHIM UPI with instant order confirmation.',
         displayOrder: 3,
         isActive: true
       },
@@ -879,21 +879,21 @@ const seedDatabase = async () => {
         total: (sampleProduct.price * 2) + 100,
         status: 'confirmed',
         paymentStatus: 'paid',
-        paymentMethod: 'razorpay',
+        paymentMethod: 'upi_qr',
         statusHistory: [
           { status: 'pending', note: 'Order initiated' },
-          { status: 'confirmed', note: 'Payment verified via Razorpay' }
+          { status: 'confirmed', note: 'Payment verified via Google Pay / UPI QR' }
         ]
       });
 
       await Payment.create({
         order: order._id,
         user: customer._id,
-        razorpayOrderId: 'order_mock_seed_001',
-        razorpayPaymentId: 'pay_mock_seed_001',
-        razorpaySignature: 'sig_mock_seed_001',
+        transactionId: 'UPI-MOCK-SEED-001',
+        upiTransactionId: 'UPI-MOCK-SEED-001',
         amount: order.total,
         currency: 'INR',
+        method: 'Google Pay / UPI QR',
         status: 'captured'
       });
     }

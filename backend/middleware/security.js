@@ -4,14 +4,14 @@ const securityHeaders = helmet({
   contentSecurityPolicy: {
     directives: {
       defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "'unsafe-inline'", "https://checkout.razorpay.com", "https://fonts.googleapis.com"],
+      scriptSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       scriptSrcAttr: ["'unsafe-inline'"],
-      frameSrc: ["'self'", "https://api.razorpay.com"],
+      frameSrc: ["'self'"],
       imgSrc: ["'self'", "data:", "blob:", "https://images.unsplash.com", "https://placehold.co", "https://d8j0ntlcm91z4.cloudfront.net", "https://res.cloudinary.com", "https://*.cloudinary.com"],
       mediaSrc: ["'self'", "https://d8j0ntlcm91z4.cloudfront.net", "https://res.cloudinary.com", "https://*.cloudinary.com", "data:", "blob:"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      connectSrc: ["'self'", "https://api.razorpay.com", "https://lumberjack.razorpay.com"]
+      connectSrc: ["'self'"]
     }
   },
   crossOriginEmbedderPolicy: false

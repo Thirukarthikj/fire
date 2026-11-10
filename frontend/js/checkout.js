@@ -43,41 +43,13 @@ const Checkout = {
     if (btn) btn.innerHTML = '🔄 Waiting for Payment Confirmation...';
   },
 
-  selectPaymentMethod(method) {
-    this.currentPaymentMethod = method;
+  selectPaymentMethod(method = 'upi_qr') {
+    this.currentPaymentMethod = 'upi_qr';
     const upiPanel = document.getElementById('upi-qr-panel');
-    const gatewayPanel = document.getElementById('gateway-panel');
-    const pillUpi = document.getElementById('pill-method-upi');
-    const pillGateway = document.getElementById('pill-method-gateway');
     const btn = document.getElementById('btn-place-order');
-
-    if (method === 'upi_qr') {
-      if (upiPanel) upiPanel.style.display = 'block';
-      if (gatewayPanel) gatewayPanel.style.display = 'none';
-
-      if (pillUpi) {
-        pillUpi.style.borderColor = '#dc2626';
-        pillUpi.style.backgroundColor = '#fff5f5';
-      }
-      if (pillGateway) {
-        pillGateway.style.borderColor = '#cbd5e1';
-        pillGateway.style.backgroundColor = '#f8fafc';
-      }
-      if (btn) btn.innerHTML = '⚡ Auto-Placing on Payment (or Click to Finalize) →';
-    } else {
-      if (upiPanel) upiPanel.style.display = 'none';
-      if (gatewayPanel) gatewayPanel.style.display = 'block';
-
-      if (pillUpi) {
-        pillUpi.style.borderColor = '#cbd5e1';
-        pillUpi.style.backgroundColor = '#f8fafc';
-      }
-      if (pillGateway) {
-        pillGateway.style.borderColor = '#dc2626';
-        pillGateway.style.backgroundColor = '#fff5f5';
-      }
-      if (btn) btn.innerHTML = 'Proceed to Online Gateway →';
-    }
+    if (upiPanel) upiPanel.style.display = 'block';
+    if (btn) btn.innerHTML = '⚡ Auto-Placing on Payment (or Click to Finalize) →';
+  },
   },
 
   copyUpiId() {
@@ -417,104 +389,7 @@ const Checkout = {
       return;
     }
 
-    const btn = document.getElementById('btn-place-order');
-    const origBtnText = btn.innerHTML;
-    btn.disabled = true;
-
-    // A. Handle Google Pay & UPI QR Payment
-    if (this.currentPaymentMethod === 'upi_qr') {
-      await this.triggerAutoPaymentCompleted('Manual Confirm Button');
-      return;
-    }
-
-    // B. Handle Online Cards / Netbanking Gateway
-    btn.textContent = 'Securing Order & Payment...';
-
-    try {
-      const res = await API.post('/checkout', {
-        addressId: this.selectedAddressId,
-        paymentMethod: 'razorpay'
-      });
-      if (!res.success || !res.data) {
-        throw new Error(res.message || 'Failed to initialize order');
-      }
-
-      const { order, payment } = res.data;
-
-      // Check if Razorpay script is loaded and active
-      if (typeof Razorpay !== 'undefined' && payment.key && payment.key !== 'rzp_test_placeholder') {
-        const options = {
-          key: payment.key,
-          amount: Math.round(payment.amount * 100),
-          currency: payment.currency,
-          name: 'Firecrackers E-Commerce',
-          description: `Order #${order.orderNumber}`,
-          order_id: payment.razorpayOrderId,
-          handler: async (response) => {
-            await Checkout.verifyPayment(
-              response.razorpay_order_id,
-              response.razorpay_payment_id,
-              response.razorpay_signature,
-              order._id
-            );
-          },
-          prefill: {
-            name: App.currentUser ? App.currentUser.name : '',
-            email: App.currentUser ? App.currentUser.email : '',
-            contact: App.currentUser ? App.currentUser.phone : ''
-          },
-          theme: { color: '#ea580c' },
-          modal: {
-            ondismiss: () => {
-              App.showNotification('Payment window closed. Order pending.', 'warning');
-              btn.disabled = false;
-              btn.innerHTML = 'Proceed to Online Gateway →';
-            }
-          }
-        };
-
-        const rzp = new Razorpay(options);
-        rzp.open();
-      } else {
-        // Fallback for Development & Testing Environment without active merchant credentials
-        App.showNotification('Sandbox mode active: Simulating instant payment verification...', 'info');
-        setTimeout(async () => {
-          await Checkout.verifyPayment(
-            payment.razorpayOrderId,
-            `pay_mock_${Date.now()}`,
-            'sig_mock_development_pass',
-            order._id
-          );
-        }, 1000);
-      }
-    } catch (err) {
-      App.showNotification(err.message || 'Order checkout failed', 'error');
-      btn.disabled = false;
-      btn.innerHTML = origBtnText;
-    }
-  },
-
-  async verifyPayment(razorpayOrderId, razorpayPaymentId, razorpaySignature, orderId) {
-    try {
-      const res = await API.post('/checkout/verify-payment', {
-        razorpayOrderId,
-        razorpayPaymentId,
-        razorpaySignature
-      });
-
-      if (res.success) {
-        App.showNotification('Payment verified successfully! 🎉', 'success');
-        App.updateCartBadge();
-        setTimeout(() => {
-          window.location.href = `/order-details.html?id=${orderId}`;
-        }, 800);
-      }
-    } catch (err) {
-      App.showNotification(err.message || 'Payment verification failed', 'error');
-      setTimeout(() => {
-        window.location.href = '/orders.html';
-      }, 1500);
-    }
+    await this.triggerAutoPaymentCompleted('Manual Confirm Button');
   },
 
   openAddAddressModal() {

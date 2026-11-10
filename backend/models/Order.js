@@ -50,7 +50,7 @@ const orderSchema = new Schema({
     enum: ['pending', 'paid', 'failed', 'refunded', 'partially_refunded'],
     default: 'pending'
   },
-  paymentMethod: { type: String, default: 'razorpay' },
+  paymentMethod: { type: String, default: 'upi_qr' },
   upiTransactionId: { type: String, trim: true },
   notes: String,
   cancellationReason: String,

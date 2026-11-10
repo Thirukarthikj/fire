@@ -486,10 +486,10 @@ const AdminApp = {
       document.getElementById('modal-order-total').textContent = App.formatPrice(order.total);
       
       const methodEl = document.getElementById('modal-order-payment-method');
-      if (methodEl) methodEl.textContent = order.paymentMethod === 'upi_qr' ? 'Google Pay / UPI QR' : (order.paymentMethod || 'Razorpay Gateway');
+      if (methodEl) methodEl.textContent = order.paymentMethod === 'upi_qr' ? 'Google Pay / UPI QR' : (order.paymentMethod || 'Google Pay / UPI QR');
 
       const utrEl = document.getElementById('modal-order-upi-utr');
-      if (utrEl) utrEl.textContent = order.upiTransactionId || (payment && payment.upiTransactionId) || (order.paymentMethod === 'upi_qr' ? 'Google Pay QR Scan' : 'N/A');
+      if (utrEl) utrEl.textContent = order.upiTransactionId || (payment && (payment.transactionId || payment.upiTransactionId)) || 'Google Pay QR Scan';
 
       document.getElementById('modal-order-status-badge').innerHTML = Orders.getStatusBadge(order.status);
       document.getElementById('modal-payment-status-badge').innerHTML = Orders.getPaymentBadge(order.paymentStatus);
@@ -550,7 +550,7 @@ const AdminApp = {
       if (tbody && res.success && res.data) {
         tbody.innerHTML = res.data.map(p => `
           <tr>
-            <td><code style="font-size:0.8rem;">${p.razorpayOrderId}</code></td>
+            <td><code style="font-size:0.8rem;">${p.transactionId || p.upiTransactionId || 'UPI-DIRECT'}</code></td>
             <td>${p.order ? p.order.orderNumber : '—'}</td>
             <td class="font-bold">${App.formatPrice(p.amount)}</td>
             <td>${Orders.getPaymentBadge(p.status)}</td>

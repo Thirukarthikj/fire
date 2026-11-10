@@ -643,16 +643,10 @@ exports.issueRefund = async (req, res, next) => {
       });
     }
 
-    let refundResult;
-    try {
-      refundResult = await initiateRefund(payment.razorpayPaymentId, refundAmount, { reason });
-    } catch (rzpErr) {
-      console.warn('[Razorpay API Warning] Mock refund applied for development mode');
-      refundResult = { id: `rfnd_${Date.now()}_test`, status: 'processed' };
-    }
+    const refundResult = await initiateRefund(payment._id, refundAmount, { reason });
 
     payment.refunds.push({
-      refundId: refundResult.id,
+      refundId: refundResult.refundId || `RFD-${Date.now()}`,
       amount: refundAmount,
       reason: reason || 'Customer refund',
       status: 'processed',

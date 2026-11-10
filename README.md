@@ -9,7 +9,8 @@ A production-oriented, responsive e-commerce platform for regulated fireworks an
 - **Backend**: Node.js & Express.js.
 - **Database**: MongoDB with Mongoose ODM.
 - **Authentication**: Secure Session-Based Authentication (`express-session` + `connect-mongo`).
-- **Payment Gateway**: Razorpay REST API & Webhook Integration with HMAC SHA256 Signature Verification.
+- **Payment Pipeline**: NPCI UPI Standard Deep Link QR with dynamic amount calculation & real-time auto-placement.
+- **Image Storage**: Cloudinary CDN with auto-optimization and MongoDB sync.
 
 ---
 
@@ -19,16 +20,16 @@ A production-oriented, responsive e-commerce platform for regulated fireworks an
 - **Dynamic Catalogue**: Real-time category filtering, price range sliders, keyword search with debounce, instant sorting, and pagination.
 - **Product Details**: Multi-angle image galleries, product variants, real-time stock alerts, specifications table, and mandatory safety advisories.
 - **Cart Management**: Server-side price recalculation, atomic stock check, and coupon validation (`WELCOME10`, `DIWALI20`, `FLAT100`).
-- **Checkout & Payment**: Address book selection, inline new address modal, Razorpay checkout with webhook idempotency.
+- **Checkout & Payment**: Address book selection, inline new address modal, dynamic Google Pay / UPI QR with auto-calculated total, 5-minute timer, and automatic order placement.
 - **Customer Account**: Profile editing, secure password update, address book management, order history tracking with live timeline steps, and cancellation workflows.
 - **Compliance & Support**: FAQ accordion, PESO green cracker safety guides, terms of sale, and integrated customer enquiry ticketing.
 
 ### 📊 Comprehensive Administrator Dashboard
 - **Dashboard Overview**: Financial KPIs distinguishing gross revenue, completed payments, refund volume, inventory alerts, CSS sales trend chart, and recent orders.
-- **Products & Categories**: Full CRUD with multi-image upload (`multer`), slug generation, SKU tracking, and discount rules.
+- **Products & Categories**: Full CRUD with Cloudinary multi-image upload, slug generation, SKU tracking, and discount rules.
 - **Warehouse Inventory**: Real-time stock counts, color-coded low stock / out of stock alerts, and audit-logged manual stock adjustments.
 - **Order Lifecycle Management**: Enforced state transitions (`pending` → `confirmed` → `processing` → `shipped` → `delivered` / `cancelled`) with automatic stock release on cancellation.
-- **Payments & Refunds**: Transaction log with Razorpay references, partial and full refund processing, and idempotent webhook audit logs.
+- **Payments & Refunds**: Transaction log with UPI references, partial and full refund processing.
 - **Customer Control**: Account review and status toggle (Active / Suspended).
 - **Coupons**: Percentage and fixed discount rules with expiration dates, min order requirements, and usage caps.
 - **Website Content**: Live homepage banners, announcements, and policy editor.
@@ -126,9 +127,11 @@ PORT=5000
 NODE_ENV=development
 MONGO_URI=mongodb://localhost:27017/firecrackers_ecommerce
 SESSION_SECRET=your_super_secret_session_key_min_32_characters
-RAZORPAY_KEY_ID=rzp_test_your_key_id
-RAZORPAY_KEY_SECRET=your_razorpay_key_secret
-RAZORPAY_WEBHOOK_SECRET=your_webhook_secret
+UPI_MERCHANT_ID=jthirukarthick@oksbi
+UPI_MERCHANT_NAME=Sivakasi Direct Wholesale
+CLOUDINARY_CLOUD_NAME=tci2igsn
+CLOUDINARY_API_KEY=557664337442678
+CLOUDINARY_API_SECRET=q4MDMFgI3HBieIIOUUjcYnipbGM
 SITE_URL=http://localhost:5000
 ```
 
@@ -157,15 +160,14 @@ Access Admin Dashboard at **[http://localhost:5000/admin/login.html](http://loca
 
 ---
 
-## 💳 Razorpay Sandbox Payment Workflow
-1. When configuring test mode, enter test credentials `RAZORPAY_KEY_ID` and `RAZORPAY_KEY_SECRET`.
-2. When the user checks out:
+## 📱 Google Pay & UPI QR Checkout Workflow
+1. When the user checks out:
    - Server calculates total payable from database product records.
    - Server reserves inventory atomically with `findOneAndUpdate`.
-   - Server creates a Razorpay Order and opens the standard checkout UI.
-   - Upon customer payment, the frontend sends signature tokens to `/api/checkout/verify-payment`.
-   - Server confirms payment with HMAC SHA256 verification and transitions order status to `confirmed`.
-   - If mock sandbox mode is active without test keys, the system executes simulated test verification automatically.
+   - Generates dynamic high-res QR code encoding standard NPCI URI with pre-calculated amount.
+   - Starts 5-minute countdown session with auto-expiry overlay.
+   - Real-time poller and app return listener automatically confirm order upon payment detection without manual UTR input.
+   - Stores confirmed order and payment record in MongoDB and redirects user to confirmation screen.
 
 ---
 
