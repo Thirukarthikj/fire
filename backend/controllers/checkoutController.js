@@ -32,17 +32,6 @@ exports.createOrder = async (req, res, next) => {
 
     if (mongoose.connection.readyState !== 1) {
       const orderNum = 'ORD-SIV-' + Math.floor(100000 + Math.random() * 900000);
-      const demoOrder = {
-        _id: 'ord_' + Date.now().toString(36),
-        orderNumber: orderNum,
-        user: req.user._id,
-        items: [
-          {
-            product: { name: 'Sivakasi Celebration Pack', price: 999 },
-            quantity: 1,
-            price: 999
-          }
-        ],
       let shippingAddress = {
         name: (req.user && req.user.name) || 'Customer',
         phone: (req.user && req.user.phone) || '',
@@ -55,6 +44,19 @@ exports.createOrder = async (req, res, next) => {
         const found = req.user.addresses.find(a => String(a._id) === String(addressId));
         if (found) shippingAddress = found;
       }
+
+      const demoOrder = {
+        _id: 'ord_' + Date.now().toString(36),
+        orderNumber: orderNum,
+        user: req.user._id,
+        items: [
+          {
+            product: { name: 'Sivakasi Celebration Pack', price: 999 },
+            quantity: 1,
+            price: 999
+          }
+        ],
+        shippingAddress,
         paymentMethod,
         paymentStatus: 'completed',
         orderStatus: 'confirmed',
