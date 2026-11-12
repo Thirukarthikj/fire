@@ -116,12 +116,12 @@ const App = {
             <div style="font-size:0.75rem; color:#64748b;">${this.escapeHtml(user.email || '')}</div>
           </div>
           <div class="user-flyout-divider"></div>
-          <a href="/profile.html" class="user-flyout-link">👤 My Profile</a>
-          <a href="/orders.html" class="user-flyout-link">📦 My Orders</a>
-          <a href="/addresses.html" class="user-flyout-link">📍 Saved Addresses</a>
-          ${isAdminUser ? '<a href="/admin/dashboard.html" class="user-flyout-link user-admin-link">⚙️ Admin Dashboard</a>' : ''}
+          <a href="/profile.html" class="user-flyout-link">My Profile</a>
+          <a href="/orders.html" class="user-flyout-link">My Orders</a>
+          <a href="/addresses.html" class="user-flyout-link">Saved Addresses</a>
+          ${isAdminUser ? '<a href="/admin/dashboard.html" class="user-flyout-link user-admin-link">Admin Dashboard</a>' : ''}
           <div class="user-flyout-divider"></div>
-          <button onclick="App.logout()" class="user-flyout-logout">🚪 Sign Out</button>
+          <button onclick="App.logout()" class="user-flyout-logout">Sign Out</button>
         </div>
       </div>
     `;
@@ -144,7 +144,6 @@ const App = {
   renderSignInPill(container) {
     container.innerHTML = `
       <a href="/login.html" class="btn-signin-pill">
-        <span>👤</span>
         <span>Sign In</span>
       </a>
     `;

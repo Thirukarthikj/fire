@@ -225,7 +225,7 @@
           <p style="margin-bottom: 0;">Transparent factory direct rates. F.O.R. Sivakasi with net festival discounts up to 70%.</p>
         </div>
         <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-          <button onclick="window.print()" class="btn btn-secondary btn-sm">🖨️ Print / Save PDF</button>
+          <button onclick="window.print()" class="btn btn-secondary btn-sm">Print / Save PDF</button>
           <a href="/products.html" class="btn btn-outline btn-sm">Catalogue View →</a>
         </div>
       </div>
@@ -237,13 +237,13 @@
       <!-- Sticky Quick-Order Calculator Bar -->
       <div class="floating-order-bar" id="order-bar" style="display:none;">
         <div>
-          <span class="text-xs" style="color: #94a3b8; display:block;">ESTIMATE SELECTED</span>
+          <span class="text-xs" style="color: #94a3b8; display:block;">ORDER ESTIMATE</span>
           <span id="order-bar-items" class="font-bold" style="color:#f59e0b;">0 items</span> • 
           <span id="order-bar-total" class="font-bold" style="font-size:1.35rem; color:#ffffff;">₹0</span>
         </div>
         <div style="display:flex; gap:12px;">
-          <button onclick="PriceListApp.addAllToCart()" class="btn btn-primary btn-lg" style="box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);">
-            🛒 Add All to Cart →
+          <button onclick="PriceListApp.addAllToCart()" class="btn btn-primary btn-lg">
+            Add All to Cart →
           </button>
         </div>
       </div>
@@ -426,7 +426,7 @@
           }
         } catch (e) {}
 
-        App.showNotification('🎆 All selected festive items added to your cart!', 'success');
+        App.showNotification('All selected items added to your cart!', 'success');
         App.updateCartBadge();
         setTimeout(() => {
           window.location.href = '/cart.html';

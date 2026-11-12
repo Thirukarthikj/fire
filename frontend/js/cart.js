@@ -163,7 +163,7 @@ const Cart = {
     if (this.isLoggedIn()) {
       window.location.href = '/checkout.html';
     } else {
-      App.showNotification('🛒 Please sign in or create an account to finalize your order.', 'info');
+      App.showNotification('Please sign in or create an account to finalize your order.', 'info');
       setTimeout(() => {
         window.location.href = '/login.html?redirect=/checkout.html&reason=checkout';
       }, 400);

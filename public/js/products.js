@@ -263,7 +263,7 @@ const Products = {
             ${savingsPill}
           </div>
           <button onclick="Products.addToCart('${p._id}', 1)" class="btn btn-primary btn-sm btn-block" ${p.stock <= 0 ? 'disabled' : ''}>
-            ${p.stock > 0 ? '🛒 Add to Cart' : 'Out of Stock'}
+            ${p.stock > 0 ? '+ Add to Cart' : 'Out of Stock'}
           </button>
         </div>
       </div>
@@ -449,7 +449,7 @@ const Products = {
     const wishlistBtn = document.getElementById('btn-detail-wishlist');
     if (wishlistBtn && typeof Wishlist !== 'undefined') {
       const isSaved = Wishlist.has(p._id);
-      wishlistBtn.innerHTML = isSaved ? '❤️ In Wishlist' : '🤍 Add to Wishlist';
+      wishlistBtn.innerHTML = isSaved ? 'In Wishlist' : 'Add to Wishlist';
       if (isSaved) wishlistBtn.classList.add('active');
     }
 
@@ -462,7 +462,7 @@ const Products = {
       if (p.stock > 10) {
         stockEl.innerHTML = `<span class="badge badge-success">In Stock (${p.stock} units available)</span>`;
       } else if (p.stock > 0) {
-        stockEl.innerHTML = `<span class="badge badge-warning">Low Stock: Only ${p.stock} units left!</span>`;
+        stockEl.innerHTML = `<span class="badge badge-warning">Low Stock: Only ${p.stock} units left</span>`;
       } else {
         stockEl.innerHTML = `<span class="badge badge-error">Out of Stock</span>`;
         if (addBtn) addBtn.disabled = true;
@@ -474,7 +474,7 @@ const Products = {
     if (safetyBox && p.safetyInfo) {
       safetyBox.innerHTML = `
         <div class="safety-alert-box">
-          <h4>⚠️ Mandatory Safety Advisory</h4>
+          <h4>Safety Advisory</h4>
           <p>${App.escapeHtml(p.safetyInfo)}</p>
         </div>
       `;
@@ -551,7 +551,7 @@ const Products = {
       try {
         const res = await API.post('/cart/add', { productId, quantity: qty });
         if (res.success) {
-          App.showNotification('🎆 Product added to your cart!', 'success');
+          App.showNotification('Product added to cart', 'success');
           App.updateCartBadge();
           return;
         }
@@ -591,7 +591,7 @@ const Products = {
       }
 
       localStorage.setItem('guest_cart', JSON.stringify(guestCart));
-      App.showNotification('🎆 Product added to your festive cart!', 'success');
+      App.showNotification('Product added to cart', 'success');
       App.updateCartBadge();
     } catch (localErr) {
       console.error('Error saving guest cart:', localErr);
