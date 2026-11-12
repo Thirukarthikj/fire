@@ -5,6 +5,20 @@ const Auth = {
   // ---------------- LOGIN ----------------
   initLogin() {
     const form = document.getElementById('login-form');
+    const params = new URLSearchParams(window.location.search);
+
+    // Show checkout reason notice if directed from cart/checkout
+    const checkoutNotice = document.getElementById('checkout-notice');
+    if (checkoutNotice && params.get('reason') === 'checkout') {
+      checkoutNotice.style.display = 'block';
+    }
+
+    // Preserve query parameters when switching between login and registration
+    const regLink = document.getElementById('register-link') || document.querySelector('a[href*="register.html"]');
+    if (regLink && window.location.search) {
+      regLink.href = `/register.html${window.location.search}`;
+    }
+
     if (!form) return;
 
     form.addEventListener('submit', async (e) => {
@@ -20,12 +34,30 @@ const Auth = {
       try {
         const res = await API.post('/auth/login', { email, password });
         if (res.success) {
+          if (res.data) {
+            localStorage.setItem('fire_user', JSON.stringify(res.data));
+            App.currentUser = res.data;
+          }
           App.showNotification('Welcome back!', 'success');
-          const params = new URLSearchParams(window.location.search);
+
+          // Sync any guest cart items to account
+          try {
+            const guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
+            if (guestCart.length > 0) {
+              for (const item of guestCart) {
+                const pid = item.productId || (item.product && item.product._id);
+                if (pid) {
+                  await API.post('/cart/add', { productId: pid, quantity: item.quantity || 1 });
+                }
+              }
+              localStorage.removeItem('guest_cart');
+            }
+          } catch (syncErr) {}
+
           const redirect = params.get('redirect') || '/profile.html';
           setTimeout(() => {
             window.location.href = redirect;
-          }, 600);
+          }, 400);
         }
       } catch (err) {
         if (errorBox) {
@@ -43,6 +75,20 @@ const Auth = {
   // ---------------- REGISTER ----------------
   initRegister() {
     const form = document.getElementById('register-form');
+    const params = new URLSearchParams(window.location.search);
+
+    // Show checkout reason notice if directed from cart/checkout
+    const checkoutNotice = document.getElementById('checkout-notice');
+    if (checkoutNotice && params.get('reason') === 'checkout') {
+      checkoutNotice.style.display = 'block';
+    }
+
+    // Preserve query parameters when switching between registration and login
+    const loginLink = document.getElementById('login-link') || document.querySelector('a[href*="login.html"]');
+    if (loginLink && window.location.search) {
+      loginLink.href = `/login.html${window.location.search}`;
+    }
+
     if (!form) return;
 
     form.addEventListener('submit', async (e) => {
@@ -69,10 +115,30 @@ const Auth = {
       try {
         const res = await API.post('/auth/register', { name, email, phone, password });
         if (res.success) {
+          if (res.data) {
+            localStorage.setItem('fire_user', JSON.stringify(res.data));
+            App.currentUser = res.data;
+          }
           App.showNotification('Account created successfully!', 'success');
+
+          // Sync any guest cart items to account
+          try {
+            const guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
+            if (guestCart.length > 0) {
+              for (const item of guestCart) {
+                const pid = item.productId || (item.product && item.product._id);
+                if (pid) {
+                  await API.post('/cart/add', { productId: pid, quantity: item.quantity || 1 });
+                }
+              }
+              localStorage.removeItem('guest_cart');
+            }
+          } catch (syncErr) {}
+
+          const redirect = params.get('redirect') || '/profile.html';
           setTimeout(() => {
-            window.location.href = '/profile.html';
-          }, 600);
+            window.location.href = redirect;
+          }, 400);
         }
       } catch (err) {
         if (errorBox) {
@@ -88,24 +154,44 @@ const Auth = {
   },
 
   // ---------------- PROFILE ----------------
+  renderProfileData(u) {
+    if (!u) return;
+    const nameInput = document.getElementById('profile-name');
+    const emailInput = document.getElementById('profile-email');
+    const phoneInput = document.getElementById('profile-phone');
+
+    if (nameInput) nameInput.value = u.name || '';
+    if (emailInput) emailInput.value = u.email || '';
+    if (phoneInput) phoneInput.value = u.phone || '';
+
+    const welcomeName = document.getElementById('profile-welcome-name');
+    if (welcomeName) welcomeName.textContent = u.name || 'Friend';
+  },
+
   async initProfile() {
+    let localUser = null;
+    try {
+      const stored = localStorage.getItem('fire_user');
+      if (stored) {
+        localUser = JSON.parse(stored);
+        this.renderProfileData(localUser);
+      }
+    } catch (e) {}
+
     try {
       const res = await API.get('/users/profile');
       if (res.success && res.data) {
-        const u = res.data;
-        const nameInput = document.getElementById('profile-name');
-        const emailInput = document.getElementById('profile-email');
-        const phoneInput = document.getElementById('profile-phone');
-
-        if (nameInput) nameInput.value = u.name || '';
-        if (emailInput) emailInput.value = u.email || '';
-        if (phoneInput) phoneInput.value = u.phone || '';
-
-        const welcomeName = document.getElementById('profile-welcome-name');
-        if (welcomeName) welcomeName.textContent = u.name;
+        localUser = res.data;
+        localStorage.setItem('fire_user', JSON.stringify(res.data));
+        App.currentUser = res.data;
+        this.renderProfileData(res.data);
       }
     } catch (err) {
-      window.location.href = '/login.html?redirect=/profile.html';
+      // ONLY redirect if user is definitely not signed in locally
+      if (!localUser && !App.currentUser) {
+        window.location.href = '/login.html?redirect=/profile.html';
+        return;
+      }
     }
 
     // Profile update form

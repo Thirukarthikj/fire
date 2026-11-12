@@ -544,21 +544,58 @@ const Products = {
 
   // ---------------- GLOBAL CART ADD ----------------
   async addToCart(productId, quantity = 1) {
+    const qty = Math.max(1, parseInt(quantity, 10) || 1);
+    const isLoggedIn = !!(App.currentUser || localStorage.getItem('fire_user'));
+
+    if (isLoggedIn) {
+      try {
+        const res = await API.post('/cart/add', { productId, quantity: qty });
+        if (res.success) {
+          App.showNotification('🎆 Product added to your cart!', 'success');
+          App.updateCartBadge();
+          return;
+        }
+      } catch (err) {
+        console.warn('Server cart add failed, saving to guest cart:', err.message);
+      }
+    }
+
+    // Guest Cart: Save seamlessly to localStorage without requiring login
     try {
-      const res = await API.post('/cart/add', { productId, quantity });
-      if (res.success) {
-        App.showNotification('Product added to your cart!', 'success');
-        App.updateCartBadge();
+      let guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
+      const existing = guestCart.find(i => (i.productId === productId) || (i.product && i.product._id === productId));
+
+      let p = null;
+      if (this.currentProduct && this.currentProduct._id === productId) {
+        p = this.currentProduct;
+      } else if (this.allProducts && this.allProducts.length) {
+        p = this.allProducts.find(item => item._id === productId);
       }
-    } catch (err) {
-      if (err.status === 401) {
-        App.showNotification('Please log in to add fireworks to your cart.', 'warning');
-        setTimeout(() => {
-          window.location.href = `/login.html?redirect=${encodeURIComponent(window.location.href)}`;
-        }, 800);
+
+      if (existing) {
+        existing.quantity = (existing.quantity || 1) + qty;
+        if (p) existing.product = p;
       } else {
-        App.showNotification(err.message || 'Could not add to cart', 'error');
+        guestCart.push({
+          _id: 'guest_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+          productId: productId,
+          product: p || {
+            _id: productId,
+            name: 'Festive Fireworks',
+            price: 99,
+            images: []
+          },
+          price: (p && p.price) ? p.price : 99,
+          quantity: qty
+        });
       }
+
+      localStorage.setItem('guest_cart', JSON.stringify(guestCart));
+      App.showNotification('🎆 Product added to your festive cart!', 'success');
+      App.updateCartBadge();
+    } catch (localErr) {
+      console.error('Error saving guest cart:', localErr);
+      App.showNotification('Could not add product to cart', 'error');
     }
   }
 };

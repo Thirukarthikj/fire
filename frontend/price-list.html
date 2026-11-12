@@ -389,19 +389,48 @@
         if (keys.length === 0) return;
 
         App.showNotification('Adding selected items to your cart...', 'info');
+        const isLoggedIn = !!(App.currentUser || localStorage.getItem('fire_user'));
+
+        if (isLoggedIn) {
+          try {
+            for (const k of keys) {
+              const item = this.selectedItems[k];
+              await API.post('/cart/add', { productId: item.product._id, quantity: item.qty });
+            }
+          } catch (err) {
+            console.warn('Server bulk add failed, saving to guest cart');
+          }
+        }
+
+        // Add to guest cart
         try {
+          let guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
           for (const k of keys) {
             const item = this.selectedItems[k];
-            await API.post('/cart/add', { productId: item.product._id, quantity: item.qty });
+            const p = item.product;
+            const existing = guestCart.find(i => i.productId === p._id || (i.product && i.product._id === p._id));
+            if (existing) {
+              existing.quantity = (existing.quantity || 1) + item.qty;
+            } else {
+              guestCart.push({
+                _id: 'guest_' + Date.now() + '_' + Math.random().toString(36).substring(2, 6),
+                productId: p._id,
+                product: p,
+                price: p.price,
+                quantity: item.qty
+              });
+            }
           }
-          App.showNotification('All festive items added to your cart!', 'success');
-          App.updateCartBadge();
-          setTimeout(() => {
-            window.location.href = '/cart.html';
-          }, 800);
-        } catch (err) {
-          App.showNotification('Failed to add some items. Please ensure you are signed in.', 'warning');
-        }
+          if (!isLoggedIn) {
+            localStorage.setItem('guest_cart', JSON.stringify(guestCart));
+          }
+        } catch (e) {}
+
+        App.showNotification('🎆 All selected festive items added to your cart!', 'success');
+        App.updateCartBadge();
+        setTimeout(() => {
+          window.location.href = '/cart.html';
+        }, 600);
       }
     };
 

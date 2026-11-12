@@ -101,61 +101,86 @@ const App = {
     }
   },
 
+  renderUserPill(container, user) {
+    const isAdminUser = user.role === 'admin' || user.role === 'superadmin';
+    container.innerHTML = `
+      <div class="user-dropdown-container">
+        <button class="user-pill-btn" id="user-pill-btn" type="button" aria-expanded="false">
+          <span>👤</span>
+          <span class="font-semibold">${this.escapeHtml((user.name || 'Friend').split(' ')[0])}</span>
+          <span style="font-size:0.65rem; color:#64748b;">▼</span>
+        </button>
+        <div class="user-flyout-menu" id="user-flyout-menu">
+          <div class="user-flyout-header">
+            <div style="font-weight:700; color:#0f172a; font-size:0.9rem;">${this.escapeHtml(user.name || 'User')}</div>
+            <div style="font-size:0.75rem; color:#64748b;">${this.escapeHtml(user.email || '')}</div>
+          </div>
+          <div class="user-flyout-divider"></div>
+          <a href="/profile.html" class="user-flyout-link">👤 My Profile</a>
+          <a href="/orders.html" class="user-flyout-link">📦 My Orders</a>
+          <a href="/addresses.html" class="user-flyout-link">📍 Saved Addresses</a>
+          ${isAdminUser ? '<a href="/admin/dashboard.html" class="user-flyout-link user-admin-link">⚙️ Admin Dashboard</a>' : ''}
+          <div class="user-flyout-divider"></div>
+          <button onclick="App.logout()" class="user-flyout-logout">🚪 Sign Out</button>
+        </div>
+      </div>
+    `;
+
+    const pillBtn = document.getElementById('user-pill-btn');
+    const flyout = document.getElementById('user-flyout-menu');
+    if (pillBtn && flyout) {
+      pillBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        flyout.classList.toggle('active');
+      });
+      document.addEventListener('click', (e) => {
+        if (!pillBtn.contains(e.target) && !flyout.contains(e.target)) {
+          flyout.classList.remove('active');
+        }
+      });
+    }
+  },
+
+  renderSignInPill(container) {
+    container.innerHTML = `
+      <a href="/login.html" class="btn-signin-pill">
+        <span>👤</span>
+        <span>Sign In</span>
+      </a>
+    `;
+  },
+
   async checkAuth() {
     const userMenu = document.getElementById('user-menu');
     if (!userMenu) return;
 
+    // 1. Immediately read from localStorage for instant, zero-flicker UI
+    try {
+      const stored = localStorage.getItem('fire_user');
+      if (stored) {
+        this.currentUser = JSON.parse(stored);
+        this.renderUserPill(userMenu, this.currentUser);
+      } else {
+        this.renderSignInPill(userMenu);
+      }
+    } catch (e) {
+      this.renderSignInPill(userMenu);
+    }
+
+    // 2. Validate in background with /api/auth/me
     try {
       const res = await API.get('/auth/me');
       if (res.success && res.data) {
         this.currentUser = res.data;
-        const isAdminUser = this.currentUser.role === 'admin' || this.currentUser.role === 'superadmin';
-
-        userMenu.innerHTML = `
-          <div class="user-dropdown-container">
-            <button class="user-pill-btn" id="user-pill-btn" type="button" aria-expanded="false">
-              <span>👤</span>
-              <span class="font-semibold">${this.escapeHtml(this.currentUser.name.split(' ')[0])}</span>
-              <span style="font-size:0.65rem; color:#64748b;">▼</span>
-            </button>
-            <div class="user-flyout-menu" id="user-flyout-menu">
-              <div class="user-flyout-header">
-                <div style="font-weight:700; color:#0f172a; font-size:0.9rem;">${this.escapeHtml(this.currentUser.name)}</div>
-                <div style="font-size:0.75rem; color:#64748b;">${this.escapeHtml(this.currentUser.email)}</div>
-              </div>
-              <div class="user-flyout-divider"></div>
-              <a href="/profile.html" class="user-flyout-link">👤 My Profile</a>
-              <a href="/orders.html" class="user-flyout-link">📦 My Orders</a>
-              <a href="/addresses.html" class="user-flyout-link">📍 Saved Addresses</a>
-              ${isAdminUser ? '<a href="/admin/dashboard.html" class="user-flyout-link user-admin-link">⚙️ Admin Dashboard</a>' : ''}
-              <div class="user-flyout-divider"></div>
-              <button onclick="App.logout()" class="user-flyout-logout">🚪 Sign Out</button>
-            </div>
-          </div>
-        `;
-
-        const pillBtn = document.getElementById('user-pill-btn');
-        const flyout = document.getElementById('user-flyout-menu');
-        if (pillBtn && flyout) {
-          pillBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            flyout.classList.toggle('active');
-          });
-          document.addEventListener('click', (e) => {
-            if (!pillBtn.contains(e.target) && !flyout.contains(e.target)) {
-              flyout.classList.remove('active');
-            }
-          });
-        }
+        localStorage.setItem('fire_user', JSON.stringify(res.data));
+        this.renderUserPill(userMenu, this.currentUser);
       }
     } catch (err) {
-      this.currentUser = null;
-      userMenu.innerHTML = `
-        <a href="/login.html" class="btn-signin-pill">
-          <span>👤</span>
-          <span>Sign In</span>
-        </a>
-      `;
+      if (err.status === 403) {
+        localStorage.removeItem('fire_user');
+        this.currentUser = null;
+        this.renderSignInPill(userMenu);
+      }
     }
   },
 
@@ -163,18 +188,29 @@ const App = {
     const badge = document.getElementById('cart-count');
     if (!badge) return;
 
+    // Count guest cart items first
+    let guestCount = 0;
+    try {
+      const guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
+      guestCount = guestCart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    } catch (e) {}
+
     try {
       const res = await API.get('/cart');
       if (res.success && res.data) {
-        const count = res.data.itemCount || 0;
+        const count = (res.data.itemCount || 0) + guestCount;
         if (count > 0) {
           badge.textContent = count;
           badge.style.display = 'flex';
-        } else {
-          badge.style.display = 'none';
+          return;
         }
       }
-    } catch (err) {
+    } catch (err) {}
+
+    if (guestCount > 0) {
+      badge.textContent = guestCount;
+      badge.style.display = 'flex';
+    } else {
       badge.style.display = 'none';
     }
   },
@@ -182,13 +218,13 @@ const App = {
   async logout() {
     try {
       await API.post('/auth/logout');
-      App.showNotification('Logged out successfully', 'info');
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 400);
-    } catch (err) {
+    } catch (err) {}
+    localStorage.removeItem('fire_user');
+    this.currentUser = null;
+    App.showNotification('Logged out successfully', 'info');
+    setTimeout(() => {
       window.location.href = '/';
-    }
+    }, 400);
   },
 
   showNotification(message, type = 'info') {

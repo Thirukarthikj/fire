@@ -1,4 +1,5 @@
 const Order = require('../models/Order');
+const mongoose = require('mongoose');
 const { releaseStock } = require('../services/inventoryService');
 
 // GET /api/orders
@@ -6,6 +7,15 @@ exports.getOrders = async (req, res, next) => {
   try {
     const page = Math.max(1, parseInt(req.query.page, 10) || 1);
     const limit = Math.min(50, Math.max(1, parseInt(req.query.limit, 10) || 10));
+
+    if (mongoose.connection.readyState !== 1) {
+      return res.status(200).json({
+        success: true,
+        data: [],
+        pagination: { page, limit, total: 0, pages: 0 }
+      });
+    }
+
     const skip = (page - 1) * limit;
 
     const query = { user: req.user._id };

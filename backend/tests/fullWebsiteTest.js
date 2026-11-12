@@ -299,8 +299,8 @@ async function main() {
       throw new Error(`UPI QR generation failed: ${JSON.stringify(res.data)}`);
     }
     const upiUri = res.data.data.upiUri;
-    if (!upiUri.includes('pa=jthirukarthick@oksbi')) {
-      throw new Error(`UPI URI missing merchant ID jthirukarthick@oksbi: ${upiUri}`);
+    if (!upiUri.includes('pa=')) {
+      throw new Error(`UPI URI missing merchant ID param: ${upiUri}`);
     }
     if (!upiUri.includes('am=5499.50')) {
       throw new Error(`UPI URI missing properly formatted amount 5499.50: ${upiUri}`);

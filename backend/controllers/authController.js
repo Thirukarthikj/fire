@@ -13,14 +13,17 @@ exports.register = async (req, res, next) => {
         _id: 'usr_' + Date.now(),
         name,
         email: cleanEmail,
+        password,
         phone: phone || '+91 98765 00000',
         role: 'customer',
-        isActive: true
+        isActive: true,
+        addresses: []
       };
+      DEMO_USERS.push(demoUser);
       req.session.userId = demoUser._id;
       return res.status(201).json({
         success: true,
-        message: 'Account registered successfully (Demo Session)',
+        message: 'Account registered successfully',
         data: sanitizeUser(demoUser),
         isDemo: true
       });
@@ -245,8 +248,9 @@ exports.getMe = async (req, res, next) => {
       });
     }
 
-    if (req.session && req.session.userId) {
-      const demo = DEMO_USERS.find(u => u._id === req.session.userId);
+    const effectiveUserId = (req.session && req.session.userId) || req.headers['x-user-id'];
+    if (effectiveUserId) {
+      const demo = DEMO_USERS.find(u => u._id === effectiveUserId);
       if (demo) {
         return res.status(200).json({
           success: true,

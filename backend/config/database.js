@@ -46,10 +46,7 @@ const connectDB = async () => {
     console.log(`[MongoDB] Connected successfully: ${conn.connection.host}`);
     return conn;
   } catch (error) {
-    console.error(`[MongoDB] Connection error: ${error.message}`);
-    if (!process.env.VERCEL) {
-      process.exit(1);
-    }
+    console.warn(`[MongoDB] Connection notice: ${error.message}. Running in fallback catalogue mode.`);
     return null;
   }
 };

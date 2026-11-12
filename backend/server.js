@@ -57,10 +57,10 @@ let sessionStore;
 const mongoUri = process.env.MONGO_URI;
 const isRemoteUri = mongoUri && (mongoUri.startsWith('mongodb+srv://') || (!mongoUri.includes('localhost') && !mongoUri.includes('127.0.0.1')));
 
-if (!process.env.VERCEL || isRemoteUri) {
+if (isRemoteUri) {
   try {
     sessionStore = MongoStore.create({
-      mongoUrl: mongoUri || 'mongodb://localhost:27017/firecrackers_ecommerce',
+      mongoUrl: mongoUri,
       touchAfter: 24 * 3600,
       mongoOptions: {
         serverSelectionTimeoutMS: 5000
@@ -73,7 +73,7 @@ if (!process.env.VERCEL || isRemoteUri) {
     console.warn('[Session] Session store initialization warning:', storeErr.message);
   }
 } else {
-  console.warn('[Session] Running on Vercel without remote MONGO_URI. Using standard in-memory session store.');
+  console.log('[Session] Running with in-memory session store for local/serverless stability.');
 }
 
 app.use(session({

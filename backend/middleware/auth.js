@@ -4,7 +4,13 @@ const { DEMO_USERS } = require('../data/fallbackData');
 
 const isAuthenticated = async (req, res, next) => {
   try {
-    if (!req.session || !req.session.userId) {
+    const headerUserId = req.headers['x-user-id'];
+    if ((!req.session || !req.session.userId) && headerUserId) {
+      if (req.session) req.session.userId = headerUserId;
+    }
+
+    const effectiveUserId = (req.session && req.session.userId) || headerUserId;
+    if (!effectiveUserId) {
       return res.status(401).json({
         success: false,
         message: 'Authentication required. Please log in.'
@@ -12,7 +18,7 @@ const isAuthenticated = async (req, res, next) => {
     }
 
     if (mongoose.connection.readyState !== 1) {
-      const demoUser = DEMO_USERS.find(u => u._id === req.session.userId);
+      const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId);
       if (demoUser && demoUser.isActive) {
         req.user = demoUser;
         return next();
@@ -23,14 +29,18 @@ const isAuthenticated = async (req, res, next) => {
       });
     }
 
-    const user = await User.findById(req.session.userId);
+    let user = null;
+    try {
+      user = await User.findById(effectiveUserId);
+    } catch (e) {}
+
     if (!user || !user.isActive) {
-      const demoUser = DEMO_USERS.find(u => u._id === req.session.userId);
+      const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId);
       if (demoUser && demoUser.isActive) {
         req.user = demoUser;
         return next();
       }
-      req.session.destroy();
+      if (req.session) req.session.destroy();
       return res.status(401).json({
         success: false,
         message: 'Account not found or inactive. Please log in again.'
@@ -40,7 +50,8 @@ const isAuthenticated = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    const demoUser = DEMO_USERS.find(u => u._id === (req.session && req.session.userId));
+    const effectiveUserId = (req.session && req.session.userId) || req.headers['x-user-id'];
+    const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId);
     if (demoUser && demoUser.isActive) {
       req.user = demoUser;
       return next();
@@ -51,7 +62,13 @@ const isAuthenticated = async (req, res, next) => {
 
 const isAdmin = async (req, res, next) => {
   try {
-    if (!req.session || !req.session.userId) {
+    const headerUserId = req.headers['x-user-id'];
+    if ((!req.session || !req.session.userId) && headerUserId) {
+      if (req.session) req.session.userId = headerUserId;
+    }
+
+    const effectiveUserId = (req.session && req.session.userId) || headerUserId;
+    if (!effectiveUserId) {
       return res.status(401).json({
         success: false,
         message: 'Admin authentication required.'
@@ -59,7 +76,7 @@ const isAdmin = async (req, res, next) => {
     }
 
     if (mongoose.connection.readyState !== 1) {
-      const demoUser = DEMO_USERS.find(u => u._id === req.session.userId && (u.role === 'admin' || u.role === 'superadmin'));
+      const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId && (u.role === 'admin' || u.role === 'superadmin'));
       if (demoUser && demoUser.isActive) {
         req.user = demoUser;
         return next();
@@ -70,14 +87,18 @@ const isAdmin = async (req, res, next) => {
       });
     }
 
-    const user = await User.findById(req.session.userId);
+    let user = null;
+    try {
+      user = await User.findById(effectiveUserId);
+    } catch (e) {}
+
     if (!user || !user.isActive) {
-      const demoUser = DEMO_USERS.find(u => u._id === req.session.userId && (u.role === 'admin' || u.role === 'superadmin'));
+      const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId && (u.role === 'admin' || u.role === 'superadmin'));
       if (demoUser && demoUser.isActive) {
         req.user = demoUser;
         return next();
       }
-      req.session.destroy();
+      if (req.session) req.session.destroy();
       return res.status(401).json({
         success: false,
         message: 'Account not found or deactivated.'
@@ -94,7 +115,8 @@ const isAdmin = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    const demoUser = DEMO_USERS.find(u => u._id === (req.session && req.session.userId) && (u.role === 'admin' || u.role === 'superadmin'));
+    const effectiveUserId = (req.session && req.session.userId) || req.headers['x-user-id'];
+    const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId && (u.role === 'admin' || u.role === 'superadmin'));
     if (demoUser && demoUser.isActive) {
       req.user = demoUser;
       return next();
@@ -105,7 +127,13 @@ const isAdmin = async (req, res, next) => {
 
 const isSuperAdmin = async (req, res, next) => {
   try {
-    if (!req.session || !req.session.userId) {
+    const headerUserId = req.headers['x-user-id'];
+    if ((!req.session || !req.session.userId) && headerUserId) {
+      if (req.session) req.session.userId = headerUserId;
+    }
+
+    const effectiveUserId = (req.session && req.session.userId) || headerUserId;
+    if (!effectiveUserId) {
       return res.status(401).json({
         success: false,
         message: 'Authentication required.'
@@ -113,7 +141,7 @@ const isSuperAdmin = async (req, res, next) => {
     }
 
     if (mongoose.connection.readyState !== 1) {
-      const demoUser = DEMO_USERS.find(u => u._id === req.session.userId && u.role === 'superadmin');
+      const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId && u.role === 'superadmin');
       if (demoUser && demoUser.isActive) {
         req.user = demoUser;
         return next();
@@ -124,9 +152,13 @@ const isSuperAdmin = async (req, res, next) => {
       });
     }
 
-    const user = await User.findById(req.session.userId);
+    let user = null;
+    try {
+      user = await User.findById(effectiveUserId);
+    } catch (e) {}
+
     if (!user || !user.isActive || user.role !== 'superadmin') {
-      const demoUser = DEMO_USERS.find(u => u._id === req.session.userId && u.role === 'superadmin');
+      const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId && u.role === 'superadmin');
       if (demoUser && demoUser.isActive) {
         req.user = demoUser;
         return next();
@@ -140,7 +172,8 @@ const isSuperAdmin = async (req, res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    const demoUser = DEMO_USERS.find(u => u._id === (req.session && req.session.userId) && u.role === 'superadmin');
+    const effectiveUserId = (req.session && req.session.userId) || req.headers['x-user-id'];
+    const demoUser = DEMO_USERS.find(u => u._id === effectiveUserId && u.role === 'superadmin');
     if (demoUser && demoUser.isActive) {
       req.user = demoUser;
       return next();

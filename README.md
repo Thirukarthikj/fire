@@ -127,11 +127,11 @@ PORT=5000
 NODE_ENV=development
 MONGO_URI=mongodb://localhost:27017/firecrackers_ecommerce
 SESSION_SECRET=your_super_secret_session_key_min_32_characters
-UPI_MERCHANT_ID=jthirukarthick@oksbi
+UPI_MERCHANT_ID=yourname@bank
 UPI_MERCHANT_NAME=Sivakasi Direct Wholesale
-CLOUDINARY_CLOUD_NAME=tci2igsn
-CLOUDINARY_API_KEY=557664337442678
-CLOUDINARY_API_SECRET=q4MDMFgI3HBieIIOUUjcYnipbGM
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
 SITE_URL=http://localhost:5000
 ```
 

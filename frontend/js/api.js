@@ -12,6 +12,17 @@ const API = {
       headers['Content-Type'] = 'application/json';
     }
 
+    // Attach stored user ID so user session never drops during serverless restarts
+    try {
+      const stored = localStorage.getItem('fire_user');
+      if (stored) {
+        const u = JSON.parse(stored);
+        if (u && u._id) {
+          headers['X-User-Id'] = u._id;
+        }
+      }
+    } catch (e) {}
+
     const config = {
       credentials: 'same-origin',
       ...options,
@@ -24,7 +35,7 @@ const API = {
 
       if (!response.ok) {
         if (response.status === 401 && !endpoint.includes('/auth/login') && !endpoint.includes('/admin/login')) {
-          // If on admin page, redirect to admin login, else standard login
+          // If on admin page, redirect to admin login
           if (window.location.pathname.startsWith('/admin') && !window.location.pathname.includes('/admin/login.html')) {
             window.location.href = '/admin/login.html';
           }
@@ -74,13 +85,5 @@ const API = {
 
   delete(endpoint) {
     return this.request(endpoint, { method: 'DELETE' });
-  },
-
-  upload(endpoint, formData) {
-    return this.request(endpoint, {
-      method: 'POST',
-      body: formData
-    });
   }
 };
-

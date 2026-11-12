@@ -53,7 +53,7 @@ const Checkout = {
   },
 
   copyUpiId() {
-    const upiId = document.getElementById('upi-id-text') ? document.getElementById('upi-id-text').innerText : 'jthirukarthick@oksbi';
+    const upiId = document.getElementById('upi-id-text') ? document.getElementById('upi-id-text').innerText : 'merchant@upi';
     if (navigator.clipboard) {
       navigator.clipboard.writeText(upiId).then(() => {
         App.showNotification(`UPI ID copied: ${upiId}`, 'success');
@@ -66,15 +66,29 @@ const Checkout = {
   },
 
   async verifyAuthAndCart() {
-    try {
-      const userRes = await API.get('/auth/me');
-      if (!userRes.success) {
-        window.location.href = '/login.html?redirect=/checkout.html';
-        return;
-      }
+    const isLoggedIn = !!(App.currentUser || localStorage.getItem('fire_user'));
+    if (!isLoggedIn) {
+      window.location.href = '/login.html?redirect=/checkout.html&reason=checkout';
+      return;
+    }
 
+    // Sync any guest cart items to the authenticated account
+    try {
+      const guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
+      if (guestCart.length > 0) {
+        for (const item of guestCart) {
+          const pid = item.productId || (item.product && item.product._id);
+          if (pid) {
+            await API.post('/cart/add', { productId: pid, quantity: item.quantity || 1 });
+          }
+        }
+        localStorage.removeItem('guest_cart');
+      }
+    } catch (e) {}
+
+    try {
       const cartRes = await API.get('/cart');
-      if (!cartRes.success || !cartRes.data || cartRes.data.items.length === 0) {
+      if (!cartRes.success || !cartRes.data || !cartRes.data.items || cartRes.data.items.length === 0) {
         App.showNotification('Your cart is empty. Please add fireworks first.', 'warning');
         setTimeout(() => {
           window.location.href = '/products.html';
@@ -85,7 +99,9 @@ const Checkout = {
       this.cartData = cartRes.data;
       this.renderOrderSummary();
     } catch (err) {
-      window.location.href = '/login.html?redirect=/checkout.html';
+      if (err.status === 401) {
+        window.location.href = '/login.html?redirect=/checkout.html&reason=checkout';
+      }
     }
   },
 
