@@ -108,27 +108,31 @@ const Checkout = {
 
     let addresses = [];
 
-    // 1. Check local storage first
-    try {
-      const localAddrs = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
-      if (Array.isArray(localAddrs) && localAddrs.length > 0) {
-        addresses = [...localAddrs];
-      }
-    } catch (e) {}
-
-    // 2. Fetch from server
+    // 1. Try fetching from server first
     try {
       const res = await API.get('/addresses');
-      if (res.success && Array.isArray(res.data) && res.data.length > 0) {
-        const serverIds = new Set(res.data.map(a => a._id));
-        const nonDuplicateLocal = addresses.filter(a => !serverIds.has(a._id));
-        addresses = [...res.data, ...nonDuplicateLocal];
+      if (res && res.success && Array.isArray(res.data)) {
+        addresses = res.data;
+        // Keep localStorage synced
+        try {
+          localStorage.setItem('fire_addresses', JSON.stringify(addresses));
+        } catch (e) {}
       }
     } catch (err) {
       console.warn('Addresses API notice:', err.message);
     }
 
-    // 3. Fallback to user addresses from login session
+    // 2. If API was unavailable or returned empty, check local storage
+    if (addresses.length === 0) {
+      try {
+        const localAddrs = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
+        if (Array.isArray(localAddrs) && localAddrs.length > 0) {
+          addresses = [...localAddrs];
+        }
+      } catch (e) {}
+    }
+
+    // 3. Fallback to user addresses from login session if still empty
     if (addresses.length === 0) {
       try {
         const storedUser = JSON.parse(localStorage.getItem('fire_user') || '{}');
@@ -138,34 +142,29 @@ const Checkout = {
       } catch (e) {}
     }
 
-    // 4. Fallback default delivery address if empty
+    // 4. If no addresses exist, show friendly prompt to add delivery address
     if (addresses.length === 0) {
-      const defaultDemoAddr = {
-        _id: 'addr_default_demo',
-        name: 'Rahul Sharma',
-        phone: '+91 98765 43210',
-        addressLine1: '42 Diwalipura Garden Street',
-        addressLine2: 'Near Central Ground',
-        city: 'Chennai',
-        state: 'Tamil Nadu',
-        pincode: '600001',
-        isDefault: true
-      };
-      addresses.push(defaultDemoAddr);
-      try {
-        localStorage.setItem('fire_addresses', JSON.stringify(addresses));
-      } catch (e) {}
+      this.selectedAddressId = null;
+      container.innerHTML = `
+        <div style="grid-column: 1 / -1; padding: 24px; text-align: center; border: 1.5px dashed var(--color-border); border-radius: var(--radius-md); background: #f8fafc;">
+          <p style="margin-bottom: 12px; color: #64748b; font-size: 0.95rem;">No delivery address found. Please add a shipping destination to proceed.</p>
+          <button type="button" class="btn btn-primary btn-sm" onclick="Checkout.openAddAddressModal()">+ Add New Address</button>
+        </div>
+      `;
+      const placeBtn = document.getElementById('btn-place-order');
+      if (placeBtn) placeBtn.disabled = true;
+      return;
     }
 
     // 5. Select active address
-    if (!this.selectedAddressId || !addresses.some(a => a._id === this.selectedAddressId)) {
+    if (!this.selectedAddressId || !addresses.some(a => String(a._id) === String(this.selectedAddressId))) {
       const defaultAddr = addresses.find(a => a.isDefault) || addresses[0];
       this.selectedAddressId = defaultAddr._id;
     }
 
     // 6. Render address cards
     container.innerHTML = addresses.map(addr => `
-      <div class="address-card ${addr._id === this.selectedAddressId ? 'selected' : ''}" 
+      <div class="address-card ${String(addr._id) === String(this.selectedAddressId) ? 'selected' : ''}" 
            onclick="Checkout.selectAddress('${addr._id}', this)">
         <div class="address-card-header">
           <span class="address-name">${App.escapeHtml(addr.name || 'Recipient')}</span>

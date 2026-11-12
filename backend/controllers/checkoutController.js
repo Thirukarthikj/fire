@@ -43,14 +43,18 @@ exports.createOrder = async (req, res, next) => {
             price: 999
           }
         ],
-        shippingAddress: {
-          name: req.user.name || 'Rahul Sharma',
-          phone: req.user.phone || '+91 98765 43210',
-          addressLine1: '42 Diwalipura Garden Street',
-          city: 'Chennai',
-          state: 'Tamil Nadu',
-          pincode: '600001'
-        },
+      let shippingAddress = {
+        name: (req.user && req.user.name) || 'Customer',
+        phone: (req.user && req.user.phone) || '',
+        addressLine1: 'Primary Delivery Destination',
+        city: 'Chennai',
+        state: 'Tamil Nadu',
+        pincode: '600001'
+      };
+      if (req.user && Array.isArray(req.user.addresses)) {
+        const found = req.user.addresses.find(a => String(a._id) === String(addressId));
+        if (found) shippingAddress = found;
+      }
         paymentMethod,
         paymentStatus: 'completed',
         orderStatus: 'confirmed',
@@ -70,7 +74,16 @@ exports.createOrder = async (req, res, next) => {
 
     const isUpi = paymentMethod === 'upi_qr' || paymentMethod === 'google_pay';
 
-    const address = await Address.findOne({ _id: addressId, user: req.user._id });
+    const isObjectId = mongoose.Types.ObjectId.isValid(addressId) && String(new mongoose.Types.ObjectId(addressId)) === String(addressId);
+    let address = null;
+    if (isObjectId) {
+      try {
+        address = await Address.findOne({ _id: addressId, user: req.user._id });
+      } catch (e) {}
+    }
+    if (!address && req.user && Array.isArray(req.user.addresses)) {
+      address = req.user.addresses.find(a => String(a._id) === String(addressId));
+    }
     if (!address) {
       return res.status(400).json({ success: false, message: 'Selected address not found' });
     }

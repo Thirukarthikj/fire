@@ -209,22 +209,13 @@ const DEMO_USERS = [
   },
   {
     _id: 'usr_customer_03',
-    name: 'Rahul Sharma',
+    name: 'Customer Account',
     email: 'customer@example.com',
     password: 'Password@123',
     phone: '+91 98765 43210',
     role: 'customer',
     isActive: true,
-    addresses: [{
-      _id: 'addr_demo_01',
-      recipientName: 'Rahul Sharma',
-      phone: '+91 98765 43210',
-      addressLine1: '42 Diwalipura Garden Street',
-      city: 'Chennai',
-      state: 'Tamil Nadu',
-      pincode: '600001',
-      isDefault: true
-    }]
+    addresses: []
   }
 ];
 
