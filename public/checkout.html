@@ -90,29 +90,9 @@
                   <span style="font-size: 0.8rem; font-weight: 700; color: #1a73e8; background: #eff6ff; padding: 2px 8px; border-radius: 6px;">Google Pay</span>
                 </div>
 
-                <!-- 5-Minute Session Expiration Timer Banner -->
-                <div id="upi-timer-badge" style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 6px 12px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between;">
-                  <span style="font-size: 0.75rem; font-weight: 600; color: #1e40af; display: flex; align-items: center; gap: 5px;">
-                    <span>⏱️</span> Valid For:
-                  </span>
-                  <span id="upi-countdown-timer" style="font-family: monospace; font-size: 0.95rem; font-weight: 800; color: #1d4ed8; letter-spacing: 0.05em;">
-                    05:00
-                  </span>
-                </div>
-
-                <!-- Live Auto-Calculated QR Image with Expired Overlay -->
+                <!-- Live Dynamic QR Code -->
                 <div style="position: relative; display: inline-block; background: #ffffff; padding: 4px; border-radius: 8px; overflow: hidden;" id="gpay-qr-wrapper">
                   <img id="gpay-qr-img" src="/images/gpay-qr.jpeg" alt="Google Pay Dynamic QR Code" style="width: 240px; height: 240px; object-fit: contain; display: block; margin: 0 auto; border-radius: 8px;">
-
-                  <!-- 5-Minute Expiration Overlay -->
-                  <div id="qr-expired-overlay" style="display: none; position: absolute; inset: 0; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(4px); border-radius: 8px; flex-direction: column; align-items: center; justify-content: center; padding: 14px; text-align: center; box-sizing: border-box; z-index: 10;">
-                    <span style="font-size: 2.2rem; margin-bottom: 4px;">⏰</span>
-                    <strong style="color: #991b1b; font-size: 0.92rem; margin-bottom: 2px;">QR Code Expired</strong>
-                    <p style="font-size: 0.72rem; color: #64748b; margin-bottom: 10px; line-height: 1.3;">Session timed out after 5 minutes to prevent duplicate charges.</p>
-                    <button type="button" onclick="Checkout.refreshUpiQrSession()" class="btn btn-primary btn-sm" style="background: #dc2626; border-color: #dc2626; padding: 6px 14px; font-size: 0.78rem; border-radius: 6px;">
-                      🔄 Refresh QR Code
-                    </button>
-                  </div>
                 </div>
 
                 <!-- Instant Amount Badge on Scan -->
