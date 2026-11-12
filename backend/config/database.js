@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-// Disable command buffering so queries fail immediately or fall back cleanly instead of hanging for 10 seconds
-mongoose.set('bufferCommands', false);
+// Keep default mongoose bufferCommands so queries wait safely for DB initialization
+// instead of throwing immediate runtime errors before connection establishes
 
 let cachedConnection = null;
 
