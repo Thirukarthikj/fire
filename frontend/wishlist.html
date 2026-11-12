@@ -26,20 +26,32 @@
     </div>
   </div>
 
-  <!-- Site Header (Sticky Multi-Tier Real E-Commerce Storefront) -->
+  <!-- Wholesale Announcement Ticker Bar (Seagal Style) -->
+  <div class="ticker-banner">
+    <div class="container">
+      <div class="ticker-content">
+        <span class="ticker-item"><span class="ticker-star">✦</span> Pan India Delivery Available</span>
+        <span class="ticker-item"><span class="ticker-star">✦</span> Min Order: ₹1,500 (TN) / ₹3,000 (Outside TN)</span>
+        <span class="ticker-item"><span class="ticker-star">✦</span> Direct Sivakasi Factory Pricing (Up to 70% Off)</span>
+        <span class="ticker-item"><span class="ticker-star">✦</span> 100% Genuine CSIR-NEERI Green Crackers</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Header (Sticky Multi-Tier Wholesale Storefront) -->
   <div class="site-header-wrapper" id="site-header-wrapper">
     <!-- 1. Top Utility Announcement & Hotline Bar -->
     <div class="top-bar">
       <div class="container top-bar-content">
         <div class="top-bar-left">
-          <span class="top-bar-badge">Diwali 2026</span>
-          <span class="top-bar-text">🎉 Sivakasi Factory Direct Wholesale Booking Open | Up to 70% Off Factory MRP</span>
+          <span class="top-bar-badge">Season 2026</span>
+          <span class="top-bar-text">Direct Sivakasi Factory Dispatch | Save Up to 70% Off MRP</span>
         </div>
         <div class="top-bar-right">
-          <span class="top-bar-item">🌱 100% CSIR-NEERI Green Certified</span>
-          <a href="tel:+919876543210" class="top-bar-item top-bar-link">📞 +91 98765 43210</a>
-          <a href="/orders.html" class="top-bar-item top-bar-link">📦 Track Consignment</a>
-          <a href="/faq.html?tab=safety" class="top-bar-item top-bar-link">🛡️ Safety Advisory</a>
+          <span class="top-bar-item">CSIR-NEERI Green Certified</span>
+          <a href="tel:+919876543210" class="top-bar-item top-bar-link">Support: +91 98765 43210</a>
+          <a href="/orders.html" class="top-bar-item top-bar-link">Track Consignment</a>
+          <a href="/faq.html?tab=safety" class="top-bar-item top-bar-link">Safety Advisory</a>
         </div>
       </div>
     </div>
@@ -49,17 +61,15 @@
       <div class="container header-main-container">
         <!-- Brand Logo -->
         <a href="/" class="brand-logo" aria-label="Firecrackers Sivakasi Home">
-          <span class="brand-logo-icon">🎆</span>
           <div class="brand-logo-text">
             <span class="brand-name">Fire<span class="brand-name-accent">crackers</span></span>
             <span class="brand-sub">SIVAKASI DIRECT WHOLESALE</span>
           </div>
         </a>
 
-        <!-- Central Search Bar (Wide, Unshrinkable, Real E-Commerce) -->
+        <!-- Central Search Bar -->
         <form class="header-search-form" action="/products.html" method="GET">
           <div class="search-input-wrapper">
-            <span class="search-icon-lens">🔍</span>
             <input 
               type="text" 
               name="search" 
@@ -77,7 +87,6 @@
         <div class="header-main-actions">
           <!-- Quick Wholesale Price List CTA with 70% OFF Badge -->
           <a href="/price-list.html" class="header-pricelist-btn" title="View 2026 Price List">
-            <span class="pricelist-icon">📋</span>
             <div class="pricelist-copy">
               <span class="pricelist-title">Price List 2026</span>
               <span class="pricelist-badge">70% OFF</span>
@@ -87,25 +96,22 @@
           <!-- Wishlist Link -->
           <a href="/wishlist.html" class="header-action-icon-link" id="wishlist-link" title="Wishlist" aria-label="Wishlist">
             <div class="action-icon-wrap">
-              <span style="color:#dc2626;">❤️</span>
+              <span style="font-size: 0.82rem; font-weight:700; color: #dc2626;">WISHLIST</span>
               <span class="action-counter" id="wishlist-count" style="display:none">0</span>
             </div>
-            <span class="action-text-label" style="color:#dc2626; font-weight:700;">Wishlist</span>
           </a>
 
           <!-- Cart Link -->
           <a href="/cart.html" class="header-action-icon-link" id="cart-icon" title="View Cart" aria-label="Cart">
             <div class="action-icon-wrap">
-              <span>🛒</span>
+              <span style="font-size: 0.82rem; font-weight:700;">CART</span>
               <span class="action-counter" id="cart-count" style="display:none">0</span>
             </div>
-            <span class="action-text-label">Cart</span>
           </a>
 
           <!-- User / Account Menu -->
           <div class="header-user-menu" id="user-menu">
             <a href="/login.html" class="btn-signin-pill">
-              <span>👤</span>
               <span>Sign In</span>
             </a>
           </div>
@@ -230,7 +236,7 @@
 
       <div class="grid-4" id="wishlist-grid">
         <div class="empty-state" style="grid-column: 1 / -1;">
-          <div class="empty-state-icon">❤️</div>
+          <div class="empty-state-icon" style="font-size:2.5rem; color:#dc2626;">✦</div>
           <h3>Loading your wishlist...</h3>
         </div>
       </div>
@@ -241,7 +247,7 @@
     <div class="container">
       <div class="footer-bottom">
         <p>© 2026 Firecrackers Store. All rights reserved.</p>
-        <p class="safety-note">⚠️ Fireworks must be operated exclusively under adult supervision in open outdoor spaces.</p>
+        <p class="safety-note">Safety Notice: Fireworks must be operated exclusively under adult supervision in open outdoor spaces.</p>
       </div>
     </div>
   </footer>
@@ -279,7 +285,7 @@
       if (products.length === 0) {
         container.innerHTML = `
           <div class="empty-state" style="grid-column: 1 / -1; background:#ffffff; border-radius:var(--radius-lg); border:1px solid #e2e8f0; padding:60px 20px;">
-            <div class="empty-state-icon">🤍</div>
+            <div class="empty-state-icon" style="font-size:2.5rem; color:#dc2626;">✦</div>
             <h3>Your Wishlist is Empty</h3>
             <p>Save items as you browse our festive catalogue for quick seasonal ordering.</p>
             <a href="/products.html" class="btn btn-primary">Explore Fireworks</a>

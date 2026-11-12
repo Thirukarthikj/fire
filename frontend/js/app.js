@@ -106,7 +106,7 @@ const App = {
     container.innerHTML = `
       <div class="user-dropdown-container">
         <button class="user-pill-btn" id="user-pill-btn" type="button" aria-expanded="false">
-          <span>👤</span>
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#16a34a; margin-right:4px;"></span>
           <span class="font-semibold">${this.escapeHtml((user.name || 'Friend').split(' ')[0])}</span>
           <span style="font-size:0.65rem; color:#64748b;">▼</span>
         </button>
@@ -345,10 +345,10 @@ const Wishlist = {
     document.querySelectorAll(`.btn-wishlist[data-id="${id}"]`).forEach(btn => {
       if (added) {
         btn.classList.add('active');
-        btn.innerHTML = '❤️';
+        btn.innerHTML = '<span style="font-size:0.75rem; font-weight:700;">SAVED</span>';
       } else {
         btn.classList.remove('active');
-        btn.innerHTML = '🤍';
+        btn.innerHTML = '<span style="font-size:0.75rem; font-weight:700;">SAVE</span>';
       }
     });
 

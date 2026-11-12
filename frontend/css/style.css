@@ -2043,3 +2043,440 @@ textarea.form-control {
   opacity: 0.4;
   cursor: not-allowed;
 }
+
+
+/* ==========================================================================
+   SEAGAL FIREWORKS WHOLESALE DESIGN SYSTEM ADDITIONS
+   Direct Factory Pricing • Pan India Surface Hubs • 4 Quick Actions • Rate Table
+   ========================================================================== */
+
+/* Top Ticker Notice Strip */
+.ticker-banner {
+  background: #0f172a;
+  color: #f8fafc;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border-bottom: 1px solid #1e293b;
+  padding: 7px 0;
+  letter-spacing: 0.02em;
+}
+
+.ticker-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  text-align: center;
+}
+
+.ticker-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ticker-star {
+  color: #f59e0b;
+  font-size: 0.75rem;
+}
+
+/* Quick Action Cards (Directly Below Hero) */
+.quick-actions-section {
+  padding: 0 0 var(--space-8) 0;
+  margin-top: -28px;
+  position: relative;
+  z-index: 5;
+}
+
+.quick-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.quick-action-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-fast);
+}
+
+.quick-action-card:hover {
+  transform: translateY(-2px);
+  border-color: #fca5a5;
+  box-shadow: var(--shadow-md);
+}
+
+.quick-action-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: #fef2f2;
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.quick-action-icon.amber {
+  background: #fffbeb;
+  color: var(--color-gold);
+}
+
+.quick-action-icon.blue {
+  background: #f0f9ff;
+  color: #0284c7;
+}
+
+.quick-action-icon.green {
+  background: #ecfdf5;
+  color: #16a34a;
+}
+
+.quick-action-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.quick-action-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 2px;
+  line-height: 1.25;
+}
+
+.quick-action-sub {
+  font-size: 0.76rem;
+  color: #64748b;
+  line-height: 1.35;
+}
+
+.quick-action-arrow {
+  color: var(--color-accent);
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.quick-action-card:hover .quick-action-arrow {
+  transform: translateX(3px);
+}
+
+/* Seagal Authentic Sivakasi Category Cards Grid */
+.seagal-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+}
+
+.seagal-cat-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-fast);
+  min-height: 130px;
+}
+
+.seagal-cat-card:hover {
+  transform: translateY(-2px);
+  border-color: #dc2626;
+  box-shadow: 0 8px 16px -2px rgba(220, 38, 38, 0.08);
+}
+
+.seagal-cat-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.seagal-cat-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.seagal-cat-price {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #b91c1c;
+  background: #fef2f2;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  white-space: nowrap;
+}
+
+.seagal-cat-desc {
+  font-size: 0.82rem;
+  color: #64748b;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+.seagal-cat-link {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.seagal-cat-card:hover .seagal-cat-link {
+  color: var(--color-accent-hover);
+}
+
+/* 4-Step Wholesale Order Process (Seagal Style) */
+.seagal-steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+  position: relative;
+}
+
+.seagal-step-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  position: relative;
+  box-shadow: var(--shadow-xs);
+  transition: all var(--transition-fast);
+}
+
+.seagal-step-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+}
+
+.seagal-step-num {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--color-accent);
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.seagal-step-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.seagal-step-desc {
+  font-size: 0.84rem;
+  color: #64748b;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Logistics & Hub Delivery Box */
+.seagal-logistics-box {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.logistics-hub-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.logistics-hub-item:last-child {
+  margin-bottom: 0;
+}
+
+.logistics-hub-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  background: #f1f5f9;
+  color: #0f172a;
+  padding: 4px 10px;
+  border-radius: var(--radius-xs);
+  min-width: 95px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.logistics-hub-badge.tn {
+  background: #ecfdf5;
+  color: #065f46;
+}
+
+.logistics-hub-badge.south {
+  background: #eff6ff;
+  color: #1e40af;
+}
+
+.logistics-hub-badge.pan {
+  background: #fffbeb;
+  color: #92400e;
+}
+
+/* View Toggle Controls (Cards vs List) */
+.view-toggle-group {
+  display: inline-flex;
+  border: 1px solid var(--color-border-dark);
+  border-radius: var(--radius-sm);
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.view-toggle-btn {
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  background: #ffffff;
+  color: #475569;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all var(--transition-fast);
+}
+
+.view-toggle-btn:hover {
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.view-toggle-btn.active {
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+/* Wholesale Table / Rate List on products.html */
+.wholesale-table-container {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  margin-bottom: var(--space-6);
+}
+
+.wholesale-cat-title {
+  background: #f8fafc;
+  border-bottom: 1px solid var(--color-border);
+  padding: 12px 18px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wholesale-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.wholesale-table th {
+  background: #ffffff;
+  padding: 10px 14px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.wholesale-table td {
+  padding: 11px 14px;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.86rem;
+  vertical-align: middle;
+}
+
+.wholesale-table tr:hover td {
+  background: #f8fafc;
+}
+
+/* Sticky Bottom Wholesale Cart Bar */
+.sticky-wholesale-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 14px 24px;
+  z-index: 990;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
+  border-top: 1px solid #1e293b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  animation: slideUpBar 0.25s ease-out;
+}
+
+@keyframes slideUpBar {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+@media (max-width: 1024px) {
+  .quick-actions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .seagal-category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .seagal-steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .seagal-logistics-box {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 640px) {
+  .quick-actions-grid {
+    grid-template-columns: 1fr;
+  }
+  .seagal-category-grid {
+    grid-template-columns: 1fr;
+  }
+  .seagal-steps-grid {
+    grid-template-columns: 1fr;
+  }
+  .ticker-content {
+    font-size: 0.72rem;
+    gap: 4px 10px;
+  }
+}

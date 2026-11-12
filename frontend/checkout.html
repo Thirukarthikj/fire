@@ -25,7 +25,7 @@
         </div>
       </a>
       <div style="font-size: 0.85rem; font-weight: 700; color: #15803d; display: flex; align-items: center; gap: 6px; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 6px 14px; border-radius: var(--radius-full);">
-        <span>🔒</span> 256-Bit SSL Encrypted Checkout
+        256-Bit SSL Encrypted Checkout
       </div>
     </div>
   </header>
@@ -59,12 +59,9 @@
 
             <!-- Active UPI Payment Method Banner -->
             <div style="margin-bottom: 16px; border: 1.5px solid #dc2626; border-radius: var(--radius-md); padding: 12px 16px; background: #fff5f5; display: flex; align-items: center; justify-content: space-between;">
-              <div style="display: flex; align-items: center; gap: 10px;">
-                <span style="font-size: 1.5rem;">📱</span>
-                <div>
-                  <strong style="display:block; font-size: 0.95rem; color:#0f172a;">Google Pay &amp; UPI QR Checkout</strong>
-                  <span style="font-size: 0.78rem; color: #16a34a; font-weight:600;">✓ Pre-Filled Amount • Instant Automatic Confirmation</span>
-                </div>
+              <div>
+                <strong style="display:block; font-size: 0.95rem; color:#0f172a;">Google Pay &amp; UPI QR Checkout</strong>
+                <span style="font-size: 0.78rem; color: #16a34a; font-weight:600;">✓ Pre-Filled Amount • Instant Automatic Confirmation</span>
               </div>
               <span class="badge badge-accent" style="font-size: 0.72rem;">Active</span>
             </div>
@@ -97,14 +94,13 @@
 
                 <!-- Instant Amount Badge on Scan -->
                 <div style="margin-top: 10px; font-size: 0.78rem; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 6px 10px;">
-                  ⚡ Auto-fills <strong id="qr-scanned-amount" style="color: #dc2626;">₹0</strong> directly on scan
+                  Auto-fills <strong id="qr-scanned-amount" style="color: #dc2626;">₹0</strong> directly on scan
                 </div>
               </div>
 
               <!-- Direct UPI App Button (for mobile shoppers) -->
               <div style="margin-bottom: 16px;" id="gpay-direct-wrap">
                 <a id="gpay-direct-app-btn" href="#" onclick="Checkout.handleMobileUpiClick(event)" class="btn btn-block" style="background: #1a73e8; color: #ffffff; font-weight: 700; border-radius: 8px; padding: 10px 16px; display: none; align-items: center; justify-content: center; gap: 8px; text-decoration: none;">
-                  <span>⚡</span>
                   <span id="gpay-direct-label">Pay via Google Pay / UPI App</span>
                 </a>
               </div>
@@ -112,7 +108,7 @@
               <!-- UPI ID Row with Copy Button -->
               <div style="background: #f1f5f9; border-radius: 8px; padding: 10px 16px; display: inline-flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; justify-content: center;">
                 <span style="font-size: 0.85rem; color: #475569;">UPI ID: <strong id="upi-id-text" style="color: #0f172a; font-family: monospace; font-size: 0.95rem;">merchant@upi</strong></span>
-                <button type="button" onclick="Checkout.copyUpiId()" class="btn btn-outline btn-sm" style="padding: 3px 10px; font-size: 0.75rem; background: #ffffff;">📋 Copy UPI ID</button>
+                <button type="button" onclick="Checkout.copyUpiId()" class="btn btn-outline btn-sm" style="padding: 3px 10px; font-size: 0.75rem; background: #ffffff;">Copy UPI ID</button>
               </div>
 
               <!-- Live Amount Banner -->
@@ -231,7 +227,7 @@
     <div class="container">
       <div class="footer-bottom">
         <p>© 2026 Firecrackers Store. Regulated festive e-commerce platform direct from Sivakasi.</p>
-        <p class="safety-note">⚠️ Dispatch strictly through licensed surface cargo operators to booking branch hubs.</p>
+        <p class="safety-note">Safety Notice: Dispatch strictly through licensed surface cargo operators to booking branch hubs.</p>
       </div>
     </div>
   </footer>

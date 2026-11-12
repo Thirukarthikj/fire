@@ -79,7 +79,7 @@ const Cart = {
   renderEmptyCart(itemsContainer, summaryContainer) {
     itemsContainer.innerHTML = `
       <div class="empty-state">
-        <div class="empty-state-icon">🛒</div>
+        <div class="empty-state-icon" style="font-size:2.5rem; color:#dc2626;">✦</div>
         <h3>Your festive cart is empty</h3>
         <p>Explore our sparkling range of certified Sivakasi fireworks to celebrate with family and friends.</p>
         <a href="/products.html" class="btn btn-primary" style="margin-top:12px;">Browse Fireworks Catalogue</a>
@@ -119,7 +119,7 @@ const Cart = {
           <div style="text-align: right;">
             <div class="cart-item-price">${App.formatPrice(unitPrice * qty)}</div>
             <div style="font-size: 0.75rem; color: #9ca3af; margin-bottom: 6px;">(${App.formatPrice(unitPrice)} each)</div>
-            <button class="cart-item-remove" type="button" onclick="Cart.removeItem('${App.escapeHtml(itemId)}')" title="Remove Item">🗑️</button>
+            <button class="cart-item-remove" type="button" onclick="Cart.removeItem('${App.escapeHtml(itemId)}')" title="Remove Item" style="color:#b91c1c; font-size:0.75rem; font-weight:700;">Remove</button>
           </div>
         </div>
       `;
@@ -147,7 +147,7 @@ const Cart = {
       if (cart.couponCode) {
         couponStatusEl.innerHTML = `
           <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); padding:8px 12px; border-radius:6px; margin-top:8px;">
-            <span style="font-size:0.85rem; color:#047857; font-weight:600;">🏷️ ${App.escapeHtml(cart.couponCode)} Applied</span>
+            <span style="font-size:0.85rem; color:#047857; font-weight:600;">Coupon: ${App.escapeHtml(cart.couponCode)} Applied</span>
             <button onclick="Cart.removeCoupon()" style="background:none; border:none; color:#b91c1c; cursor:pointer; font-size:0.8rem; font-weight:bold;">Remove</button>
           </div>
         `;

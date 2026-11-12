@@ -2,6 +2,9 @@
  * Product Catalogue & Detail Interactions
  */
 const Products = {
+  currentView: 'cards',
+  loadedProducts: [],
+  selectedQuantities: {},
   currentFilters: {
     page: 1,
     limit: 12,
@@ -20,6 +23,32 @@ const Products = {
     await Promise.all([this.loadCategories(), this.loadBrands()]);
     this.setupFilterListeners();
     await this.fetchProducts();
+  },
+
+  switchView(view) {
+    this.currentView = view;
+    const cardsBtn = document.getElementById('view-cards-btn');
+    const listBtn = document.getElementById('view-list-btn');
+    const cardsContainer = document.getElementById('product-grid');
+    const listContainer = document.getElementById('wholesale-table-container');
+
+    if (view === 'cards') {
+      if (cardsBtn) cardsBtn.classList.add('active');
+      if (listBtn) listBtn.classList.remove('active');
+      if (cardsContainer) cardsContainer.style.display = 'grid';
+      if (listContainer) listContainer.style.display = 'none';
+      if (this.loadedProducts.length > 0 && cardsContainer) {
+        cardsContainer.innerHTML = this.loadedProducts.map(p => this.renderProductCard(p)).join('');
+      }
+    } else {
+      if (cardsBtn) cardsBtn.classList.remove('active');
+      if (listBtn) listBtn.classList.add('active');
+      if (cardsContainer) cardsContainer.style.display = 'none';
+      if (listContainer) listContainer.style.display = 'block';
+      if (this.loadedProducts.length > 0 && listContainer) {
+        listContainer.innerHTML = this.renderWholesaleTable(this.loadedProducts);
+      }
+    }
   },
 
   parseUrlParams() {
@@ -167,6 +196,7 @@ const Products = {
 
   async fetchProducts() {
     const grid = document.getElementById('product-grid');
+    const listContainer = document.getElementById('wholesale-table-container');
     const paginationContainer = document.getElementById('pagination');
     if (!grid) return;
 
@@ -185,20 +215,37 @@ const Products = {
     try {
       const res = await API.get('/products', this.currentFilters);
       if (res.success) {
-        if (res.data.length === 0) {
-          grid.innerHTML = `
-            <div class="empty-state" style="grid-column: 1 / -1;">
-              <div class="empty-state-icon">🎆</div>
+        this.loadedProducts = res.data || [];
+
+        if (this.loadedProducts.length === 0) {
+          const emptyHtml = `
+            <div class="empty-state" style="grid-column: 1 / -1; width: 100%;">
+              <div class="empty-state-icon" style="font-size: 2.5rem; color: #dc2626;">✦</div>
               <h3>No fireworks match your selection</h3>
               <p>Try adjusting your category, price range, or search keywords.</p>
               <button onclick="Products.resetFilters()" class="btn btn-outline">Clear All Filters</button>
             </div>
           `;
+          if (this.currentView === 'cards') {
+            grid.innerHTML = emptyHtml;
+          } else if (listContainer) {
+            listContainer.innerHTML = emptyHtml;
+          }
           if (paginationContainer) paginationContainer.innerHTML = '';
           return;
         }
 
-        grid.innerHTML = res.data.map(product => this.renderProductCard(product)).join('');
+        if (this.currentView === 'cards') {
+          grid.style.display = 'grid';
+          if (listContainer) listContainer.style.display = 'none';
+          grid.innerHTML = this.loadedProducts.map(product => this.renderProductCard(product)).join('');
+        } else {
+          grid.style.display = 'none';
+          if (listContainer) {
+            listContainer.style.display = 'block';
+            listContainer.innerHTML = this.renderWholesaleTable(this.loadedProducts);
+          }
+        }
 
         if (paginationContainer && res.pagination) {
           this.renderPagination(paginationContainer, res.pagination);
@@ -209,8 +256,132 @@ const Products = {
     }
   },
 
+  renderWholesaleTable(products) {
+    const groups = {};
+    products.forEach(p => {
+      const catName = p.category ? p.category.name : 'Festive Celebrations';
+      if (!groups[catName]) groups[catName] = [];
+      groups[catName].push(p);
+    });
+
+    let html = '';
+    for (const [catName, items] of Object.entries(groups)) {
+      html += `
+        <div class="wholesale-cat-title">
+          <span>${App.escapeHtml(catName)}</span>
+          <span class="badge badge-secondary" style="background:#f1f5f9; color:#0f172a; font-size:0.75rem;">${items.length} Items</span>
+        </div>
+        <div class="table-container" style="border:none; border-radius:0; margin-bottom:0;">
+          <table class="wholesale-table">
+            <thead>
+              <tr>
+                <th style="width: 40px;">#</th>
+                <th>Product Description</th>
+                <th>Brand</th>
+                <th>Factory MRP</th>
+                <th>Net Rate</th>
+                <th>Savings</th>
+                <th style="width: 130px; text-align: center;">Quantity</th>
+                <th style="width: 100px; text-align: right;">Total</th>
+                <th style="width: 100px; text-align: right;">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${items.map((p, idx) => {
+                const hasCompare = p.comparePrice && p.comparePrice > p.price;
+                const discount = hasCompare ? Math.round(((p.comparePrice - p.price) / p.comparePrice) * 100) : (p.discount || 0);
+                const currentQty = this.selectedQuantities[p._id] || 0;
+                const lineTotal = currentQty * p.price;
+                return `
+                  <tr>
+                    <td style="color: #94a3b8; font-weight: 600;">${idx + 1}</td>
+                    <td>
+                      <a href="/product-details.html?id=${p._id}" style="font-weight: 700; color: #0f172a; display: block;">
+                        ${App.escapeHtml(p.name)}
+                      </a>
+                      <span class="text-xs text-light">${App.escapeHtml(p.sku || '')}</span>
+                    </td>
+                    <td style="color: #b45309; font-size: 0.8rem; font-weight: 600;">${App.escapeHtml(p.brand || 'Standard')}</td>
+                    <td style="color: #94a3b8; text-decoration: line-through;">${hasCompare ? App.formatPrice(p.comparePrice) : '-'}</td>
+                    <td style="color: #b91c1c; font-weight: 800; font-size: 0.95rem;">${App.formatPrice(p.price)}</td>
+                    <td>${discount > 0 ? `<span class="badge badge-accent">-${discount}%</span>` : '-'}</td>
+                    <td style="text-align: center;">
+                      <div class="qty-control" style="margin: 0 auto; border-radius: var(--radius-xs);">
+                        <button class="qty-btn" onclick="Products.changeListQty('${p._id}', -1)" style="width:28px;height:28px;">-</button>
+                        <input type="text" id="list-qty-${p._id}" class="qty-input" value="${currentQty}" style="width:34px;height:28px;font-size:0.85rem;" readonly>
+                        <button class="qty-btn" onclick="Products.changeListQty('${p._id}', 1)" style="width:28px;height:28px;">+</button>
+                      </div>
+                    </td>
+                    <td id="list-total-${p._id}" style="text-align: right; font-weight: 700; color: #0f172a;">
+                      ${App.formatPrice(lineTotal)}
+                    </td>
+                    <td style="text-align: right;">
+                      <button onclick="Products.addListRowToCart('${p._id}')" class="btn btn-secondary btn-sm" style="padding: 4px 10px; font-size: 0.78rem;">
+                        Add
+                      </button>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      `;
+    }
+    return html;
+  },
+
+  changeListQty(productId, delta) {
+    const current = this.selectedQuantities[productId] || 0;
+    const next = Math.max(0, current + delta);
+    this.selectedQuantities[productId] = next;
+
+    const input = document.getElementById(`list-qty-${productId}`);
+    if (input) input.value = next;
+
+    const p = this.loadedProducts.find(item => item._id === productId);
+    if (p) {
+      const totalCell = document.getElementById(`list-total-${productId}`);
+      if (totalCell) totalCell.textContent = App.formatPrice(next * p.price);
+    }
+    this.updateStickyBar();
+  },
+
+  async addListRowToCart(productId) {
+    const qty = this.selectedQuantities[productId] || 1;
+    await this.addToCart(productId, qty);
+  },
+
+  updateStickyBar() {
+    const bar = document.getElementById('sticky-wholesale-bar');
+    const itemsSpan = document.getElementById('sticky-bar-items');
+    const totalSpan = document.getElementById('sticky-bar-total');
+    if (!bar) return;
+
+    let totalCount = 0;
+    let totalAmount = 0;
+
+    for (const [id, qty] of Object.entries(this.selectedQuantities)) {
+      if (qty > 0) {
+        const prod = this.loadedProducts.find(p => p._id === id);
+        if (prod) {
+          totalCount += qty;
+          totalAmount += qty * prod.price;
+        }
+      }
+    }
+
+    if (totalCount > 0) {
+      bar.style.display = 'flex';
+      if (itemsSpan) itemsSpan.textContent = `${totalCount} item${totalCount > 1 ? 's' : ''}`;
+      if (totalSpan) totalSpan.textContent = App.formatPrice(totalAmount);
+    } else {
+      bar.style.display = 'none';
+    }
+  },
+
   renderProductCard(p) {
-    const FALLBACK_PLACEHOLDER = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='380' viewBox='0 0 500 380'%3E%3Crect width='500' height='380' fill='%23f8fafc'/%3E%3Ccircle cx='250' cy='150' r='54' fill='%23fee2e2'/%3E%3Ctext x='250' y='165' font-size='42' text-anchor='middle'%3E🎆%3C/text%3E%3Ctext x='250' y='245' font-family='sans-serif' font-size='16' font-weight='bold' fill='%230f172a' text-anchor='middle'%3ESivakasi Festive Fireworks%3C/text%3E%3Ctext x='250' y='272' font-family='sans-serif' font-size='12' fill='%2316a34a' font-weight='600' text-anchor='middle'%3E🌱 100% CSIR-NEERI Green Certified%3C/text%3E%3C/svg%3E";
+    const FALLBACK_PLACEHOLDER = "data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='500' height='380' viewBox='0 0 500 380'%3E%3Crect width='500' height='380' fill='%23f8fafc'/%3E%3Ccircle cx='250' cy='150' r='54' fill='%23fee2e2'/%3E%3Ctext x='250' y='165' font-family='sans-serif' font-size='32' font-weight='800' fill='%23dc2626' text-anchor='middle'%3E✦%3C/text%3E%3Ctext x='250' y='245' font-family='sans-serif' font-size='16' font-weight='bold' fill='%230f172a' text-anchor='middle'%3ESivakasi Festive Fireworks%3C/text%3E%3Ctext x='250' y='272' font-family='sans-serif' font-size='12' fill='%2316a34a' font-weight='600' text-anchor='middle'%3ECSIR-NEERI Green Certified%3C/text%3E%3C/svg%3E";
 
     const primaryImg = p.images && p.images.length > 0
       ? (p.images.find(img => img.isPrimary) || p.images[0]).url
@@ -244,7 +415,7 @@ const Products = {
                 onclick="event.preventDefault(); event.stopPropagation(); Wishlist.toggle('${p._id}', '${App.escapeHtml(p.name)}');" 
                 title="Save to Wishlist" 
                 aria-label="Wishlist">
-          ${isWishlisted ? '❤️' : '🤍'}
+          <span style="font-size:0.75rem; font-weight:700;">${isWishlisted ? 'SAVED' : 'SAVE'}</span>
         </button>
         <a href="/product-details.html?id=${p._id}" class="product-image-wrap">
           <img src="${App.escapeHtml(primaryImg)}" alt="${App.escapeHtml(p.name)}" loading="lazy" onerror="this.onerror=null;this.src='${FALLBACK_PLACEHOLDER}';">
