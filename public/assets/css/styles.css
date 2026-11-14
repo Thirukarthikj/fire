@@ -233,7 +233,8 @@
     margin-top: 100PX;
     height: 450px;
     width: 100%;
-    background-color: saddlebrown;
+    background-color: #0b0f19;
+    overflow: hidden;
    }
    .subjustban{
     height: 100%;
@@ -245,7 +246,8 @@
    .subjustban img{
     height: 100%;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
+    object-position: center center;
    }
    .countown{
     height: 200px;
@@ -1291,7 +1293,8 @@
     margin-top: 80PX;
     height: auto;
     width: 100%;
-    background-color: saddlebrown;
+    background-color: #0b0f19;
+    overflow: hidden;
    }
    .subjustban{
     height: 100%;
@@ -1303,7 +1306,8 @@
    .subjustban img{
     height: 100%;
     width: 100%;
-    object-fit: fill;
+    object-fit: cover;
+    object-position: center center;
    }
    .countown{
     height: 200px;
