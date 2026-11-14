@@ -323,95 +323,361 @@
   margin-right: auto;
   line-height: 1.6;
 }
-.collections{
-    margin-top: 80px;
-    height: auto;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;;
-    background-color: rgba(247, 184, 69, 0.801);
-    padding: 20px;
-}
-.subcollections{
-    height: 100%;
-    width:100%;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 20px;
-    padding: 10px;
-    place-items: center;
-}
-.product-card {
-  width: 250px;
-  height: 280px;
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', sans-serif;
+/* ==========================================================================
+   Our Cracker Collections — Modern E-Commerce Style (Matching Reference Image 2)
+   ========================================================================== */
+.collections-showcase-section {
+  width: 100%;
+  padding: 20px 20px 60px 20px;
+  background-color: #ffffff;
 }
 
-.card-image-wrapper {
+.collections-container {
+  max-width: 1360px;
+  margin: 0 auto;
+}
+
+/* Category Navigation Tabs / Pills (Top of Image 2) */
+.category-tabs-wrapper {
   width: 100%;
-  height: 100%;
-  position: relative;
+  margin-bottom: 24px;
+}
+
+.category-tabs-scroll {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 6px 4px 14px 4px;
+  scrollbar-width: thin;
+  scrollbar-color: #fbd3b2 transparent;
+}
+
+.category-tabs-scroll::-webkit-scrollbar {
+  height: 5px;
+}
+.category-tabs-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.category-tabs-scroll::-webkit-scrollbar-thumb {
+  background: #fbd3b2;
+  border-radius: 4px;
+}
+
+.cat-tab-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  background: #ffffff;
+  border: 1.5px solid #ebd9c8;
+  color: #334155;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  border-radius: 50px;
   cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
-/* Your requested one-line gradient */
-.watercolor-bg {
-  width: 100%;
-  height: 100%;
-  /* background: radial-gradient(at 20% 30%, #ffed4a 0%, transparent 50%), radial-gradient(at 80% 10%, #ff4e00 0%, transparent 60%), radial-gradient(at 50% 80%, #ff8c00 0%, transparent 70%), #ffbb00; */
-  transition: transform 0.5s ease;
+.cat-tab-btn:hover {
+  border-color: #c8102e;
+  color: #c8102e;
+  background: #fff8f8;
+  transform: translateY(-1px);
 }
-.watercolor-bg img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+
+.cat-tab-btn.active {
+  background: #c8102e;
+  border-color: #c8102e;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(200, 16, 46, 0.3);
 }
-/* The Overlay containing the Name */
-.product-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+
+/* Main Bestsellers Showcase Box (Exact Warm Cream & Dashed Border in Image 2) */
+.bestsellers-box {
+  background: #fffaf4;
+  border: 1.5px dashed #f6c8a3;
+  border-radius: 18px;
+  padding: 24px 28px 32px 28px;
+  box-shadow: 0 6px 20px rgba(246, 200, 163, 0.12);
+  transition: all 0.3s ease;
+}
+
+.bestsellers-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(246, 200, 163, 0.35);
+}
+
+.bestsellers-title-wrap {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 4px;
+}
+
+.bestsellers-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 800;
+  color: #4a1515;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.bestsellers-sub {
+  font-size: 13px;
+  color: #78716c;
+  font-weight: 500;
+}
+
+.bestsellers-see-all {
+  display: inline-flex;
   align-items: center;
-  background: rgba(0, 0, 0, 0.6); /* Dark tint on hover */
-  color: white;
+  gap: 6px;
+  color: #c8102e;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  font-weight: 700;
   text-decoration: none;
-  
-  /* Initial State (Hidden) */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease-in-out;
+  transition: all 0.2s ease;
+  padding: 4px 8px;
 }
 
-/* Hover Effects */
-.product-card:hover .product-overlay {
-  opacity: 1;
-  transform: translateY(0);
+.bestsellers-see-all:hover {
+  color: #99001a;
+  transform: translateX(3px);
 }
 
-.product-card:hover .watercolor-bg {
-  transform: scale(1.1); /* Slight zoom on image area */
+/* Product Cards Grid */
+.cracker-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
 }
 
-.heart-icon {
+/* Individual Product Card (Matching Image 2) */
+.cracker-product-card {
+  background: #ffffff;
+  border: 1px solid #f1ece4;
+  border-radius: 14px;
+  padding: 14px 12px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.cracker-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  border-color: #fbd3b2;
+}
+
+/* Green Discount Pill Tag (85% off) */
+.card-discount-badge {
   position: absolute;
-  top: 15px;
-  right: 15px;
-  color: white;
-  font-size: 20px;
-  z-index: 10;
+  top: 10px;
+  left: 10px;
+  background: #008744;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 6px;
+  z-index: 2;
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 135, 68, 0.25);
+}
+
+/* Card Image Area */
+.card-img-holder {
+  height: 140px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px 0 10px 0;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 8px;
+}
+
+.card-img-holder img {
+  max-height: 130px;
+  max-width: 100%;
+  object-fit: contain;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cracker-product-card:hover .card-img-holder img {
+  transform: scale(1.06);
+}
+
+/* Product Info */
+.card-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.card-product-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #1e293b;
+  line-height: 1.35;
+  min-height: 38px;
+  margin: 0 0 2px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-pack-info {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.card-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.card-sale-price {
+  font-size: 17px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.card-mrp-price {
+  font-size: 12.5px;
+  color: #94a3b8;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+/* Add Button (Exact Red Pill/Button from Image 2) */
+.card-add-btn {
+  background: #c8102e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 0;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.card-add-btn:hover {
+  background: #a50b24;
+  box-shadow: 0 4px 14px rgba(200, 16, 46, 0.35);
+  transform: translateY(-1px);
+}
+
+.card-add-btn:active {
+  transform: scale(0.98);
+}
+
+.card-add-btn.added-success {
+  background: #008744 !important;
+  color: #ffffff !important;
+}
+
+/* Quick Cart Toast Notification */
+.quick-cart-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #1e293b;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  z-index: 999999;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+.quick-cart-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.quick-cart-toast i {
+  color: #22c55e;
+  font-size: 1.1rem;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1280px) {
+  .cracker-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .cracker-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .bestsellers-box {
+    padding: 18px 16px 24px 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cracker-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .bestsellers-box {
+    padding: 16px 12px 20px 12px;
+  }
+  .card-img-holder {
+    height: 110px;
+  }
+  .card-img-holder img {
+    max-height: 100px;
+  }
+  .card-product-title {
+    font-size: 12.5px;
+    min-height: 34px;
+  }
+  .card-sale-price {
+    font-size: 15px;
+  }
+  .card-add-btn {
+    padding: 8px 0;
+    font-size: 13px;
+  }
 }
 .incards{
     height: 270px;
@@ -1382,97 +1648,7 @@
   margin-right: auto;
   line-height: 1.6;
 }
-.collections{
-    overflow: hidden;
-    margin-top: 80px;
-    height: auto;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;;
-    background-color: rgba(247, 184, 69, 0.801);
-    padding: 20px;
-}
-.subcollections{
-    height: 100%;
-    width:100%;
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-    padding: 10px;
-    place-items: center;
-}
-.product-card {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  overflow: hidden;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-  font-family: 'Segoe UI', sans-serif;
-}
 
-.card-image-wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  cursor: pointer;
-}
-
-/* Your requested one-line gradient */
-.watercolor-bg {
-  width: 100%;
-  height: 100%;
-  /* background: radial-gradient(at 20% 30%, #ffed4a 0%, transparent 50%), radial-gradient(at 80% 10%, #ff4e00 0%, transparent 60%), radial-gradient(at 50% 80%, #ff8c00 0%, transparent 70%), #ffbb00; */
-  transition: transform 0.5s ease;
-}
-.watercolor-bg img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-/* The Overlay containing the Name */
-.product-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.6); /* Dark tint on hover */
-  color: white;
-  text-decoration: none;
-  
-  /* Initial State (Hidden) */
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.4s ease-in-out;
-}
-
-/* Hover Effects */
-.product-card:hover .product-overlay {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.product-card:hover .watercolor-bg {
-  transform: scale(1.1); /* Slight zoom on image area */
-}
-
-.heart-icon {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  color: white;
-  font-size: 20px;
-  z-index: 10;
-}
 .incards{
     overflow: hidden;
     height: auto;
