@@ -4,7 +4,6 @@
    ======================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('footer.css?v=20261114_01');
 
 /* --- Reset & Global Variables --- */
 :root {
@@ -1031,12 +1030,213 @@ a {
   transform: translateY(-3px);
 }
 
-/* Footer is loaded from footer.css */
+/* ========================================================
+   Footer
+   ======================================================== */
+.main-footer-wrapper {
+  width: 100%;
+  background: #11141c;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  padding-top: 70px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-content-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 0.8fr 1fr 1fr;
+  gap: 36px;
+}
+
+.footer-col .footer-logo {
+  max-width: 180px;
+  margin-bottom: 18px;
+}
+
+.footer-col .brand-desc {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #9ca3af;
+  margin-bottom: 20px;
+}
+
+.footer-col .social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-links a {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: var(--spp-gold);
+  transform: translateY(-3px);
+}
+
+.footer-col .footer-heading {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.footer-col .footer-heading::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 35px;
+  height: 2.5px;
+  background: var(--spp-gold);
+  border-radius: 2px;
+}
+
+.footer-col .footer-menu {
+  list-style: none;
+}
+
+.footer-menu li {
+  margin-bottom: 10px;
+}
+
+.footer-menu li a {
+  color: #9ca3af;
+  font-size: 13.5px;
+  transition: all 0.25s ease;
+}
+
+.footer-menu li a:hover {
+  color: var(--spp-gold);
+  padding-left: 5px;
+}
+
+/* Location Card */
+.location-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.map-icon-wrapper {
+  font-size: 20px;
+  color: var(--spp-gold);
+  margin-bottom: 8px;
+}
+
+.address-details p {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 3px;
+  line-height: 1.4;
+}
+
+.address-details strong {
+  color: #e5e7eb;
+}
+
+.map-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 10px;
+  color: var(--spp-gold);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.map-link:hover {
+  color: #ffffff;
+}
+
+/* Hours */
+.hours-list .hour-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+}
+
+.hour-item .day {
+  color: #9ca3af;
+}
+
+.hour-item .time {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+.hour-item .time.highlight {
+  color: var(--spp-gold);
+}
+
+.seasonal-note {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #f87171;
+  font-style: italic;
+}
+
+/* Contact Cards */
+.contact-mini-card {
+  background: rgba(255, 255, 255, 0.04);
+  padding: 12px 14px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  border-left: 3px solid var(--spp-gold);
+}
+
+.contact-mini-card .mini-icon {
+  font-size: 16px;
+  color: var(--spp-gold);
+}
+
+.contact-mini-card .mini-text span {
+  display: block;
+  font-size: 12.5px;
+  color: #e5e7eb;
+  line-height: 1.4;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 22px 24px;
+  text-align: center;
+  background: #0d1017;
+}
+
+.footer-bottom p {
+  font-size: 12.5px;
+  color: #6b7280;
+}
 
 /* ========================================================
    Responsive Media Queries
    ======================================================== */
 @media screen and (max-width: 1080px) {
+  .footer-content-inner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
   .about-heritage-container {
     grid-template-columns: 1fr;
     gap: 50px;
@@ -1160,6 +1360,10 @@ a {
   }
   .cta-title {
     font-size: 30px;
+  }
+  .footer-content-inner {
+    grid-template-columns: 1fr;
+    gap: 32px;
   }
   .floating-img-wrapper {
     bottom: 95px;
