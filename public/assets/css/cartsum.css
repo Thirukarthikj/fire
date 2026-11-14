@@ -1,0 +1,535 @@
+/* ========================================================
+   Sivakasi Firecrackers — Cart Summary & Billing Info Stylesheet
+   Luxury Festive Sivakasi Direct Wholesale E-Commerce Checkout
+   v20261114_01
+   ======================================================== */
+
+:root {
+  --primary-red: #dc2626;
+  --primary-orange: #ea580c;
+  --primary-gold: #f59e0b;
+  --dark-navy: #0f172a;
+  --card-bg: #ffffff;
+  --border-light: #e2e8f0;
+  --text-dark: #1e293b;
+  --text-muted: #64748b;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 16px 36px rgba(0, 0, 0, 0.12);
+}
+
+/* Page Layout & Full Screen Width (20px Padding) */
+.cartsum-page-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 20px 60px !important;
+  box-sizing: border-box !important;
+  background-color: #f8fafc;
+  min-height: calc(100vh - 200px);
+}
+
+/* Hero Section */
+.cartsum-hero-banner {
+  width: 100%;
+  background: radial-gradient(circle at 15% 25%, rgba(220, 38, 38, 0.35) 0%, transparent 60%),
+              radial-gradient(circle at 85% 75%, rgba(245, 158, 11, 0.25) 0%, transparent 60%),
+              linear-gradient(135deg, #0d121f 0%, #17223b 50%, #0c101c 100%);
+  border-radius: var(--radius-lg);
+  padding: 36px 28px;
+  margin: 24px auto 36px;
+  text-align: center;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.cartsum-hero-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #f59e0b, #ef4444, #f59e0b, transparent);
+}
+
+.hero-pill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fbbf24;
+  padding: 5px 16px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.cartsum-hero-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 34px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 10px;
+}
+
+.cartsum-hero-title span {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cartsum-hero-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: #cbd5e1;
+  margin: 0 auto;
+  max-width: 680px;
+}
+
+/* Two-Card Checkout Container */
+.checkout-main-grid {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+/* ── Cart Summary Card ────────────────────────────────────── */
+.summary-card-container {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.summary-card-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.summary-card-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.summary-card-header h2 i {
+  color: #f59e0b;
+}
+
+.summary-order-badge {
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #fcd34d;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+/* Table Design */
+.cartsum-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.cartsum-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  min-width: 600px;
+}
+
+.cartsum-table th {
+  background: #f1f5f9;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding: 14px 20px;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+.cartsum-table td {
+  padding: 16px 20px;
+  font-size: 14px;
+  color: var(--text-dark);
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.cartsum-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.cartsum-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.cartsum-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.cartsum-table td:nth-child(1) {
+  font-weight: 600;
+  color: #64748b;
+  width: 70px;
+}
+
+.cartsum-table td:nth-child(2) {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.cartsum-table td:nth-child(3) {
+  font-weight: 700;
+  color: #ea580c;
+}
+
+.cartsum-table td:nth-child(4),
+.cartsum-table td:nth-child(5) {
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Table Footer Total Row */
+.cartsum-table tfoot tr {
+  background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+  border-top: 2px solid #fdba74;
+}
+
+.cartsum-table tfoot td {
+  padding: 18px 20px;
+  font-size: 16px;
+}
+
+.total-label-cell {
+  text-align: right;
+  font-weight: 700;
+  color: #9a3412;
+  font-size: 16px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.total-amount-cell {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 24px !important;
+  font-weight: 800 !important;
+  color: #c2410c !important;
+}
+
+/* ── Billing Info Card ────────────────────────────────────── */
+.billing-card-container {
+  background: var(--card-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  transition: box-shadow 0.3s ease;
+}
+
+.billing-card-header {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #ffffff;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.billing-card-header h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.billing-card-header h2 i {
+  color: #ea580c;
+}
+
+.billing-badge {
+  background: rgba(234, 88, 12, 0.2);
+  border: 1px solid rgba(234, 88, 12, 0.5);
+  color: #fdba74;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+
+/* Form Styles */
+.billing-form-body {
+  padding: 32px 28px;
+}
+
+.form-grid-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 20px;
+  margin-bottom: 30px;
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.form-group-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group-item label {
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-group-item label i {
+  color: #ea580c;
+  font-size: 14px;
+}
+
+.form-group-item label .required-star {
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.form-group-item input,
+.form-group-item textarea {
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #0f172a;
+  background-color: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--radius-md);
+  padding: 13px 16px;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+.form-group-item input::placeholder,
+.form-group-item textarea::placeholder {
+  color: #94a3b8;
+  font-weight: 400;
+}
+
+.form-group-item input:focus,
+.form-group-item textarea:focus {
+  background-color: #ffffff;
+  border-color: #ea580c;
+  box-shadow: 0 0 0 4px rgba(234, 88, 12, 0.15);
+}
+
+.form-helper-note {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 4px;
+}
+
+/* Action Buttons */
+.form-button-cluster {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  padding-top: 24px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.btn-billing-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 32px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(22, 163, 74, 0.35);
+  transition: all 0.3s ease;
+  flex: 1 1 200px;
+}
+
+.btn-billing-submit:hover {
+  background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(22, 163, 74, 0.48);
+}
+
+.btn-billing-clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #f8fafc;
+  color: #dc2626;
+  border: 1.5px solid #fca5a5;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 13px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-billing-clear:hover {
+  background: #fee2e2;
+  border-color: #ef4444;
+  color: #b91c1c;
+  transform: translateY(-2px);
+}
+
+.btn-billing-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #ffffff;
+  color: #0284c7;
+  border: 1.5px solid #bae6fd;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 13px 24px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-billing-back:hover {
+  background: #f0f9ff;
+  border-color: #0284c7;
+  color: #0369a1;
+  transform: translateY(-2px);
+}
+
+/* Trust Assurance Strip */
+.billing-trust-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  padding: 20px;
+  background: #f8fafc;
+  border-top: 1px solid var(--border-light);
+}
+
+.billing-trust-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #475569;
+  font-weight: 500;
+}
+
+.billing-trust-item i {
+  color: #ea580c;
+  font-size: 14px;
+}
+
+/* Responsive Rules */
+@media screen and (max-width: 768px) {
+  .cartsum-hero-banner {
+    padding: 28px 18px;
+  }
+  .cartsum-hero-title {
+    font-size: 26px;
+  }
+  .form-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+  .billing-form-body {
+    padding: 24px 18px;
+  }
+  .form-button-cluster {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn-billing-submit,
+  .btn-billing-clear,
+  .btn-billing-back {
+    width: 100%;
+  }
+}
+
+/* Loading Overlay and Indicator */
+.loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+  z-index: 99998;
+}
+
+#loading-indicator {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 99999;
+  text-align: center;
+}
+
+.spinner-multi {
+  width: 64px;
+  height: 64px;
+  border: 5px solid rgba(245, 158, 11, 0.2);
+  border-top-color: #f59e0b;
+  border-right-color: #ea580c;
+  border-radius: 50%;
+  animation: cartsumSpin 0.9s cubic-bezier(0.55, 0.055, 0.675, 0.19) infinite;
+  box-shadow: 0 0 24px rgba(245, 158, 11, 0.4);
+}
+
+@keyframes cartsumSpin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
