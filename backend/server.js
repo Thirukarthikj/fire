@@ -131,6 +131,11 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../frontend')));
 
+// Admin entry point redirect
+app.get(['/admin', '/admin/'], (req, res) => {
+  res.redirect('/admin/dashboard.html');
+});
+
 // SPA fallback for HTML pages if needed
 app.get('*', (req, res, next) => {
   if (req.path.startsWith('/api')) {
