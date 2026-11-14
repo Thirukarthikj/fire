@@ -145,11 +145,12 @@ exports.createAddress = async (req, res, next) => {
 exports.updateAddress = async (req, res, next) => {
   const { id } = req.params;
   const { name, phone, addressLine1, addressLine2, city, state, pincode, country, isDefault, label } = req.body;
+  const userId = req.user ? req.user._id : (req.headers['x-user-id'] || 'guest');
   const isObjectId = mongoose.Types.ObjectId.isValid(id) && String(new mongoose.Types.ObjectId(id)) === String(id);
 
   try {
-    if (mongoose.connection.readyState !== 1 || !isObjectId) {
-      const addrs = getMemoryAddresses(req.user._id, req.user);
+    if (mongoose.connection.readyState !== 1 || !isObjectId || userId === 'guest') {
+      const addrs = getMemoryAddresses(userId, req.user);
       const target = addrs.find(a => String(a._id) === String(id));
       if (!target) {
         return res.status(404).json({ success: false, message: 'Address not found' });
@@ -179,13 +180,13 @@ exports.updateAddress = async (req, res, next) => {
       });
     }
 
-    const address = await Address.findOne({ _id: id, user: req.user._id });
+    const address = await Address.findOne({ _id: id, user: userId });
     if (!address) {
       return res.status(404).json({ success: false, message: 'Address not found' });
     }
 
     if (isDefault) {
-      await Address.updateMany({ user: req.user._id }, { isDefault: false });
+      await Address.updateMany({ user: userId }, { isDefault: false });
       address.isDefault = true;
     }
 
@@ -208,7 +209,7 @@ exports.updateAddress = async (req, res, next) => {
     });
   } catch (error) {
     try {
-      const addrs = getMemoryAddresses(req.user._id, req.user);
+      const addrs = getMemoryAddresses(userId, req.user);
       const target = addrs.find(a => String(a._id) === String(id));
       if (target) {
         if (name) target.name = name;

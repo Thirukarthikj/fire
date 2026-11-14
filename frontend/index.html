@@ -136,6 +136,7 @@
         <ul class="spp-nav-menu-list" id="sppMobileMenu">
             <li class="spp-menu-item"><a href="/" class="spp-menu-link">Home</a></li>
             <li class="spp-menu-item"><a href="/price-list.html" class="spp-menu-link">Order Now</a></li>
+            <li class="spp-menu-item"><a href="/cart.html" class="spp-menu-link" style="display:inline-flex; align-items:center; gap:6px;"><i class="fa-solid fa-cart-shopping"></i> Cart <span id="cart-count-mobile" class="cart-badge" style="display:none; background:#dc2626; color:#fff; font-size:0.75rem; font-weight:700; border-radius:10px; padding:1px 6px; line-height:1.2;">0</span></a></li>
             <li class="spp-menu-item"><a href="/about.html" class="spp-menu-link">About Us</a></li>
             <li class="spp-menu-item"><a href="/products.html" class="spp-menu-link">Services</a></li>
             <li class="spp-menu-item"><a href="/faq.html?tab=safety" class="spp-menu-link">Safety Tips</a></li>
@@ -165,6 +166,7 @@
             <div class="links">
                 <a href="/" class="active">Home</a>
                 <a href="/price-list.html">Order Now</a>
+                <a href="/cart.html" style="position:relative; display:inline-flex; align-items:center; gap:5px;"><i class="fa-solid fa-cart-shopping"></i> Cart <span id="cart-count" class="cart-badge" style="display:none; background:#dc2626; color:#fff; font-size:0.7rem; font-weight:700; border-radius:10px; padding:1px 6px; line-height:1.2;">0</span></a>
                 <a href="/about.html">About Us</a>
                 <a href="/products.html">Services</a>
                 <a href="/faq.html?tab=safety">Safety Tips</a>
@@ -174,18 +176,98 @@
             </div>
         </div>
     </div>
-    <div class="banner">
-        <div class="subbanner">
-            <div class="ban1">
-                <h1>Grab the Diwali Deals</h1>
-                <h2>Biggest Range. Best Prices. Guaranteed Brilliance.</h2>
-                <p>Celebrate the spirit of Diwali with Siva’s Pyro Paradise. We bring you a curated collection of high-performance aerial displays and traditional favorites, ensuring every spark creates a lifelong memory.Every box undergoes a multi-level quality check to ensure a hassle-free celebration for your kids.Hurry, our premium aerial collection is selling out fast—grab yours today.</p>
-                <p>100% Quality <i class="fa-solid fa-circle"></i> Fast Delivery <i class="fa-solid fa-circle"></i> Trusted Brand <i class="fa-solid fa-circle"></i> Shipping All Over India </p>
-                <a href="/price-list.html">Shop our collections</a>
+    <!-- Scrolling Hero Slider Section -->
+    <div class="hero-slider-section" id="hero-slider-section">
+        <div class="hero-slider-wrapper">
+            <!-- Slide 1: Grab The Diwali Deals -->
+            <div class="hero-slide active">
+                <div class="subbanner">
+                    <div class="ban1">
+                        <span class="hero-pill-tag">✨ Sivakasi Direct Festive Offer</span>
+                        <h1>Grab The Diwali Deals</h1>
+                        <h2>Biggest Range. Best Prices. Guaranteed Brilliance.</h2>
+                        <p>Celebrate the spirit of Diwali with Siva’s Pyro Paradise. We bring you a curated collection of high-performance aerial displays and traditional favorites, ensuring every spark creates a lifelong memory. Every box undergoes a multi-level quality check to ensure a hassle-free celebration for your kids.</p>
+                        <div class="hero-badges-row">
+                            <span><i class="fa-solid fa-circle-check"></i> 100% Quality</span>
+                            <span><i class="fa-solid fa-truck-fast"></i> Fast Delivery</span>
+                            <span><i class="fa-solid fa-shield-halved"></i> Trusted Brand</span>
+                            <span><i class="fa-solid fa-map-location-dot"></i> Pan-India Shipping</span>
+                        </div>
+                        <div class="hero-actions">
+                            <a href="#best-sellers" class="hero-btn-primary">Shop Our Collections <i class="fa-solid fa-arrow-down"></i></a>
+                            <a href="/price-list.html" class="hero-btn-outline"><i class="fa-solid fa-bolt"></i> Order Now</a>
+                        </div>
+                    </div>
+                    <div class="ban2">
+                        <img src="/assets/img/trynew.png" alt="Happy Diwali Ganesha Fireworks">
+                    </div>
+                </div>
             </div>
-            <div class="ban2">
-                <img src="/assets/img/trynew.png" alt="Diwali Fireworks">
+
+            <!-- Slide 2: Factory Direct Wholesale -->
+            <div class="hero-slide">
+                <div class="subbanner">
+                    <div class="ban1">
+                        <span class="hero-pill-tag" style="background: rgba(22, 163, 74, 0.12); color: #16a34a; border-color: rgba(22, 163, 74, 0.3);">🌱 CSIR-NEERI Green Certified</span>
+                        <h1>Direct Factory Wholesale</h1>
+                        <h2>Save Up to 85% Off MRP • 100% Genuine Sivakasi Crackers</h2>
+                        <p>Buy authentic green crackers direct from our Sivakasi manufacturing unit with zero middlemen markups. Low-smoke, eco-friendly formulations, lab-tested safe fireworks, and dedicated express transport direct to your door.</p>
+                        <div class="hero-badges-row">
+                            <span><i class="fa-solid fa-certificate"></i> Green Certified</span>
+                            <span><i class="fa-solid fa-tags"></i> 85% Off Factory Rate</span>
+                            <span><i class="fa-solid fa-box"></i> Moisture-Proof Pack</span>
+                            <span><i class="fa-solid fa-file-invoice"></i> GST Invoiced</span>
+                        </div>
+                        <div class="hero-actions">
+                            <a href="/price-list.html" class="hero-btn-primary" style="background: linear-gradient(45deg, #15803d, #22c55e);">Explore Wholesale Price <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="/assets/Price list 2026 updated.pdf" download="Sivas_Price_List_2026.pdf" class="hero-btn-outline"><i class="fa-solid fa-file-pdf"></i> Download PDF</a>
+                        </div>
+                    </div>
+                    <div class="ban2">
+                        <img src="/assets/img/subjust.jpg" alt="Wholesale Fireworks Deals" style="border-radius: 16px; box-shadow: 0 12px 28px rgba(0,0,0,0.12);">
+                    </div>
+                </div>
             </div>
+
+            <!-- Slide 3: Mega Aerial Night Displays & Gift Boxes -->
+            <div class="hero-slide">
+                <div class="subbanner">
+                    <div class="ban1">
+                        <span class="hero-pill-tag" style="background: rgba(194, 24, 91, 0.12); color: #be123c; border-color: rgba(194, 24, 91, 0.3);">🎆 Premium Aerial Night Displays</span>
+                        <h1>Mega Sky Shots & Gift Hampers</h1>
+                        <h2>12 to 240 Shots Repeaters • Family Festive Combos</h2>
+                        <p>Turn your celebration into an unforgettable stadium-grade fireworks spectacle! Multi-color peony bursts, crackling chrysanthemums, and gold brocade crowns, plus luxurious assorted gift boxes for families and corporate gifting.</p>
+                        <div class="hero-badges-row">
+                            <span><i class="fa-solid fa-wand-magic-sparkles"></i> 240 Sky Repeaters</span>
+                            <span><i class="fa-solid fa-gift"></i> Family Gift Boxes</span>
+                            <span><i class="fa-solid fa-fire"></i> Sparklers & Chakkars</span>
+                            <span><i class="fa-solid fa-award"></i> Verified Stock</span>
+                        </div>
+                        <div class="hero-actions">
+                            <a href="/price-list.html#mega-aerial-section" class="hero-btn-primary" style="background: linear-gradient(45deg, #b91c1c, #f97316);">Shop Aerial Sky Shots <i class="fa-solid fa-arrow-right"></i></a>
+                            <a href="#best-sellers" class="hero-btn-outline">View Best Sellers</a>
+                        </div>
+                    </div>
+                    <div class="ban2">
+                        <img src="/assets/img/gift boxes.png" alt="Festival Gift Hampers & Sky Shots" style="filter: drop-shadow(0 15px 30px rgba(0,0,0,0.18));">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="hero-nav-btn prev-btn" id="heroPrevBtn" aria-label="Previous Slide">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button class="hero-nav-btn next-btn" id="heroNextBtn" aria-label="Next Slide">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+        <!-- Slider Dots -->
+        <div class="hero-dots" id="heroDots">
+            <span class="hero-dot active" data-slide="0"></span>
+            <span class="hero-dot" data-slide="1"></span>
+            <span class="hero-dot" data-slide="2"></span>
         </div>
     </div>
     <div class="countown">
@@ -209,146 +291,192 @@
 </div>
 
     </div>
-    <div class="section-heading">
-  <h2>Our Cracker Collections</h2>
-  <p>Premium quality fireworks to brighten your Diwali celebrations</p>
-</div>
-    <div class="collections">
-        <div class="subcollections">
-            <div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/one sound.png" alt="One Sound Crackers">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#one-sound-section" class="product-overlay">
-      <h3 class="product-name">ONE SOUND CRACKERS</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/image.png" alt="Bijili Crackers">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#bijili-section" class="product-overlay">
-      <h3 class="product-name">BIJILI CRACKERS</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/bomb.webp" alt="Atom Bomb Crackers">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#bomb-section" class="product-overlay">
-      <h3 class="product-name">ATOM BOMB CRACKERS</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/PAPER.png" alt="Paper Bomb Crackers">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#adiyal-section" class="product-overlay">
-      <h3 class="product-name">PAPER BOMB CRACKERS</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/flower pots.png" alt="Flower Pots Crackers">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#flowerpots-section" class="product-overlay">
-      <h3 class="product-name">FLOWER POTS CRACKERS</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/GROUND.png" alt="Ground Chakkars">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#ground-chakkar-section" class="product-overlay">
-      <h3 class="product-name">GROUND CHAKKARS</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/TWINKLERS.png" alt="Twinkling Stars">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#twinkling-stars-section" class="product-overlay">
-      <h3 class="product-name">TWINKLING STARS</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/ROCKET.jpg" alt="Rocket Bomb">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#rocket-air-section" class="product-overlay">
-      <h3 class="product-name">ROCKET BOMB</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/fancy.png" alt="Fancy Sky Shots">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#mega-aerial-section" class="product-overlay">
-      <h3 class="product-name">FANCY SKY SHOTS</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
-<div class="product-card">
-  <div class="card-image-wrapper">
-    <div class="watercolor-bg">
-        <img src="/assets/img/gift boxes.png" alt="Gift Boxes">
-       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-    </div>
-    
-    <a href="/price-list.html#gift-boxes-section" class="product-overlay">
-      <h3 class="product-name">GIFT BOXES</h3>
-      <p>Click to Order</p>
-    </a>
-  </div>
-</div>
+    <!-- Best Sellers Section (Exact Match to User Reference) -->
+    <section class="best-sellers-section" id="best-sellers">
+        <div class="best-sellers-container">
+            <div class="best-sellers-header">
+                <h2 class="best-sellers-title">Best sellers</h2>
+                <a href="/products.html" class="best-sellers-see-all">See all</a>
+            </div>
 
+            <div class="best-sellers-scroll-wrapper">
+                <button class="bs-scroll-arrow bs-arrow-prev" id="bsScrollLeft" aria-label="Scroll left" type="button">
+                    <i class="fa-solid fa-chevron-left"></i>
+                </button>
 
+                <div class="best-sellers-cards-row" id="bsCardsRow">
+                    <!-- 1. Kuruvi Crackers -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/products/kuruvi-crackers.jpg" alt="2 3/4&quot; Kuruvi Crackers (1 Pkt)" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="2 3/4&quot; Kuruvi Crackers (1 Pkt)">2 3/4" Kuruvi Crackers (1 Pkt)</div>
+                        <div class="bs-product-unit">Pkt</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹9</span>
+                            <span class="bs-price-mrp">₹60</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('kur-01', '2 3/4&quot; Kuruvi Crackers (1 Pkt)', 9, 60, '/assets/img/products/kuruvi-crackers.jpg', 'Pkt')">Add</button>
+                    </div>
+
+                    <!-- 2. Electric Sparklers -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/products/electric-sparklers.jpg" alt="30 cm electric sparklers" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="30 cm electric sparklers">30 cm electric sparklers</div>
+                        <div class="bs-product-unit">BOX</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹49.00</span>
+                            <span class="bs-price-mrp">₹326.67</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('spk-30', '30 cm electric sparklers', 49.00, 326.67, '/assets/img/products/electric-sparklers.jpg', 'BOX')">Add</button>
+                    </div>
+
+                    <!-- 3. Magic Pop -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/products/magic-pop.jpg" alt="Magic Pop (10pc/box)" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="Magic Pop (10pc/box)">Magic Pop (10pc/box)</div>
+                        <div class="bs-product-unit">Box</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹9</span>
+                            <span class="bs-price-mrp">₹60</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('mp-10', 'Magic Pop (10pc/box)', 9, 60, '/assets/img/products/magic-pop.jpg', 'Box')">Add</button>
+                    </div>
+
+                    <!-- 4. Jee Boom Bha -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/products/jee-boom-bha.jpg" alt="Jee Boom Bha (10pc/box)" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="Jee Boom Bha (10pc/box)">Jee Boom Bha (10pc/box)</div>
+                        <div class="bs-product-unit">Box</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹9</span>
+                            <span class="bs-price-mrp">₹60</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('jbb-10', 'Jee Boom Bha (10pc/box)', 9, 60, '/assets/img/products/jee-boom-bha.jpg', 'Box')">Add</button>
+                    </div>
+
+                    <!-- 5. Electric Stone -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/products/electric-stone.jpg" alt="Electric Stone (10pc/box)" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="Electric Stone (10pc/box)">Electric Stone (10pc/box)</div>
+                        <div class="bs-product-unit">Box</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹9</span>
+                            <span class="bs-price-mrp">₹60</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('est-10', 'Electric Stone (10pc/box)', 9, 60, '/assets/img/products/electric-stone.jpg', 'Box')">Add</button>
+                    </div>
+
+                    <!-- 6. Ground Chakkar -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/GROUND.png" alt="Ground Chakkar (10Pcs/Box)" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="Ground Chakkar (10Pcs/Box)">Ground Chakkar (10Pcs/Box)</div>
+                        <div class="bs-product-unit">Box</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹49.00</span>
+                            <span class="bs-price-mrp">₹326.67</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('gcs-10', 'Ground Chakkar (10Pcs/Box)', 49.00, 326.67, '/assets/img/GROUND.png', 'Box')">Add</button>
+                    </div>
+
+                    <!-- 7. Flower Pots -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/flower pots.png" alt="Flower Pots Special (10Pcs/Box)" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="Flower Pots Special (10Pcs/Box)">Flower Pots Special (10Pcs/Box)</div>
+                        <div class="bs-product-unit">Box</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹65.00</span>
+                            <span class="bs-price-mrp">₹433.33</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('fp-10', 'Flower Pots Special (10Pcs/Box)', 65.00, 433.33, '/assets/img/flower pots.png', 'Box')">Add</button>
+                    </div>
+
+                    <!-- 8. Hydro Green Atom Bomb -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/bomb.webp" alt="Hydro Green Atom Bomb (10 Pcs)" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="Hydro Green Atom Bomb (10 Pcs)">Hydro Green Atom Bomb (10 Pcs)</div>
+                        <div class="bs-product-unit">Box</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹75.00</span>
+                            <span class="bs-price-mrp">₹500.00</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('ab-10', 'Hydro Green Atom Bomb (10 Pcs)', 75.00, 500.00, '/assets/img/bomb.webp', 'Box')">Add</button>
+                    </div>
+
+                    <!-- 9. Twinkling Stars -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/TWINKLERS.png" alt="Twinkling Stars Crackers (10 Pcs)" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="Twinkling Stars Crackers (10 Pcs)">Twinkling Stars Crackers (10 Pcs)</div>
+                        <div class="bs-product-unit">Box</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹39.00</span>
+                            <span class="bs-price-mrp">₹260.00</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('ts-10', 'Twinkling Stars Crackers (10 Pcs)', 39.00, 260.00, '/assets/img/TWINKLERS.png', 'Box')">Add</button>
+                    </div>
+
+                    <!-- 10. 12 Shot Sky Shot -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/fancy.png" alt="12 Shot Multi Color Sky Shots" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="12 Shot Multi Color Sky Shots">12 Shot Multi Color Sky Shots</div>
+                        <div class="bs-product-unit">Box</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹180.00</span>
+                            <span class="bs-price-mrp">₹1,200.00</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('sky-12', '12 Shot Multi Color Sky Shots', 180.00, 1200.00, '/assets/img/fancy.png', 'Box')">Add</button>
+                    </div>
+
+                    <!-- 11. Diwali Mega Gift Box -->
+                    <div class="bs-product-card">
+                        <div class="bs-discount-pill">85% off</div>
+                        <div class="bs-img-wrapper">
+                            <img src="/assets/img/gift boxes.png" alt="Diwali Family Mega Gift Box" loading="lazy">
+                        </div>
+                        <div class="bs-product-title" title="Diwali Family Mega Gift Box">Diwali Family Mega Gift Box</div>
+                        <div class="bs-product-unit">Hamper</div>
+                        <div class="bs-price-row">
+                            <span class="bs-price-current">₹999.00</span>
+                            <span class="bs-price-mrp">₹6,660.00</span>
+                        </div>
+                        <button class="bs-add-btn" type="button" onclick="quickAddBestSeller('gb-mega', 'Diwali Family Mega Gift Box', 999.00, 6660.00, '/assets/img/gift boxes.png', 'Hamper')">Add</button>
+                    </div>
+                </div>
+
+                <button class="bs-scroll-arrow bs-arrow-next" id="bsScrollRight" aria-label="Scroll right" type="button">
+                    <i class="fa-solid fa-chevron-right"></i>
+                </button>
+            </div>
         </div>
-    </div> 
+    </section> 
     <div class="section-heading">
   <h2>Contact Our Support Team</h2>
   <p>Premium Fireworks Crackers for Memorable Celebrations</p>
@@ -574,6 +702,141 @@ if (sppToggleBtn && sppSideMenu) {
         }
     });
 }
+    </script>
+    <script src="/js/api.js"></script>
+    <script src="/js/app.js"></script>
+    <script>
+        // Hero Slider Logic (Auto-scrolling with arrows, dots, swipe)
+        function initHeroSlider() {
+            const slides = document.querySelectorAll('.hero-slider-wrapper .hero-slide');
+            const dots = document.querySelectorAll('.hero-dots .hero-dot');
+            const prevBtn = document.getElementById('heroPrevBtn');
+            const nextBtn = document.getElementById('heroNextBtn');
+            if (!slides.length) return;
+
+            let current = 0;
+            let timer = null;
+
+            function goToSlide(index) {
+                slides[current].classList.remove('active');
+                if (dots[current]) dots[current].classList.remove('active');
+                current = (index + slides.length) % slides.length;
+                slides[current].classList.add('active');
+                if (dots[current]) dots[current].classList.add('active');
+            }
+
+            function startAutoplay() {
+                stopAutoplay();
+                timer = setInterval(() => {
+                    goToSlide(current + 1);
+                }, 4500);
+            }
+
+            function stopAutoplay() {
+                if (timer) clearInterval(timer);
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    goToSlide(current - 1);
+                    startAutoplay();
+                });
+            }
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    goToSlide(current + 1);
+                    startAutoplay();
+                });
+            }
+
+            dots.forEach((dot, idx) => {
+                dot.addEventListener('click', () => {
+                    goToSlide(idx);
+                    startAutoplay();
+                });
+            });
+
+            const slider = document.getElementById('hero-slider-section');
+            if (slider) {
+                slider.addEventListener('mouseenter', stopAutoplay);
+                slider.addEventListener('mouseleave', startAutoplay);
+                let touchStartX = 0;
+                slider.addEventListener('touchstart', (e) => {
+                    touchStartX = e.changedTouches[0].screenX;
+                    stopAutoplay();
+                }, { passive: true });
+                slider.addEventListener('touchend', (e) => {
+                    const touchEndX = e.changedTouches[0].screenX;
+                    if (touchStartX - touchEndX > 50) goToSlide(current + 1);
+                    if (touchEndX - touchStartX > 50) goToSlide(current - 1);
+                    startAutoplay();
+                }, { passive: true });
+            }
+
+            startAutoplay();
+        }
+
+        // Best Sellers Horizontal Scroll Controls
+        function initBestSellersScroll() {
+            const row = document.getElementById('bsCardsRow');
+            const leftBtn = document.getElementById('bsScrollLeft');
+            const rightBtn = document.getElementById('bsScrollRight');
+            if (!row) return;
+
+            if (leftBtn) {
+                leftBtn.addEventListener('click', () => {
+                    row.scrollBy({ left: -360, behavior: 'smooth' });
+                });
+            }
+            if (rightBtn) {
+                rightBtn.addEventListener('click', () => {
+                    row.scrollBy({ left: 360, behavior: 'smooth' });
+                });
+            }
+        }
+
+        // Quick Add to Cart for Best Seller Cards
+        function quickAddBestSeller(id, name, price, originalPrice, image, unit) {
+            if (window.App && typeof App.quickAddToCart === 'function') {
+                App.quickAddToCart({ id, name, price, originalPrice, image, unit });
+            } else {
+                try {
+                    let guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
+                    const existing = guestCart.find(i => (i.productId === id) || (i.product && i.product._id === id));
+                    if (existing) {
+                        existing.quantity = (existing.quantity || 1) + 1;
+                    } else {
+                        guestCart.push({
+                            productId: id,
+                            product: { _id: id, name, price, originalPrice, images: [image], unit },
+                            name,
+                            price,
+                            quantity: 1,
+                            image,
+                            unit
+                        });
+                    }
+                    localStorage.setItem('guest_cart', JSON.stringify(guestCart));
+                    const badge = document.getElementById('cart-count');
+                    if (badge) {
+                        const count = guestCart.reduce((s, i) => s + (i.quantity || 1), 0);
+                        badge.textContent = count;
+                        badge.style.display = 'flex';
+                    }
+                    const mobileBadge = document.getElementById('cart-count-mobile');
+                    if (mobileBadge) {
+                        const count = guestCart.reduce((s, i) => s + (i.quantity || 1), 0);
+                        mobileBadge.textContent = count;
+                        mobileBadge.style.display = 'inline-block';
+                    }
+                } catch (e) {}
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initHeroSlider();
+            initBestSellersScroll();
+        });
     </script>
 </body>
 </html>

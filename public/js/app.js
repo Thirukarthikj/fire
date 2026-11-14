@@ -272,6 +272,44 @@ const App = {
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#039;');
+  },
+
+  quickAddToCart(item) {
+    if (!item || !item.id) return;
+    try {
+      let guestCart = JSON.parse(localStorage.getItem('guest_cart') || '[]');
+      const existing = guestCart.find(i => (i.productId === item.id) || (i.product && i.product._id === item.id));
+      if (existing) {
+        existing.quantity = (existing.quantity || 1) + 1;
+      } else {
+        guestCart.push({
+          productId: item.id,
+          product: {
+            _id: item.id,
+            name: item.name,
+            price: Number(item.price) || 0,
+            originalPrice: Number(item.originalPrice) || Number(item.price) || 0,
+            images: [item.image || '/assets/img/products/kuruvi-crackers.jpg'],
+            unit: item.unit || 'Pkt'
+          },
+          name: item.name,
+          price: Number(item.price) || 0,
+          quantity: 1,
+          image: item.image || '/assets/img/products/kuruvi-crackers.jpg',
+          unit: item.unit || 'Pkt'
+        });
+      }
+      localStorage.setItem('guest_cart', JSON.stringify(guestCart));
+
+      if (this.currentUser) {
+        API.post('/cart/add', { productId: item.id, quantity: 1 }).catch(() => {});
+      }
+
+      this.updateCartBadge();
+      this.showNotification(`Added "${item.name}" to cart!`, 'success');
+    } catch (e) {
+      console.error('quickAddToCart error:', e);
+    }
   }
 };
 
