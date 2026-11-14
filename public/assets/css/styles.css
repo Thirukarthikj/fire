@@ -249,43 +249,244 @@
     object-fit: cover;
     object-position: center center;
    }
-   .countown{
-    height: 200px;
-    width: 100%;
-    background-color: lightcoral;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
-    margin-bottom: 100px;
-   }
-   .countdown-wrapper {
-    height: 100%;
-  width: 100%;
-  padding: 40px 20px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* background: radial-gradient(circle at 20% 10%, #ffefba, transparent), radial-gradient(circle at 80% 20%, #ff4b2b, transparent), radial-gradient(circle at 50% 50%, #ffb75e, transparent), radial-gradient(circle at 10% 80%, #f9d423, transparent), #ff7e5f; */
-  background: radial-gradient(at 20% 30%,  #ff4e00 0%, transparent 50%), radial-gradient(at 80% 10%, #ff4e00 0%, transparent 60%), radial-gradient(at 50% 80%, #ff8c00 0%, transparent 70%), #ffbb00;
-  border-radius: 1px;
+/* ══════════════════════════════════════════════════════════
+   Luxury Festive Celebration & Countdown Section
+   ══════════════════════════════════════════════════════════ */
+.festive-countdown-section {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 20px;
+  margin: 40px auto 60px;
+  box-sizing: border-box;
 }
 
-.time-box {
+.festive-countdown-container {
+  background: radial-gradient(circle at 15% 25%, rgba(220, 38, 38, 0.28) 0%, transparent 55%),
+              radial-gradient(circle at 85% 75%, rgba(245, 158, 11, 0.22) 0%, transparent 50%),
+              linear-gradient(135deg, #0d121f 0%, #17223b 50%, #0c101c 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 20px;
+  padding: 44px 32px;
   text-align: center;
-  color: #fff;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  position: relative;
+  overflow: hidden;
 }
 
-.time-box span {
-  font-size: 72px;
+.festive-countdown-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #f59e0b, #ef4444, #f59e0b, transparent);
+}
+
+.festive-countdown-header {
+  max-width: 860px;
+  margin: 0 auto 32px;
+}
+
+.festive-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  color: #fbbf24;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 12px;
   font-weight: 700;
-  display: block;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 
-.time-box p {
-  font-size: 20px;
-  margin-top: 0px;
-  font-weight: 500;
+.festive-countdown-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 38px;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 12px;
+  line-height: 1.25;
+}
+
+.festive-countdown-title span {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.festive-countdown-desc {
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin: 0 auto;
+}
+
+/* 4 Countdown Cards */
+.countdown-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 150px));
+  justify-content: center;
+  gap: 20px;
+  margin: 0 auto 34px;
+}
+
+.countdown-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 18px 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.countdown-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(245, 158, 11, 0.5);
+}
+
+.countdown-num {
+  display: block;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1;
+  background: linear-gradient(180deg, #ffffff 30%, #fcd34d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 6px;
+}
+
+.countdown-label {
+  display: block;
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #94a3b8;
+}
+
+/* Action CTAs */
+.festive-countdown-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.btn-festive-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #ea580c 0%, #dc2626 100%);
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 13px 26px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(234, 88, 12, 0.38);
+  transition: all 0.3s ease;
+}
+
+.btn-festive-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(234, 88, 12, 0.55);
+}
+
+.btn-festive-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 13px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-festive-secondary:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.45);
+  transform: translateY(-2px);
+}
+
+.btn-festive-whatsapp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: #ffffff !important;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 13px 24px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 8px 20px rgba(37, 211, 102, 0.32);
+  transition: all 0.3s ease;
+}
+
+.btn-festive-whatsapp:hover {
+  background: #1eb855;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px rgba(37, 211, 102, 0.48);
+}
+
+/* Trust features strip */
+.festive-trust-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.trust-strip-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #cbd5e1;
+}
+
+.trust-strip-item i {
+  color: #f59e0b;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 768px) {
+  .festive-countdown-title {
+    font-size: 26px;
+  }
+  .countdown-cards-grid {
+    grid-template-columns: repeat(2, minmax(0, 130px));
+    gap: 12px;
+  }
+  .countdown-num {
+    font-size: 36px;
+  }
+  .festive-countdown-container {
+    padding: 30px 18px;
+  }
 }
 .section-heading {
     height: 100px;
@@ -1309,40 +1510,7 @@
     object-fit: cover;
     object-position: center center;
    }
-   .countown{
-    height: 200px;
-    width: 100%;
-    background-color: lightcoral;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 100px;
-    margin-bottom: 100px;
-   }
-   .countdown-wrapper {
-    height: 100%;
-  width: 100%;
-  padding: 40px 20px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  /* background: radial-gradient(circle at 20% 10%, #ffefba, transparent), radial-gradient(circle at 80% 20%, #ff4b2b, transparent), radial-gradient(circle at 50% 50%, #ffb75e, transparent), radial-gradient(circle at 10% 80%, #f9d423, transparent), #ff7e5f; */
-  background: radial-gradient(at 20% 30%,  #ff4e00 0%, transparent 50%), radial-gradient(at 80% 10%, #ff4e00 0%, transparent 60%), radial-gradient(at 50% 80%, #ff8c00 0%, transparent 70%), #ffbb00;
-  border-radius: 1px;
-}
-
-.time-box {
-  text-align: center;
-  color: #fff;
-}
-
-.time-box span {
-  font-size: 22px;
-  font-weight: 700;
-  display: block;
-}
-
-.time-box p {
+   .time-box p {
   font-size: 22px;
   margin-top: 0px;
   font-weight: 500;

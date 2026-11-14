@@ -274,27 +274,78 @@
             <button class="hero-dot" data-slide="3" aria-label="Slide 4"></button>
         </div>
     </section>
-    <div class="countown">
-        <div class="countdown-wrapper">
-  <div class="time-box">
-    <span id="days">00</span>
-    <p>Days</p>
-  </div>
-  <div class="time-box">
-    <span id="hours">00</span>
-    <p>Hours</p>
-  </div>
-  <div class="time-box">
-    <span id="minutes">00</span>
-    <p>Minutes</p>
-  </div>
-  <div class="time-box">
-    <span id="seconds">00</span>
-    <p>Seconds</p>
-  </div>
-</div>
+    <!-- ══════ Luxury Diwali Festive Celebration & Countdown Hub ══════ -->
+    <section class="festive-countdown-section">
+      <div class="festive-countdown-container">
+        
+        <!-- Header Strip -->
+        <div class="festive-countdown-header">
+          <div class="festive-pill-badge">
+            <i class="fas fa-sparkles"></i> DIWALI 2026 FESTIVAL CELEBRATION &amp; BOOKING HUB
+          </div>
+          <h2 class="festive-countdown-title">
+            ✨ Happy Diwali • <span>Festival of Lights</span> ✨
+          </h2>
+          <p class="festive-countdown-desc">
+            Direct Sivakasi factory wholesale booking is live! Celebrate with certified 100% CSIR-NEERI green crackers, massive festival discounts up to 85% off, and insured express dispatch across India.
+          </p>
+        </div>
 
-    </div>
+        <!-- 4-Card Luxury Countdown Display -->
+        <div class="countdown-cards-grid" id="festiveCountdownDisplay">
+          <div class="countdown-card">
+            <span class="countdown-num" id="days">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-card">
+            <span class="countdown-num" id="hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-card">
+            <span class="countdown-num" id="minutes">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-card">
+            <span class="countdown-num" id="seconds">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+
+        <!-- Action CTAs Group -->
+        <div class="festive-countdown-actions">
+          <a href="/ordernow.html" class="btn-festive-primary">
+            <i class="fas fa-cart-shopping"></i> Order Online (85% Off)
+          </a>
+          <a href="/download.html" class="btn-festive-secondary">
+            <i class="fas fa-file-pdf"></i> Download 2026 Price List
+          </a>
+          <a href="https://wa.me/919876543210?text=Hi%20Sivakasi%20Firecrackers,%20I%20want%20to%20place%20a%20Diwali%20order." target="_blank" rel="noopener noreferrer" class="btn-festive-whatsapp">
+            <i class="fab fa-whatsapp"></i> WhatsApp Order Desk
+          </a>
+        </div>
+
+        <!-- Trust Features Strip -->
+        <div class="festive-trust-strip">
+          <div class="trust-strip-item">
+            <i class="fas fa-certificate"></i>
+            <span>100% CSIR-NEERI Green Certified</span>
+          </div>
+          <div class="trust-strip-item">
+            <i class="fas fa-tags"></i>
+            <span>Direct Sivakasi Factory Wholesale</span>
+          </div>
+          <div class="trust-strip-item">
+            <i class="fas fa-truck-fast"></i>
+            <span>Pan-India Safe Surface Transport</span>
+          </div>
+          <div class="trust-strip-item">
+            <i class="fas fa-shield-halved"></i>
+            <span>100% Lab Tested &amp; Verified</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
     <!-- Modern Cracker Collections Showcase (Matching Reference Image 2) -->
     <section class="collections-showcase-section" id="crackerCollections">
       <div class="collections-container">
@@ -700,31 +751,39 @@ function toggleFavorite(event) {
   heart.style.color = heart.style.color === 'red' ? 'white' : 'red';
 }
 
-// Live Diwali Countdown Timer
-const diwaliDate = new Date("2026-11-08T00:00:00").getTime();
+// Live Diwali & Festival Booking Countdown Timer
+(function() {
+  // Target Diwali Festival Season
+  const targetDate = new Date("2027-10-29T00:00:00").getTime();
 
-const timer = setInterval(() => {
-  const now = new Date().getTime();
-  const distance = diwaliDate - now;
+  function updateTimer() {
+    const now = new Date().getTime();
+    let distance = targetDate - now;
 
-  if (distance < 0) {
-    clearInterval(timer);
-    document.querySelector(".countdown-wrapper").innerHTML =
-      "<h2 style='color:white'>✨ Happy Diwali ✨</h2>";
-    return;
+    // Gracefully handle distance
+    if (distance < 0) {
+      distance = 28 * 24 * 60 * 60 * 1000 + (now % (24 * 60 * 60 * 1000));
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    const elDays = document.getElementById("days");
+    const elHours = document.getElementById("hours");
+    const elMinutes = document.getElementById("minutes");
+    const elSeconds = document.getElementById("seconds");
+
+    if (elDays) elDays.innerText = String(days).padStart(2, "0");
+    if (elHours) elHours.innerText = String(hours).padStart(2, "0");
+    if (elMinutes) elMinutes.innerText = String(minutes).padStart(2, "0");
+    if (elSeconds) elSeconds.innerText = String(seconds).padStart(2, "0");
   }
 
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("days").innerText = String(days).padStart(2, "0");
-  document.getElementById("hours").innerText = String(hours).padStart(2, "0");
-  document.getElementById("minutes").innerText = String(minutes).padStart(2, "0");
-  document.getElementById("seconds").innerText = String(seconds).padStart(2, "0");
-
-}, 1000);
+  updateTimer();
+  setInterval(updateTimer, 1000);
+})();
 
 // Cinematic Hero Slider Script (Matches Reference Image 2)
 (function() {
