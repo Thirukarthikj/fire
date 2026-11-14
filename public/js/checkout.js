@@ -12,8 +12,30 @@ const Checkout = {
 
   async init() {
     this.setupAutoPaymentListeners();
-    await this.verifyAuthAndCart();
-    await this.loadAddresses();
+    this.renderCachedAddresses();
+    await Promise.allSettled([
+      this.verifyAuthAndCart(),
+      this.loadAddresses()
+    ]);
+  },
+
+  renderCachedAddresses() {
+    let cached = [];
+    try {
+      const stored = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
+      if (Array.isArray(stored) && stored.length > 0) cached = stored;
+    } catch (e) {}
+
+    if (cached.length === 0) {
+      try {
+        const u = JSON.parse(localStorage.getItem('fire_user') || '{}');
+        if (u && Array.isArray(u.addresses) && u.addresses.length > 0) cached = u.addresses;
+      } catch (e) {}
+    }
+
+    if (cached.length > 0) {
+      this.renderAddresses(cached);
+    }
   },
 
   setupAutoPaymentListeners() {
@@ -102,48 +124,11 @@ const Checkout = {
     }
   },
 
-  async loadAddresses() {
+  renderAddresses(addresses) {
     const container = document.getElementById('checkout-addresses-grid');
     if (!container) return;
 
-    let addresses = [];
-
-    // 1. Try fetching from server first
-    try {
-      const res = await API.get('/addresses');
-      if (res && res.success && Array.isArray(res.data)) {
-        addresses = res.data;
-        // Keep localStorage synced
-        try {
-          localStorage.setItem('fire_addresses', JSON.stringify(addresses));
-        } catch (e) {}
-      }
-    } catch (err) {
-      console.warn('Addresses API notice:', err.message);
-    }
-
-    // 2. If API was unavailable or returned empty, check local storage
-    if (addresses.length === 0) {
-      try {
-        const localAddrs = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
-        if (Array.isArray(localAddrs) && localAddrs.length > 0) {
-          addresses = [...localAddrs];
-        }
-      } catch (e) {}
-    }
-
-    // 3. Fallback to user addresses from login session if still empty
-    if (addresses.length === 0) {
-      try {
-        const storedUser = JSON.parse(localStorage.getItem('fire_user') || '{}');
-        if (storedUser && Array.isArray(storedUser.addresses) && storedUser.addresses.length > 0) {
-          addresses = [...storedUser.addresses];
-        }
-      } catch (e) {}
-    }
-
-    // 4. If no addresses exist, show friendly prompt to add delivery address
-    if (addresses.length === 0) {
+    if (!Array.isArray(addresses) || addresses.length === 0) {
       this.selectedAddressId = null;
       container.innerHTML = `
         <div style="grid-column: 1 / -1; padding: 24px; text-align: center; border: 1.5px dashed var(--color-border); border-radius: var(--radius-md); background: #f8fafc;">
@@ -156,13 +141,11 @@ const Checkout = {
       return;
     }
 
-    // 5. Select active address
     if (!this.selectedAddressId || !addresses.some(a => String(a._id) === String(this.selectedAddressId))) {
       const defaultAddr = addresses.find(a => a.isDefault) || addresses[0];
       this.selectedAddressId = defaultAddr._id;
     }
 
-    // 6. Render address cards
     container.innerHTML = addresses.map(addr => `
       <div class="address-card ${String(addr._id) === String(this.selectedAddressId) ? 'selected' : ''}" 
            onclick="Checkout.selectAddress('${addr._id}', this)">
@@ -181,6 +164,41 @@ const Checkout = {
 
     const placeBtn = document.getElementById('btn-place-order');
     if (placeBtn) placeBtn.disabled = false;
+  },
+
+  async loadAddresses() {
+    let localList = [];
+    try {
+      localList = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
+      if (!Array.isArray(localList)) localList = [];
+    } catch (e) {}
+
+    let serverList = [];
+    try {
+      const res = await API.get('/addresses');
+      if (res && res.success && Array.isArray(res.data)) {
+        serverList = res.data;
+      }
+    } catch (err) {
+      console.warn('Addresses API notice:', err.message);
+    }
+
+    // Merge server addresses with local addresses without losing anything
+    const combined = [...serverList];
+    const serverIds = new Set(serverList.map(a => String(a._id)));
+    for (const loc of localList) {
+      if (loc && loc._id && !serverIds.has(String(loc._id))) {
+        combined.push(loc);
+      }
+    }
+
+    if (combined.length > 0) {
+      try {
+        localStorage.setItem('fire_addresses', JSON.stringify(combined));
+      } catch (e) {}
+    }
+
+    this.renderAddresses(combined);
   },
 
   selectAddress(addressId, element) {
@@ -401,14 +419,17 @@ const Checkout = {
     }
 
     // Save to local addresses
+    let saved = [];
     try {
-      let saved = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
+      saved = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
+      if (!Array.isArray(saved)) saved = [];
       saved.forEach(a => a.isDefault = false);
       saved.unshift(createdAddr);
       localStorage.setItem('fire_addresses', JSON.stringify(saved));
     } catch (e) {}
 
     this.selectedAddressId = createdAddr._id;
+    this.renderAddresses(saved);
     App.showNotification('✅ Delivery address saved and selected!', 'success');
     this.closeAddAddressModal();
 

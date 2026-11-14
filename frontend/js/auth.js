@@ -315,69 +315,78 @@ const Auth = {
     }
   },
 
-  async loadAddresses() {
+  renderAddressesList(addresses) {
     const list = document.getElementById('address-list');
     if (!list) return;
 
-    try {
-      let addresses = [];
-      let apiSuccess = false;
-      try {
-        const res = await API.get('/addresses');
-        if (res && res.success && Array.isArray(res.data)) {
-          addresses = res.data;
-          apiSuccess = true;
-          try {
-            localStorage.setItem('fire_addresses', JSON.stringify(addresses));
-          } catch (e) {}
-        }
-      } catch (e) {
-        console.warn('Addresses API notice:', e);
-      }
-
-      if (!apiSuccess || addresses.length === 0) {
-        try {
-          const cached = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
-          if (Array.isArray(cached) && cached.length > 0) {
-            addresses = cached;
-          }
-        } catch (e) {}
-      }
-
-      if (addresses.length === 0) {
-        list.innerHTML = `
-          <div class="empty-state" style="grid-column: 1 / -1; padding: 48px 24px; text-align: center; background: #fff; border: 1.5px dashed var(--color-border); border-radius: var(--radius-lg);">
-            <div style="font-size: 2.5rem; margin-bottom: 12px;">📍</div>
-            <h3 style="font-size: 1.15rem; color: #1e293b; margin-bottom: 6px;">No delivery addresses saved</h3>
-            <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">Add a delivery destination for fast checkout and consignment dispatch.</p>
-            <button onclick="Auth.openAddressModal()" class="btn btn-primary btn-sm">+ Add New Address</button>
-          </div>
-        `;
-        return;
-      }
-
-      list.innerHTML = addresses.map(addr => `
-        <div class="card" style="padding: var(--space-4); border-color: ${addr.isDefault ? 'var(--color-accent)' : 'var(--color-border)'}">
-          <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 8px;">
-            <span class="font-bold">${App.escapeHtml(addr.name || 'Recipient')}</span>
-            ${addr.isDefault ? '<span class="badge badge-accent">Default</span>' : ''}
-          </div>
-          <div style="font-size:0.875rem; color:#4b5563; line-height:1.5; margin-bottom:12px;">
-            ${App.escapeHtml(addr.addressLine1 || '')}<br>
-            ${addr.addressLine2 ? App.escapeHtml(addr.addressLine2) + '<br>' : ''}
-            ${App.escapeHtml(addr.city || '')}, ${App.escapeHtml(addr.state || '')} - ${App.escapeHtml(addr.pincode || '')}<br>
-            Phone: ${App.escapeHtml(addr.phone || '')}
-          </div>
-          <div style="display:flex; gap:8px; border-top:1px solid #f3f4f6; padding-top:8px;">
-            ${!addr.isDefault ? `<button onclick="Auth.setDefaultAddress('${addr._id}')" class="btn btn-secondary btn-sm">Set Default</button>` : ''}
-            <button onclick="Auth.editAddress('${addr._id}')" class="btn btn-outline btn-sm">Edit</button>
-            <button onclick="Auth.deleteAddress('${addr._id}')" class="btn btn-danger btn-sm">Delete</button>
-          </div>
+    if (!Array.isArray(addresses) || addresses.length === 0) {
+      list.innerHTML = `
+        <div class="empty-state" style="grid-column: 1 / -1; padding: 48px 24px; text-align: center; background: #fff; border: 1.5px dashed var(--color-border); border-radius: var(--radius-lg);">
+          <div style="font-size: 2.5rem; margin-bottom: 12px;">📍</div>
+          <h3 style="font-size: 1.15rem; color: #1e293b; margin-bottom: 6px;">No delivery addresses saved</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 16px;">Add a delivery destination for fast checkout and consignment dispatch.</p>
+          <button onclick="Auth.openAddressModal()" class="btn btn-primary btn-sm">+ Add New Address</button>
         </div>
-      `).join('');
-    } catch (err) {
-      console.error('Failed to load addresses', err);
+      `;
+      return;
     }
+
+    list.innerHTML = addresses.map(addr => `
+      <div class="card" style="padding: var(--space-4); border-color: ${addr.isDefault ? 'var(--color-accent)' : 'var(--color-border)'}">
+        <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom: 8px;">
+          <span class="font-bold">${App.escapeHtml(addr.name || 'Recipient')}</span>
+          ${addr.isDefault ? '<span class="badge badge-accent">Default</span>' : ''}
+        </div>
+        <div style="font-size:0.875rem; color:#4b5563; line-height:1.5; margin-bottom:12px;">
+          ${App.escapeHtml(addr.addressLine1 || '')}<br>
+          ${addr.addressLine2 ? App.escapeHtml(addr.addressLine2) + '<br>' : ''}
+          ${App.escapeHtml(addr.city || '')}, ${App.escapeHtml(addr.state || '')} - ${App.escapeHtml(addr.pincode || '')}<br>
+          Phone: ${App.escapeHtml(addr.phone || '')}
+        </div>
+        <div style="display:flex; gap:8px; border-top:1px solid #f3f4f6; padding-top:8px;">
+          ${!addr.isDefault ? `<button onclick="Auth.setDefaultAddress('${addr._id}')" class="btn btn-secondary btn-sm">Set Default</button>` : ''}
+          <button onclick="Auth.editAddress('${addr._id}')" class="btn btn-outline btn-sm">Edit</button>
+          <button onclick="Auth.deleteAddress('${addr._id}')" class="btn btn-danger btn-sm">Delete</button>
+        </div>
+      </div>
+    `).join('');
+  },
+
+  async loadAddresses() {
+    let localList = [];
+    try {
+      localList = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
+      if (!Array.isArray(localList)) localList = [];
+    } catch (e) {}
+
+    // Immediately render cached addresses so there is zero waiting time
+    if (localList.length > 0) {
+      this.renderAddressesList(localList);
+    }
+
+    let serverList = [];
+    try {
+      const res = await API.get('/addresses');
+      if (res && res.success && Array.isArray(res.data)) {
+        serverList = res.data;
+      }
+    } catch (e) {
+      console.warn('Addresses API notice:', e);
+    }
+
+    const combined = [...serverList];
+    const serverIds = new Set(serverList.map(a => String(a._id)));
+    for (const loc of localList) {
+      if (loc && loc._id && !serverIds.has(String(loc._id))) {
+        combined.push(loc);
+      }
+    }
+
+    try {
+      localStorage.setItem('fire_addresses', JSON.stringify(combined));
+    } catch (e) {}
+
+    this.renderAddressesList(combined);
   },
 
   openAddressModal(title = 'Add New Delivery Address') {
@@ -433,28 +442,27 @@ const Auth = {
 
   async deleteAddress(id) {
     if (!confirm('Are you sure you want to delete this delivery address?')) return;
+    let remaining = [];
     try {
-      // 1. Instantly remove from local caches
-      try {
-        let cached = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
-        cached = cached.filter(a => String(a._id) !== String(id));
-        localStorage.setItem('fire_addresses', JSON.stringify(cached));
+      let cached = JSON.parse(localStorage.getItem('fire_addresses') || '[]');
+      remaining = cached.filter(a => String(a._id) !== String(id));
+      localStorage.setItem('fire_addresses', JSON.stringify(remaining));
 
-        let userCached = JSON.parse(localStorage.getItem('fire_user') || '{}');
-        if (userCached && Array.isArray(userCached.addresses)) {
-          userCached.addresses = userCached.addresses.filter(a => String(a._id) !== String(id));
-          localStorage.setItem('fire_user', JSON.stringify(userCached));
-        }
-      } catch (e) {}
+      let userCached = JSON.parse(localStorage.getItem('fire_user') || '{}');
+      if (userCached && Array.isArray(userCached.addresses)) {
+        userCached.addresses = userCached.addresses.filter(a => String(a._id) !== String(id));
+        localStorage.setItem('fire_user', JSON.stringify(userCached));
+      }
+    } catch (e) {}
 
-      // 2. Call backend API
+    // Immediately update UI with zero lag
+    this.renderAddressesList(remaining);
+    App.showNotification('Address removed successfully', 'success');
+
+    try {
       await API.delete(`/addresses/${id}`);
-      App.showNotification('Address removed successfully', 'success');
-      await this.loadAddresses();
     } catch (err) {
       console.warn('API delete address notice:', err);
-      App.showNotification('Address removed successfully', 'success');
-      await this.loadAddresses();
     }
   },
 

@@ -50,7 +50,9 @@ const validateAddress = [
   body('addressLine1').trim().notEmpty().withMessage('Address line 1 is required'),
   body('city').trim().notEmpty().withMessage('City is required'),
   body('state').trim().notEmpty().withMessage('State is required'),
-  body('pincode').trim().notEmpty().withMessage('Pincode is required').isPostalCode('IN').withMessage('Valid Indian pincode required'),
+  body('pincode').trim().notEmpty().withMessage('Pincode is required')
+    .customSanitizer(val => typeof val === 'string' ? val.replace(/\s+/g, '') : val)
+    .isPostalCode('IN').withMessage('Valid 6-digit Indian pincode required'),
   handleValidationErrors
 ];
 

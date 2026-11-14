@@ -23,7 +23,7 @@ const addressSchema = new Schema({
 addressSchema.index({ user: 1 });
 
 // Pre-save: if isDefault is being set to true, unset all other defaults for this user
-addressSchema.pre('save', async function (next) {
+addressSchema.pre('save', async function () {
   if (this.isModified('isDefault') && this.isDefault === true) {
     try {
       await mongoose.model('Address').updateMany(
@@ -31,10 +31,9 @@ addressSchema.pre('save', async function (next) {
         { $set: { isDefault: false } }
       );
     } catch (err) {
-      return next(err);
+      console.warn('Address pre-save updateMany notice:', err.message);
     }
   }
-  next();
 });
 
 module.exports = mongoose.model('Address', addressSchema);
