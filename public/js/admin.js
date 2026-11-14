@@ -35,15 +35,18 @@ const AdminApp = {
       const res = await API.get('/auth/me');
       if (res.success && res.data) {
         if (res.data.role !== 'admin' && res.data.role !== 'superadmin') {
+          localStorage.removeItem('fire_admin_user');
           window.location.href = '/admin/login.html';
           return;
         }
         this.currentAdmin = res.data;
+        localStorage.setItem('fire_admin_user', JSON.stringify(res.data));
         const nameEl = document.getElementById('admin-name');
         if (nameEl) nameEl.textContent = res.data.name;
       }
     } catch (err) {
       if (!window.location.pathname.includes('/admin/login.html')) {
+        localStorage.removeItem('fire_admin_user');
         window.location.href = '/admin/login.html';
       }
     }
@@ -51,9 +54,11 @@ const AdminApp = {
 
   async logout() {
     try {
+      localStorage.removeItem('fire_admin_user');
       await API.post('/auth/logout');
       window.location.href = '/admin/login.html';
     } catch (err) {
+      localStorage.removeItem('fire_admin_user');
       window.location.href = '/admin/login.html';
     }
   },
@@ -61,33 +66,51 @@ const AdminApp = {
   // ================= 1. DASHBOARD =================
   async initDashboard() {
     try {
-      const [statsRes, ordersRes, chartRes] = await Promise.all([
+      const [statsRes, ordersRes, chartRes] = await Promise.allSettled([
         API.get('/admin/dashboard/stats'),
         API.get('/admin/dashboard/recent-orders'),
         API.get('/admin/dashboard/sales-chart')
       ]);
 
-      if (statsRes.success) {
-        const s = statsRes.data;
-        document.getElementById('stat-total-revenue').textContent = App.formatPrice(s.totalRevenue || 0);
-        document.getElementById('stat-total-orders').textContent = s.totalOrders || 0;
-        document.getElementById('stat-total-customers').textContent = s.totalCustomers || 0;
-        document.getElementById('stat-low-stock').textContent = s.lowStockAlerts || 0;
-        document.getElementById('stat-successful-payments').textContent = s.successfulPayments || 0;
-        document.getElementById('stat-refund-totals').textContent = App.formatPrice(s.refundTotals || 0);
+      if (statsRes.status === 'fulfilled' && statsRes.value && statsRes.value.success) {
+        const s = statsRes.value.data;
+        const revEl = document.getElementById('stat-total-revenue');
+        if (revEl) revEl.textContent = App.formatPrice(s.totalRevenue || 0);
+
+        const ordEl = document.getElementById('stat-total-orders');
+        if (ordEl) ordEl.textContent = s.totalOrders || 0;
+
+        const custEl = document.getElementById('stat-total-customers');
+        if (custEl) custEl.textContent = s.totalCustomers || 0;
+
+        const stockEl = document.getElementById('stat-low-stock');
+        if (stockEl) stockEl.textContent = s.lowStockAlerts || 0;
+
+        const payEl = document.getElementById('stat-successful-payments');
+        if (payEl) payEl.textContent = s.successfulPayments || 0;
+
+        const refEl = document.getElementById('stat-refund-totals');
+        if (refEl) refEl.textContent = App.formatPrice(s.refundTotals || 0);
+      } else if (statsRes.status === 'rejected') {
+        const err = statsRes.reason;
+        if (err && (err.status === 401 || err.status === 403)) {
+          localStorage.removeItem('fire_admin_user');
+          window.location.href = '/admin/login.html';
+          return;
+        }
       }
 
-      if (chartRes.success && chartRes.data) {
-        this.renderSalesChart(chartRes.data);
+      if (chartRes.status === 'fulfilled' && chartRes.value && chartRes.value.success && chartRes.value.data) {
+        this.renderSalesChart(chartRes.value.data);
       }
 
-      if (ordersRes.success && ordersRes.data) {
+      if (ordersRes.status === 'fulfilled' && ordersRes.value && ordersRes.value.success && ordersRes.value.data) {
         const tbody = document.getElementById('recent-orders-tbody');
         if (tbody) {
-          tbody.innerHTML = ordersRes.data.map(o => `
+          tbody.innerHTML = ordersRes.value.data.map(o => `
             <tr>
               <td><a href="/admin/orders.html" class="font-bold text-accent">${App.escapeHtml(o.orderNumber)}</a></td>
-              <td>${App.escapeHtml(o.user ? o.user.name : 'Guest')}</td>
+              <td>${App.escapeHtml((o.shippingAddress && o.shippingAddress.name) || (o.user ? o.user.name : 'Customer'))}</td>
               <td>${new Date(o.createdAt).toLocaleDateString('en-IN')}</td>
               <td class="font-bold">${App.formatPrice(o.total)}</td>
               <td>${Orders.getStatusBadge(o.status)}</td>
@@ -97,7 +120,7 @@ const AdminApp = {
         }
       }
     } catch (err) {
-      App.showNotification('Failed to load dashboard metrics', 'error');
+      console.warn('Dashboard metrics initialization notice:', err);
     }
   },
 

@@ -14,7 +14,9 @@ const API = {
 
     // Attach stored user ID so user session never drops during serverless restarts
     try {
-      const stored = localStorage.getItem('fire_user');
+      const isAdminRequest = endpoint.startsWith('/admin') || (typeof window !== 'undefined' && window.location.pathname.startsWith('/admin'));
+      const storageKey = isAdminRequest ? 'fire_admin_user' : 'fire_user';
+      const stored = localStorage.getItem(storageKey);
       if (stored) {
         const u = JSON.parse(stored);
         if (u && u._id) {
@@ -34,10 +36,12 @@ const API = {
       const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        if (response.status === 401 && !endpoint.includes('/auth/login') && !endpoint.includes('/admin/login')) {
+        if ((response.status === 401 || response.status === 403) && !endpoint.includes('/auth/login') && !endpoint.includes('/admin/login')) {
           // If on admin page, redirect to admin login
-          if (window.location.pathname.startsWith('/admin') && !window.location.pathname.includes('/admin/login.html')) {
+          if (typeof window !== 'undefined' && window.location.pathname.startsWith('/admin') && !window.location.pathname.includes('/admin/login.html')) {
+            localStorage.removeItem('fire_admin_user');
             window.location.href = '/admin/login.html';
+            return;
           }
         }
         throw {
