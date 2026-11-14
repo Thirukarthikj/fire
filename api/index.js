@@ -15,6 +15,8 @@ module.exports = (req, res) => {
   if (initError) {
     res.setHeader('Content-Type', 'application/json');
     return res.status(500).json({
+      success: false,
+      message: 'Server initialization error: ' + (initError.message || 'Unknown'),
       error: 'Backend Initialization Error',
       details: initError
     });
@@ -25,8 +27,9 @@ module.exports = (req, res) => {
   } catch (err) {
     res.setHeader('Content-Type', 'application/json');
     return res.status(500).json({
+      success: false,
+      message: 'Runtime error: ' + (err.message || 'Unknown'),
       error: 'Runtime Error',
-      message: err.message,
       stack: err.stack
     });
   }

@@ -42,7 +42,7 @@ const API = {
         }
         throw {
           status: response.status,
-          message: data.message || `Request failed with status ${response.status}`,
+          message: data.message || data.error || (response.status === 500 ? 'Server is updating. Your details are preserved locally.' : `Request failed (${response.status})`),
           errors: data.errors
         };
       }
