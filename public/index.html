@@ -1,501 +1,579 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Siva's Pyro Paradise | Best Crackers Shop in Sivakasi | Wholesale Price</title>
-  <meta name="description" content="Siva's Pyro Paradise Sivakasi - Buy premium quality crackers, fancy fireworks, and gift boxes at wholesale prices. Direct from Sivakasi factory. Order online now!">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="/css/sivas.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/sivas.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <title>Siva's Pyro Paradise | Best Crackers Shop in Sivakasi | Wholesale Price</title>
+    <meta name="title" content="Siva's Pyro Paradise | Best Crackers Shop in Sivakasi | Wholesale Price">
+    <meta name="description" content="Siva's Pyro Paradise Sivakasi - Buy premium quality crackers, fancy fireworks, and gift boxes at wholesale prices. Direct from Sivakasi factory. Order online now!">
+    <meta name="keywords" content="Siva's Pyro Paradise, Sivakasi Crackers, Online Crackers Booking, Wholesale Fireworks Sivakasi, Best Cracker Shop, Deepavali Crackers, Fancy Fireworks, Siva's Crackers Sivakasi">
+    <meta name="author" content="GK Creations">
 </head>
 <body>
-  <div id="notification-container"></div>
+  <!-- Floating Image-Only Button -->
+<div id="floatingOrderWrapper" class="floating-img-wrapper">
+  <a href="/price-list.html" class="order-img-btn" id="orderBtn" title="Order Now">
+    <img 
+      src="/assets/img/on.png" 
+      alt="Order Now" 
+      class="main-order-img"
+    />
+    <span class="shine-effect"></span>
+  </a>
+</div>
 
-  <!-- Floating Animated Image Order Now Button (Siva's Pyro Paradise Signature) -->
-  <div id="floatingOrderWrapper" class="floating-img-wrapper">
-    <a href="/price-list.html" class="order-img-btn" id="orderBtn" title="Order Now">
-      <img src="/assets/img/on.png" alt="Order Now" class="main-order-img" />
-      <span class="shine-effect"></span>
+<style>
+  /* Container Positioning */
+  .floating-img-wrapper {
+    position: fixed;
+    bottom: 130px;
+    right: 30px;
+    z-index: 99999;
+  }
+
+  /* Main Button Styling (Wrapper for Image) */
+  .order-img-btn {
+    display: block;
+    width: 70px;
+    height: 70px;
+    background: transparent;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    
+    /* Animations */
+    animation: 
+      floatAnimation 3s ease-in-out infinite, 
+      pulseRing 2s infinite;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  /* Your PNG Image Styling */
+  .main-order-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: cartWiggle 2.5s infinite ease-in-out;
+  }
+
+  /* Hover & Click States */
+  .order-img-btn:hover {
+    transform: scale(1.15) !important;
+  }
+
+  .order-img-btn:active {
+    transform: scale(0.95) !important;
+  }
+
+  /* Light Shine Sweep Animation across the image */
+  .shine-effect {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    transform: skewX(-30deg);
+    animation: shineSweep 3s infinite;
+    pointer-events: none;
+  }
+
+  /* keyframe Animations */
+  @keyframes floatAnimation {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes pulseRing {
+    0% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(255, 65, 108, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 65, 108, 0); }
+  }
+
+  @keyframes cartWiggle {
+    0%, 100% { transform: rotate(0deg); }
+    10% { transform: rotate(-8deg); }
+    20% { transform: rotate(8deg); }
+    30% { transform: rotate(0deg); }
+  }
+
+  @keyframes shineSweep {
+    0% { left: -150%; }
+    15%, 100% { left: 150%; }
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 600px) {
+    .floating-img-wrapper {
+      bottom: 220px;
+      right: 25px;
+    }
+    .order-img-btn {
+      width: 75px;
+      height: 75px;
+    }
+  }
+</style>
+
+   <nav class="spp-main-header">
+    <div class="spp-nav-container">
+        <div class="spp-brand-logo">
+            <a href="/"><img src="/assets/img/new logo.png" alt="Siva's Pyro Paradise"></a>
+        </div>
+
+        <ul class="spp-nav-menu-list" id="sppMobileMenu">
+            <li class="spp-menu-item"><a href="/" class="spp-menu-link">Home</a></li>
+            <li class="spp-menu-item"><a href="/price-list.html" class="spp-menu-link">Order Now</a></li>
+            <li class="spp-menu-item"><a href="/about.html" class="spp-menu-link">About Us</a></li>
+            <li class="spp-menu-item"><a href="/products.html" class="spp-menu-link">Services</a></li>
+            <li class="spp-menu-item"><a href="/faq.html?tab=safety" class="spp-menu-link">Safety Tips</a></li>
+            <li class="spp-menu-item"><a href="/faq.html?tab=delivery" class="spp-menu-link">Shipping</a></li>
+            <li class="spp-menu-item"><a href="/contact.html" class="spp-menu-link">Contact</a></li>
+            <li class="spp-menu-item"><a href="/assets/Price list 2026 updated.pdf" download="Sivas_Price_List_2026.pdf" class="spp-menu-link">Download</a></li>
+        </ul>
+
+        <div class="spp-hamburger-trigger" id="sppNavToggle">
+            <span class="spp-bar"></span>
+            <span class="spp-bar"></span>
+            <span class="spp-bar"></span>
+        </div>
+    </div>
+</nav>
+<a href="https://wa.me/919655982583?text=Hi%2C%20I%20want%20to%20order%20crackers" class="whatsapp-modern" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  <span class="tooltip">Chat with us</span>
+</a>
+    <div class="navbar">
+        <div class="subnavbar">
+            <div class="logo">
+                <a href="/"><img src="/assets/img/new logo.png" alt="Siva's Pyro Paradise"></a>
+            </div>
+            <div class="links">
+                <a href="/" class="active">Home</a>
+                <a href="/price-list.html">Order Now</a>
+                <a href="/about.html">About Us</a>
+                <a href="/products.html">Services</a>
+                <a href="/faq.html?tab=safety">Safety Tips</a>
+                <a href="/faq.html?tab=delivery">Shipping</a>
+                <a href="/contact.html">Contact</a>
+                <a href="/assets/Price list 2026 updated.pdf" download="Sivas_Price_List_2026.pdf">Download</a>
+            </div>
+        </div>
+    </div>
+    <div class="banner">
+        <div class="subbanner">
+            <div class="ban1">
+                <h1>Grab the Diwali Deals</h1>
+                <h2>Biggest Range. Best Prices. Guaranteed Brilliance.</h2>
+                <p>Celebrate the spirit of Diwali with Siva’s Pyro Paradise. We bring you a curated collection of high-performance aerial displays and traditional favorites, ensuring every spark creates a lifelong memory.Every box undergoes a multi-level quality check to ensure a hassle-free celebration for your kids.Hurry, our premium aerial collection is selling out fast—grab yours today.</p>
+                <p>100% Quality <i class="fa-solid fa-circle"></i> Fast Delivery <i class="fa-solid fa-circle"></i> Trusted Brand <i class="fa-solid fa-circle"></i> Shipping All Over India </p>
+                <a href="/price-list.html">Shop our collections</a>
+            </div>
+            <div class="ban2">
+                <img src="/assets/img/trynew.png" alt="Diwali Fireworks">
+            </div>
+        </div>
+    </div>
+    <div class="countown">
+        <div class="countdown-wrapper">
+  <div class="time-box">
+    <span id="days">00</span>
+    <p>Days</p>
+  </div>
+  <div class="time-box">
+    <span id="hours">00</span>
+    <p>Hours</p>
+  </div>
+  <div class="time-box">
+    <span id="minutes">00</span>
+    <p>Minutes</p>
+  </div>
+  <div class="time-box">
+    <span id="seconds">00</span>
+    <p>Seconds</p>
+  </div>
+</div>
+
+    </div>
+    <div class="section-heading">
+  <h2>Our Cracker Collections</h2>
+  <p>Premium quality fireworks to brighten your Diwali celebrations</p>
+</div>
+    <div class="collections">
+        <div class="subcollections">
+            <div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/one sound.png" alt="One Sound Crackers">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
+    </div>
+    
+    <a href="/price-list.html#one-sound-section" class="product-overlay">
+      <h3 class="product-name">ONE SOUND CRACKERS</h3>
+      <p>Click to Order</p>
     </a>
   </div>
-
-  <!-- Modern Floating WhatsApp Button -->
-  <a href="https://wa.me/919655982583?text=Hi%2C%20I%20want%20to%20order%20crackers" class="whatsapp-modern" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-    <span class="tooltip">Chat with us</span>
-  </a>
-
-  <!-- Mobile Header Drawer -->
-  <nav class="spp-main-header">
-    <div class="spp-nav-container">
-      <div class="spp-brand-logo">
-        <a href="/"><img src="/assets/img/new logo.png" alt="Siva's Pyro Paradise"></a>
-      </div>
-      <ul class="spp-nav-menu-list" id="sppMobileMenu">
-        <li class="spp-menu-item"><a href="/" class="spp-menu-link">Home</a></li>
-        <li class="spp-menu-item"><a href="/price-list.html" class="spp-menu-link">Order Now</a></li>
-        <li class="spp-menu-item"><a href="/products.html" class="spp-menu-link">Collections</a></li>
-        <li class="spp-menu-item"><a href="/about.html" class="spp-menu-link">About Us</a></li>
-        <li class="spp-menu-item"><a href="/faq.html?tab=safety" class="spp-menu-link">Safety Tips</a></li>
-        <li class="spp-menu-item"><a href="/faq.html?tab=delivery" class="spp-menu-link">Shipping</a></li>
-        <li class="spp-menu-item"><a href="/contact.html" class="spp-menu-link">Contact</a></li>
-        <li class="spp-menu-item"><a href="/price-list.html" class="spp-menu-link">Download</a></li>
-        <li class="spp-menu-item"><a href="/cart.html" class="spp-menu-link">Cart (<span id="mobile-cart-count">0</span>)</a></li>
-      </ul>
-      <div class="spp-hamburger-trigger" id="sppNavToggle" onclick="document.getElementById('sppMobileMenu').classList.toggle('active')">
-        <span class="spp-bar"></span>
-        <span class="spp-bar"></span>
-        <span class="spp-bar"></span>
-      </div>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/image.png" alt="Bijili Crackers">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
     </div>
-  </nav>
-
-  <!-- Desktop Main Navbar -->
-  <div class="navbar">
-    <div class="subnavbar">
-      <div class="logo">
-        <a href="/"><img src="/assets/img/new logo.png" alt="Siva's Pyro Paradise"></a>
-      </div>
-      <div class="links">
-        <a href="/" class="active">Home</a>
-        <a href="/price-list.html">Order Now</a>
-        <a href="/products.html">Collections</a>
-        <a href="/about.html">About Us</a>
-        <a href="/faq.html?tab=safety">Safety Tips</a>
-        <a href="/faq.html?tab=delivery">Shipping</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/price-list.html">Download</a>
-        <a href="/cart.html" style="font-weight:700; color:#dc2626;">Cart (<span id="cart-count">0</span>)</a>
-        <div id="user-menu" style="display:inline-block; margin-left: 10px;">
-          <a href="/login.html" class="btn-signin-pill" style="padding: 6px 14px; font-size: 0.82rem;">Sign In</a>
-        </div>
-      </div>
+    
+    <a href="/price-list.html#bijili-section" class="product-overlay">
+      <h3 class="product-name">BIJILI CRACKERS</h3>
+      <p>Click to Order</p>
+    </a>
+  </div>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/bomb.webp" alt="Atom Bomb Crackers">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
     </div>
+    
+    <a href="/price-list.html#bomb-section" class="product-overlay">
+      <h3 class="product-name">ATOM BOMB CRACKERS</h3>
+      <p>Click to Order</p>
+    </a>
   </div>
-
-  <!-- Hero Banner (Siva's Pyro Paradise Signature 2-Column Banner) -->
-  <div class="banner">
-    <div class="subbanner">
-      <div class="ban1">
-        <h1>Grab the Diwali Deals</h1>
-        <h2>Biggest Range. Best Prices. Guaranteed Brilliance.</h2>
-        <p>Celebrate the spirit of Diwali with Siva’s Pyro Paradise. We bring you a curated collection of high-performance aerial displays and traditional favorites, ensuring every spark creates a lifelong memory. Every box undergoes a multi-level quality check to ensure a hassle-free celebration for your kids. Hurry, our premium aerial collection is selling out fast—grab yours today.</p>
-        <p style="font-weight: 600; color: #1e293b;">100% Quality <i class="fa-solid fa-circle" style="font-size:6px; margin: 0 4px; color:#db902d;"></i> Fast Delivery <i class="fa-solid fa-circle" style="font-size:6px; margin: 0 4px; color:#db902d;"></i> Trusted Brand <i class="fa-solid fa-circle" style="font-size:6px; margin: 0 4px; color:#db902d;"></i> Shipping All Over India</p>
-        <a href="/price-list.html">Shop our collections</a>
-      </div>
-      <div class="ban2">
-        <img src="/assets/img/trynew.png" alt="Diwali Fireworks Collections">
-      </div>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/PAPER.png" alt="Paper Bomb Crackers">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
     </div>
+    
+    <a href="/price-list.html#adiyal-section" class="product-overlay">
+      <h3 class="product-name">PAPER BOMB CRACKERS</h3>
+      <p>Click to Order</p>
+    </a>
   </div>
-
-  <!-- Live Diwali Countdown Timer -->
-  <div class="countown">
-    <div class="countdown-wrapper">
-      <div class="time-box">
-        <span id="days">00</span>
-        <p>Days</p>
-      </div>
-      <div class="time-box">
-        <span id="hours">00</span>
-        <p>Hours</p>
-      </div>
-      <div class="time-box">
-        <span id="minutes">00</span>
-        <p>Minutes</p>
-      </div>
-      <div class="time-box">
-        <span id="seconds">00</span>
-        <p>Seconds</p>
-      </div>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/flower pots.png" alt="Flower Pots Crackers">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
     </div>
+    
+    <a href="/price-list.html#flowerpots-section" class="product-overlay">
+      <h3 class="product-name">FLOWER POTS CRACKERS</h3>
+      <p>Click to Order</p>
+    </a>
   </div>
-
-  <!-- Section Heading: Our Cracker Collections -->
-  <div class="section-heading">
-    <h2>Our Cracker Collections</h2>
-    <p>Premium quality fireworks to brighten your Diwali celebrations</p>
-  </div>
-
-  <!-- 10 Authentic Category Cards Grid (Golden Yellow Section) -->
-  <div class="collections">
-    <div class="subcollections">
-      <!-- 1. One Sound Crackers -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/one sound.png" alt="One Sound Crackers">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=single-sound" class="product-overlay">
-            <h3 class="product-name">ONE SOUND CRACKERS</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 2. Bijili Crackers -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/image.png" alt="Bijili Crackers">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=loose-crackers" class="product-overlay">
-            <h3 class="product-name">BIJILI CRACKERS</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 3. Atom Bomb Crackers -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/bomb.webp" alt="Atom Bomb Crackers">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=bombs" class="product-overlay">
-            <h3 class="product-name">ATOM BOMB CRACKERS</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 4. Paper Bomb Crackers -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/PAPER.png" alt="Paper Bomb Crackers">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=bombs" class="product-overlay">
-            <h3 class="product-name">PAPER BOMB CRACKERS</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 5. Flower Pots Crackers -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/flower pots.png" alt="Flower Pots Crackers">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=flower-pots" class="product-overlay">
-            <h3 class="product-name">FLOWER POTS CRACKERS</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 6. Ground Chakkars -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/GROUND.png" alt="Ground Chakkars">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=ground-chakkars" class="product-overlay">
-            <h3 class="product-name">GROUND CHAKKARS</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 7. Twinkling Stars -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/TWINKLERS.png" alt="Twinkling Stars">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=sparklers" class="product-overlay">
-            <h3 class="product-name">TWINKLING STARS</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 8. Rocket Bomb -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/ROCKET.jpg" alt="Rocket Bomb">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=rockets" class="product-overlay">
-            <h3 class="product-name">ROCKET BOMB</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 9. Fancy Sky Shots -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/fancy.png" alt="Fancy Sky Shots">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=sky-shots" class="product-overlay">
-            <h3 class="product-name">FANCY SKY SHOTS</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
-
-      <!-- 10. Gift Boxes -->
-      <div class="product-card">
-        <div class="card-image-wrapper">
-          <div class="watercolor-bg">
-            <img src="/assets/img/gift boxes.png" alt="Gift Boxes">
-            <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
-          </div>
-          <a href="/products.html?category=gift-boxes" class="product-overlay">
-            <h3 class="product-name">GIFT BOXES</h3>
-            <p>Click to Order</p>
-          </a>
-        </div>
-      </div>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/GROUND.png" alt="Ground Chakkars">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
     </div>
+    
+    <a href="/price-list.html#ground-chakkar-section" class="product-overlay">
+      <h3 class="product-name">GROUND CHAKKARS</h3>
+      <p>Click to Order</p>
+    </a>
   </div>
-
-  <!-- Contact Our Support Team Section -->
-  <div class="section-heading">
-    <h2>Contact Our Support Team</h2>
-    <p>Premium Fireworks Crackers for Memorable Celebrations</p>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/TWINKLERS.png" alt="Twinkling Stars">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
+    </div>
+    
+    <a href="/price-list.html#twinkling-stars-section" class="product-overlay">
+      <h3 class="product-name">TWINKLING STARS</h3>
+      <p>Click to Order</p>
+    </a>
   </div>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/ROCKET.jpg" alt="Rocket Bomb">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
+    </div>
+    
+    <a href="/price-list.html#rocket-air-section" class="product-overlay">
+      <h3 class="product-name">ROCKET BOMB</h3>
+      <p>Click to Order</p>
+    </a>
+  </div>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/fancy.png" alt="Fancy Sky Shots">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
+    </div>
+    
+    <a href="/price-list.html#mega-aerial-section" class="product-overlay">
+      <h3 class="product-name">FANCY SKY SHOTS</h3>
+      <p>Click to Order</p>
+    </a>
+  </div>
+</div>
+<div class="product-card">
+  <div class="card-image-wrapper">
+    <div class="watercolor-bg">
+        <img src="/assets/img/gift boxes.png" alt="Gift Boxes">
+       <span class="heart-icon" onclick="toggleFavorite(event)">&#10084;</span>
+    </div>
+    
+    <a href="/price-list.html#gift-boxes-section" class="product-overlay">
+      <h3 class="product-name">GIFT BOXES</h3>
+      <p>Click to Order</p>
+    </a>
+  </div>
+</div>
 
-  <div class="incards">
+
+        </div>
+    </div> 
+    <div class="section-heading">
+  <h2>Contact Our Support Team</h2>
+  <p>Premium Fireworks Crackers for Memorable Celebrations</p>
+</div> 
+<div class="incards">
     <div class="subincards">
       <div class="info-card card-blue">
         <div class="icon-container">
-          <i class="fas fa-headset"></i>
+            <i class="fas fa-headset"></i>
         </div>
         <h2>Customer Support</h2>
         <div class="phone-numbers">
-          +91 96559 82583<br>
-          +91 63791 03683
+            +91 96559 82583<br>
+            +91 63791 03683
         </div>
-        <a href="tel:+919655982583" class="call-btn">Click to Call</a>
-      </div>
+        <a href="tel:+916380203018" class="call-btn">Click to Call</a>
+    </div>
 
-      <div class="info-card card-green">
+    <div class="info-card card-green">
         <div class="icon-container">
-          <i class="fas fa-credit-card"></i>
+            <i class="fas fa-credit-card"></i>
         </div>
         <h2>Order Confirm</h2>
         <div class="phone-numbers">
-          +91 96559 82583<br>
-          +91 63791 03683
+            +91 96559 82583<br>
+            +91 63791 03683
         </div>
-        <a href="https://wa.me/919655982583?text=Hi%2C%20confirm%20my%20order" target="_blank" rel="noopener" class="call-btn">WhatsApp Confirm</a>
-      </div>
+        <a href="tel:+916380203018" class="call-btn">Click to Call</a>
+    </div>
 
-      <div class="info-card card-orange">
+    <div class="info-card card-orange">
         <div class="icon-container">
-          <i class="fas fa-truck"></i>
+            <i class="fas fa-truck"></i>
         </div>
         <h2>Payment Confirm</h2>
         <div class="phone-numbers">
-          +91 96559 82583<br>
-          +91 63791 03683
+            +91 96559 82583<br>
+            +91 63791 03683
         </div>
-        <a href="https://wa.me/919655982583?text=Hi%2C%20sharing%20payment%20screenshot" target="_blank" rel="noopener" class="call-btn">Send Screenshot</a>
-      </div>
-
-      <div class="info-card card-purple">
+        <a href="tel:+916380203018" class="call-btn">Click to Call</a>
+    </div>  
+    <div class="info-card card-purple">
         <div class="icon-container">
-          <i class="fas fa-shipping-fast"></i>
+            <i class="fas fa-shipping-fast"></i>
         </div>
         <h2>Dispatch Details</h2>
         <div class="phone-numbers">
-          +91 96559 82583<br>
-          +91 63791 03683
+            +91 96559 82583<br>
+            +91 63791 03683
         </div>
-        <a href="tel:+919655982583" class="call-btn">Track Order</a>
-      </div>
+        <a href="tel:+919655982583" class="call-btn">Click to Call</a>
     </div>
-  </div>
-
-  <!-- Promotional Banner Image 1 -->
-  <div class="justban">
-    <div class="subjustban">
-      <img src="/assets/img/subjust.jpg" alt="Festive Crackers Banner">
+</div>
+</div>
+    <div class="justban">
+        <div class="subjustban">
+            <img src="/assets/img/subjust.jpg" alt="Diwali Fireworks Banner">
+        </div>
     </div>
-  </div>
-
-  <!-- Download Price List Section -->
-  <div class="section-heading">
-    <h2>Download Our Pricelist</h2>
-    <p>Download our latest price list and choose the best fireworks for a safe &amp; joyful Diwali.</p>
-  </div>
-
-  <div class="download-section">
+     <div class="section-heading">
+  <h2>Download Our Pricelist</h2>
+  <p>Download our latest price list and choose the best fireworks for a safe & joyful Diwali.</p>
+</div> 
+    <div class="download-section">
     <div class="glass-bar">
-      <div class="file-info">
-        <div class="file-icon">
-          <i class="fas fa-file-invoice-dollar"></i>
-          <span class="badge">NEW</span>
+        <div class="file-info">
+            <div class="file-icon">
+                <i class="fas fa-file-invoice-dollar"></i>
+                <span class="badge">NEW</span>
+            </div>
+            <div class="text-content">
+                <h3>Wholesale Price List 2026</h3>
+                <p>Updated: Feb 2026 • PDF (2.4 MB)</p>
+            </div>
         </div>
-        <div class="text-content">
-          <h3>Wholesale Price List 2026</h3>
-          <p>Updated: Feb 2026 • PDF (8.4 MB)</p>
+        
+        <div class="download-action">
+            <a href="/assets/Price list 2026 updated.pdf" download="Sivas_Price_List_2026.pdf" class="download-link">
+                <span>DOWNLOAD NOW</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
         </div>
-      </div>
-      <div class="download-action">
-        <a href="/assets/Price list 2026 updated.pdf" download="Sivas_Price_List_2026.pdf" class="download-link">
-          <span>DOWNLOAD NOW</span>
-          <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
     </div>
-  </div>
-
-  <!-- Promotional Banner Image 2 -->
-  <div class="justban">
-    <div class="subjustban">
-      <img src="/assets/img/new.jpg" alt="Diwali Crackers Celebration">
-    </div>
-  </div>
-
-  <!-- Main Footer (Siva's Pyro Paradise Dark Professional Theme) -->
-  <div class="main-footer-wrapper">
-    <div class="footer-content-inner">
-      <div class="footer-col about-col">
-        <img src="/assets/img/footerlogo.png" alt="Siva's Pyro Paradise" class="footer-logo">
-        <p class="brand-desc">Celebrate the spirit of Diwali with India's most trusted aerial display collection. Guaranteed brilliance in every spark.</p>
-        <div class="social-links">
-          <a href="https://wa.me/919655982583" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+</div>
+    
+<div class="justban">
+        <div class="subjustban">
+            <img src="/assets/img/new.jpg" alt="Fireworks Celebration">
         </div>
-      </div>
-
-      <div class="footer-col location-col">
-        <h4 class="footer-heading">Our Location</h4>
-        <div class="location-card">
-          <div class="map-icon-wrapper">
+    </div>
+    <div class="main-footer-wrapper">
+        <div class="footer-content-inner">
+            
+            <div class="footer-col about-col">
+                <img src="/assets/img/footerlogo.png" alt="Siva's Pyro Paradise" class="footer-logo">
+                <p class="brand-desc">Celebrate the spirit of Diwali with India's most trusted aerial display collection. Guaranteed brilliance in every spark.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/919655982583"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col location-col">
+    <h4 class="footer-heading">Our Location</h4>
+    <div class="location-card">
+        <div class="map-icon-wrapper">
             <i class="fas fa-map-marked-alt"></i>
-          </div>
-          <div class="address-details">
-            <p><strong>Main Factory Outlet:</strong></p>
-            <p>Sivakasi to Sattur Main Road,</p>
-            <p>Konampatti (Near Check Post)</p>
-          </div>
-          <a href="https://www.google.com/maps/place/Iniya+Crackers/@9.4111664,77.8509289,17z/data=!4m10!1m2!2m1!1sIniya+Crackers!3m6!1s0x3b06cbed8eaf215d:0xb3a2c148fe28a18a!8m2!3d9.4111676!4d77.855693!15sCg5Jbml5YSBDcmFja2Vyc5IBEGNvcnBvcmF0ZV9vZmZpY2XgAQA!16s%2Fg%2F11w1k05rh8" target="_blank" rel="noopener" class="map-link">
-            <i class="fas fa-directions"></i> Get Directions
-          </a>
         </div>
-      </div>
+        <div class="address-details">
+            <p><strong>Main Factory Outlet:</strong></p>
+             <p>Sivakasi to Sattur Main Road,</p>
+            <p>Konampatti (Near Check Post)</p>
+        </div>
+        <a href="https://www.google.com/maps/place/Iniya+Crackers/@9.4111664,77.8509289,17z/data=!4m10!1m2!2m1!1sIniya+Crackers!3m6!1s0x3b06cbed8eaf215d:0xb3a2c148fe28a18a!8m2!3d9.4111676!4d77.855693!15sCg5Jbml5YSBDcmFja2Vyc5IBEGNvcnBvcmF0ZV9vZmZpY2XgAQA!16s%2Fg%2F11w1k05rh8?hl=en&entry=ttu&g_ep=EgoyMDI2MDIwNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener" class="map-link">
+            <i class="fas fa-directions"></i> Get Directions
+        </a>
+    </div>
+</div>
 
-      <div class="footer-col links-col">
-        <h4 class="footer-heading">Quick Links</h4>
-        <ul class="footer-menu">
-          <li><a href="/">Home</a></li>
-          <li><a href="/products.html">Shop Collections</a></li>
-          <li><a href="/price-list.html">Order Online</a></li>
-          <li><a href="/faq.html?tab=safety">Safety Tips</a></li>
-          <li><a href="/faq.html?tab=delivery">Shipping Policy</a></li>
-          <li><a href="/assets/Price list 2026 updated.pdf" download>Download Price List</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col hours-col">
-        <h4 class="footer-heading">Business Hours</h4>
-        <div class="hours-list">
-          <div class="hour-item">
+            <div class="footer-col links-col">
+                <h4 class="footer-heading">Quick Links</h4>
+                <ul class="footer-menu">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/price-list.html">Shop Collections</a></li>
+                    <li><a href="/faq.html?tab=safety">Safety Tips</a></li>
+                    <li><a href="/faq.html?tab=delivery">Shipping Policy</a></li>
+                    <li><a href="/assets/Price list 2026 updated.pdf" download="Sivas_Price_List_2026.pdf">Download Price List</a></li>
+                </ul>
+            </div>
+            <div class="footer-col hours-col">
+    <h4 class="footer-heading">Business Hours</h4>
+    <div class="hours-list">
+        <div class="hour-item">
             <span class="day">Mon - Sat:</span>
             <span class="time">09:00 AM - 08:00 PM</span>
-          </div>
-          <div class="hour-item">
+        </div>
+        <div class="hour-item">
             <span class="day">Sunday:</span>
             <span class="time highlight">10:00 AM - 02:00 PM</span>
-          </div>
-          <p class="seasonal-note">* Open 24/7 during Diwali Season</p>
         </div>
-      </div>
-
-      <div class="footer-col contact-col">
-        <h4 class="footer-heading">Get in Touch</h4>
-        <div class="contact-mini-card">
-          <div class="mini-icon"><i class="fas fa-phone-alt"></i></div>
-          <div class="mini-text">
-            <span>+91 96559 82583</span>
-            <span>+91 63791 03683</span>
-          </div>
-        </div>
-        <div class="contact-mini-card email-card">
-          <div class="mini-icon"><i class="fas fa-envelope"></i></div>
-          <div class="mini-text">
-            <span>sivaspyroparadise@gmail.com</span>
-          </div>
-        </div>
-      </div>
+        <p class="seasonal-note">* Open 24/7 during Diwali Season</p>
     </div>
+</div>
+            <div class="footer-col contact-col">
+                <h4 class="footer-heading">Get in Touch</h4>
+                <div class="contact-mini-card">
+                    <div class="mini-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="mini-text">
+                        <span>+91 96559 82583</span>
+                        <span>+91 63791 03683</span>
+                    </div>
+                </div>
+                <div class="contact-mini-card email-card">
+                    <div class="mini-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="mini-text">
+                        <span>sivaspyroparadise@gmail.com</span>
+                    </div>
+                </div>
+            </div>
 
-    <div class="footer-bottom">
-      <p>&copy; 2026 Siva's Pyro Paradise. All Rights Reserved. Sivakasi, Tamil Nadu.</p>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Siva's Pyro Paradise. All Rights Reserved & Developed By GK Creations In Sivakasi.</p>
+        </div>
     </div>
-  </div>
+    <script>
+        // Favorite heart toggle
+function toggleFavorite(event) {
+  event.stopPropagation();
+  const heart = event.target;
+  heart.style.color = heart.style.color === 'red' ? 'white' : 'red';
+}
 
-  <script src="/js/api.js"></script>
-  <script src="/js/app.js"></script>
-  <script>
-    // Favorite heart toggle
-    function toggleFavorite(event) {
-      event.stopPropagation();
-      const heart = event.target;
-      heart.style.color = heart.style.color === 'red' ? 'white' : 'red';
-    }
+// Live Diwali Countdown Timer
+const diwaliDate = new Date("2026-11-08T00:00:00").getTime();
 
-    // Diwali Live Countdown Timer
-    const diwaliDate = new Date("2026-11-08T00:00:00").getTime();
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = diwaliDate - now;
+const timer = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = diwaliDate - now;
 
-      if (distance < 0) {
-        clearInterval(timer);
-        const wrap = document.querySelector(".countdown-wrapper");
-        if (wrap) wrap.innerHTML = "<h2 style='color:white'>✨ Happy Diwali ✨</h2>";
-        return;
-      }
+  if (distance < 0) {
+    clearInterval(timer);
+    document.querySelector(".countdown-wrapper").innerHTML =
+      "<h2 style='color:white'>✨ Happy Diwali ✨</h2>";
+    return;
+  }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      const d = document.getElementById("days");
-      const h = document.getElementById("hours");
-      const m = document.getElementById("minutes");
-      const s = document.getElementById("seconds");
-      if (d) d.innerText = String(days).padStart(2, "0");
-      if (h) h.innerText = String(hours).padStart(2, "0");
-      if (m) m.innerText = String(minutes).padStart(2, "0");
-      if (s) s.innerText = String(seconds).padStart(2, "0");
-    }, 1000);
+  document.getElementById("days").innerText = String(days).padStart(2, "0");
+  document.getElementById("hours").innerText = String(hours).padStart(2, "0");
+  document.getElementById("minutes").innerText = String(minutes).padStart(2, "0");
+  document.getElementById("seconds").innerText = String(seconds).padStart(2, "0");
 
-    // Sync live cart count
-    document.addEventListener('DOMContentLoaded', () => {
-      try {
-        const cart = JSON.parse(localStorage.getItem('fire_cart') || '{"items":[]}');
-        const count = cart.items ? cart.items.reduce((sum, item) => sum + (item.quantity || 1), 0) : 0;
-        const countEl = document.getElementById('cart-count');
-        const mobEl = document.getElementById('mobile-cart-count');
-        if (countEl) countEl.textContent = count;
-        if (mobEl) mobEl.textContent = count;
-      } catch (e) {}
+}, 1000);
+
+// Hamburger menu toggle
+const sppToggleBtn = document.getElementById('sppNavToggle');
+const sppSideMenu = document.getElementById('sppMobileMenu');
+
+if (sppToggleBtn && sppSideMenu) {
+    sppToggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        sppSideMenu.classList.toggle('spp-is-active');
+        this.classList.toggle('spp-cross-icon');
     });
-  </script>
+
+    window.addEventListener('scroll', () => {
+        if (sppSideMenu.classList.contains('spp-is-active')) {
+            sppSideMenu.classList.remove('spp-is-active');
+            sppToggleBtn.classList.remove('spp-cross-icon');
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        if (!sppSideMenu.contains(event.target) && !sppToggleBtn.contains(event.target)) {
+            sppSideMenu.classList.remove('spp-is-active');
+            sppToggleBtn.classList.remove('spp-cross-icon');
+        }
+    });
+}
+    </script>
 </body>
 </html>
