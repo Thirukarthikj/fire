@@ -20,6 +20,7 @@ const userRoutes = require('./routes/userRoutes');
 const addressRoutes = require('./routes/addressRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 const checkoutRoutes = require('./routes/checkoutRoutes');
+const checkoutController = require('./controllers/checkoutController');
 const paymentRoutes = require('./routes/paymentRoutes');
 const couponRoutes = require('./routes/couponRoutes');
 const supportRoutes = require('./routes/supportRoutes');
@@ -120,6 +121,12 @@ app.use('/api/content', contentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/wishlist', wishlistRoutes);
 app.use('/api/reviews', reviewRoutes);
+
+// Direct customer checkout endpoints (from cartsum.html)
+const multer = require('multer');
+const memoryUpload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 10 * 1024 * 1024 } });
+app.post(['/place-order', '/api/place-order'], checkoutController.placeDirectOrder);
+app.post(['/send-email', '/api/send-email'], memoryUpload.any(), checkoutController.sendOrderEmail);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

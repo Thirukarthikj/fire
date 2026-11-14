@@ -458,7 +458,7 @@ const AdminApp = {
         tbody.innerHTML = res.data.map(o => `
           <tr>
             <td><strong>${App.escapeHtml(o.orderNumber)}</strong></td>
-            <td>${App.escapeHtml(o.user ? o.user.name : 'Customer')}</td>
+            <td>${App.escapeHtml((o.shippingAddress && o.shippingAddress.name) || (o.user ? o.user.name : 'Customer'))}</td>
             <td>${new Date(o.createdAt).toLocaleDateString('en-IN')}</td>
             <td class="font-bold">${App.formatPrice(o.total)}</td>
             <td>${Orders.getStatusBadge(o.status)}</td>
@@ -493,6 +493,17 @@ const AdminApp = {
 
       document.getElementById('modal-order-status-badge').innerHTML = Orders.getStatusBadge(order.status);
       document.getElementById('modal-payment-status-badge').innerHTML = Orders.getPaymentBadge(order.paymentStatus);
+
+      // Populate ordered items
+      const itemsListEl = document.getElementById('modal-order-items-list');
+      if (itemsListEl && Array.isArray(order.items)) {
+        itemsListEl.innerHTML = order.items.map((it, idx) => `
+          <div style="display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed #e5e7eb;">
+            <span>${idx + 1}. ${App.escapeHtml(it.name || (it.product && it.product.name) || 'Fireworks Item')} × ${it.quantity}</span>
+            <span style="font-weight: 600; color: #ea580c;">₹${((it.price || 0) * (it.quantity || 1)).toFixed(2)}</span>
+          </div>
+        `).join('');
+      }
 
       // Populate valid status transition options
       const statusSelect = document.getElementById('new-order-status');
