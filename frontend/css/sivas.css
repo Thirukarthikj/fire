@@ -2085,3 +2085,316 @@
     height: 75px;
   }
 }
+
+/* ========================================================
+   SCROLLING HERO SLIDER SECTION
+   ======================================================== */
+.hero-slider-section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.hero-slider-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.hero-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1), transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(40px);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 20px;
+}
+
+.hero-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.hero-slide .subbanner {
+  height: 100%;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 30px;
+  padding: 20px 30px;
+}
+
+.hero-slide .ban1 {
+  width: 58%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+}
+
+.hero-slide .ban2 {
+  width: 38%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-slide .ban2 img {
+  max-width: 100%;
+  max-height: 480px;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.1));
+}
+
+.hero-slide.active .ban2 img {
+  animation: heroArtFloat 4s ease-in-out infinite alternate;
+}
+
+@keyframes heroArtFloat {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+.hero-pill-tag {
+  display: inline-block;
+  background: rgba(219, 144, 45, 0.12);
+  color: #db902d;
+  border: 1px solid rgba(219, 144, 45, 0.3);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 14px;
+  border-radius: 50px;
+}
+
+.hero-slide .ban1 h1 {
+  font-size: 52px;
+  color: rgba(0, 0, 0, 0.9);
+  line-height: 1.1;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.hero-slide .ban1 h2 {
+  font-size: 22px;
+  color: #c2410c;
+  line-height: 1.4;
+  font-weight: 700;
+  margin: 0;
+}
+
+.hero-slide .ban1 p {
+  font-size: 15px;
+  color: #334155;
+  line-height: 1.75;
+  margin: 0;
+  text-align: left;
+}
+
+.hero-badges-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 6px 0 8px;
+}
+
+.hero-badges-row span {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e293b;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+}
+
+.hero-badges-row span i {
+  color: #16a34a;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.hero-actions a.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 32px;
+  text-decoration: none;
+  background: linear-gradient(45deg, #db902d, #ffae42);
+  color: #ffffff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  border-radius: 6px;
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 4px 16px rgba(219, 144, 45, 0.35);
+}
+
+.hero-actions a.hero-btn-primary:hover {
+  background: linear-gradient(45deg, #ffae42, #db902d);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 24px rgba(219, 144, 45, 0.55);
+  color: #ffffff;
+}
+
+.hero-actions a.hero-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 26px;
+  text-decoration: none;
+  background: #ffffff;
+  color: #0f172a;
+  border: 1.5px solid #cbd5e1;
+  font-weight: 700;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.hero-actions a.hero-btn-outline:hover {
+  border-color: #0f172a;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.hero-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  cursor: pointer;
+  z-index: 15;
+  transition: all 0.25s ease;
+  font-size: 16px;
+}
+
+.hero-nav-btn:hover {
+  background: #db902d;
+  color: #ffffff;
+  border-color: #db902d;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(219, 144, 45, 0.4);
+}
+
+.hero-nav-btn.prev-btn {
+  left: 20px;
+}
+
+.hero-nav-btn.next-btn {
+  right: 20px;
+}
+
+.hero-dots {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 15;
+}
+
+.hero-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-dot.active {
+  width: 32px;
+  border-radius: 10px;
+  background: #db902d;
+}
+
+@media (max-width: 900px) {
+  .hero-slider-wrapper {
+    min-height: auto;
+  }
+  .hero-slide {
+    position: relative;
+    padding: 20px 15px 45px;
+  }
+  .hero-slide .subbanner {
+    flex-direction: column-reverse;
+    padding: 10px;
+    gap: 20px;
+  }
+  .hero-slide .ban1 {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-slide .ban1 h1 {
+    font-size: 32px;
+    text-align: center;
+    width: 100%;
+  }
+  .hero-slide .ban1 h2 {
+    font-size: 18px;
+    text-align: center;
+    width: 100%;
+  }
+  .hero-slide .ban1 p {
+    text-align: center;
+    font-size: 14px;
+  }
+  .hero-slide .ban2 {
+    width: 85%;
+    max-height: 260px;
+  }
+  .hero-slide .ban2 img {
+    max-height: 240px;
+  }
+  .hero-badges-row {
+    justify-content: center;
+  }
+  .hero-actions {
+    justify-content: center;
+  }
+  .hero-nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+  .hero-nav-btn.prev-btn { left: 8px; }
+  .hero-nav-btn.next-btn { right: 8px; }
+}
