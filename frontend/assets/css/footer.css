@@ -1,476 +1,417 @@
 /* ========================================================
-   Siva's Pyro Paradise — Redesigned Global Footer
-   Modern, Clean, Responsive
-   v20261114_02
+   Siva's Pyro Paradise — Scalloped Diwali Festive Footer
+   Matches User Reference (Sanfort Scalloped Style + Diwali Theme)
+   v20261114_03
    ======================================================== */
 
-/* ── Footer CTA Strip ─────────────────────────────────── */
-.spp-footer-cta-strip {
-  background: linear-gradient(135deg, #e67e22 0%, #d35400 100%);
-  padding: 40px 24px;
-  text-align: center;
+/* ── Container ────────────────────────────────────────── */
+.diwali-footer-wrapper {
+  width: 100%;
   position: relative;
+  margin-top: 60px;
+  font-family: 'Poppins', sans-serif;
   overflow: hidden;
 }
 
-.spp-footer-cta-strip::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url('/assets/img/about_hero_bg.jpg') center/cover no-repeat;
-  opacity: 0.12;
-  pointer-events: none;
-}
-
-.spp-footer-cta-inner {
-  max-width: 860px;
-  margin: 0 auto;
+/* ── Scalloped Top Wave ────────────────────────────────── */
+.diwali-footer-scallop-top {
+  width: 100%;
+  height: 60px;
+  display: block;
+  line-height: 0;
+  overflow: hidden;
   position: relative;
   z-index: 2;
 }
 
-.spp-footer-cta-inner h3 {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 28px;
-  font-weight: 700;
+.diwali-footer-scallop-top svg {
+  display: block;
+  width: 100%;
+  height: 60px;
+  vertical-align: bottom;
+}
+
+/* ── Main Festive Body ─────────────────────────────────── */
+.diwali-footer-body {
+  background: linear-gradient(180deg, #b71c1c 0%, #a01422 60%, #890f1b 100%);
   color: #ffffff;
-  margin-bottom: 8px;
-  line-height: 1.3;
-}
-
-.spp-footer-cta-inner p {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 22px;
-  font-weight: 400;
-}
-
-.spp-footer-cta-btns {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.spp-cta-btn-order {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #ffffff;
-  color: #c0392b;
-  font-size: 14.5px;
-  font-weight: 700;
-  padding: 12px 28px;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-}
-
-.spp-cta-btn-order:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
-  background: #fef9f0;
-  color: #c0392b;
-}
-
-.spp-cta-btn-whatsapp {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(255, 255, 255, 0.15);
-  border: 1.5px solid rgba(255, 255, 255, 0.5);
-  color: #ffffff;
-  font-size: 14.5px;
-  font-weight: 600;
-  padding: 11px 26px;
-  border-radius: 50px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  backdrop-filter: blur(4px);
-}
-
-.spp-cta-btn-whatsapp:hover {
-  background: rgba(255, 255, 255, 0.28);
-  border-color: #ffffff;
-  transform: translateY(-3px);
-  color: #ffffff;
-}
-
-/* ── Main Footer Body ─────────────────────────────────── */
-.spp-footer {
-  background: #0c1018;
-  color: #ffffff;
-  font-family: 'Poppins', sans-serif;
-  padding: 72px 24px 0;
+  padding: 20px 24px 30px;
   position: relative;
+  z-index: 1;
 }
 
-.spp-footer::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(243, 156, 18, 0.4), transparent);
-}
-
-.spp-footer-grid {
-  max-width: 1260px;
+.diwali-footer-inner {
+  max-width: 1300px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1.4fr 0.9fr 0.9fr 1.2fr;
-  gap: 48px;
+  grid-template-columns: 1.15fr 1.15fr 0.9fr 1.5fr 1.1fr;
+  align-items: center;
+  gap: 32px;
 }
 
-/* ── Brand Column ─────────────────────────────────────── */
-.spp-footer-brand .spp-footer-logo {
-  max-width: 185px;
-  margin-bottom: 18px;
-  display: block;
-}
-
-.spp-footer-brand .spp-footer-tagline {
+/* ── Typography & Links ────────────────────────────────── */
+.diwali-footer-col {
   font-size: 13.5px;
   line-height: 1.7;
-  color: #9ca3af;
-  margin-bottom: 24px;
-  max-width: 320px;
 }
 
-/* Trust Badges Row */
-.spp-trust-badges {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-}
-
-.spp-trust-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 6px 12px;
-  border-radius: 6px;
-  font-size: 11.5px;
-  font-weight: 600;
-  color: #d1d5db;
-  transition: all 0.25s ease;
-}
-
-.spp-trust-badge:hover {
-  border-color: rgba(243, 156, 18, 0.4);
-  background: rgba(243, 156, 18, 0.08);
-}
-
-.spp-trust-badge i {
-  color: #f39c12;
-  font-size: 13px;
-}
-
-/* Social Row */
-.spp-footer-socials {
-  display: flex;
-  gap: 10px;
-}
-
-.spp-social-icon {
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #d1d5db;
-  font-size: 15px;
-  transition: all 0.3s ease;
-  text-decoration: none;
-}
-
-.spp-social-icon:hover {
-  background: #f39c12;
-  border-color: #f39c12;
-  color: #ffffff;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(243, 156, 18, 0.3);
-}
-
-/* ── Link Columns ─────────────────────────────────────── */
-.spp-footer-col-title {
-  font-size: 15px;
-  font-weight: 700;
-  color: #ffffff;
-  margin-bottom: 22px;
-  position: relative;
-  padding-bottom: 10px;
-  letter-spacing: 0.3px;
-}
-
-.spp-footer-col-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 28px;
-  height: 2.5px;
-  background: #f39c12;
-  border-radius: 2px;
-}
-
-.spp-footer-links {
+.diwali-footer-links-list {
   list-style: none;
   padding: 0;
+  margin: 0 0 16px 0;
+}
+
+.diwali-footer-links-list li {
+  margin-bottom: 7px;
+}
+
+.diwali-footer-links-list li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  display: inline-block;
+}
+
+.diwali-footer-links-list li a:hover {
+  color: #ffe066;
+  transform: translateX(4px);
+  text-shadow: 0 0 8px rgba(255, 224, 102, 0.4);
+}
+
+/* Contact Info in Column 1 */
+.diwali-contact-block {
+  margin-top: 14px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.diwali-contact-line {
+  color: #ffffff;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.diwali-yellow-highlight {
+  color: #ffe066 !important;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.diwali-yellow-highlight:hover {
+  color: #ffffff !important;
+  text-decoration: underline;
+}
+
+/* ── Mascot Center Column ──────────────────────────────── */
+.diwali-mascot-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.diwali-mascot-img {
+  width: 120px;
+  height: 150px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.25));
+  animation: mascotHover 3.5s ease-in-out infinite;
+  transition: transform 0.3s ease;
+}
+
+.diwali-mascot-img:hover {
+  transform: scale(1.08) rotate(3deg);
+}
+
+@keyframes mascotHover {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.diwali-mascot-badge {
+  display: inline-block;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ffe066;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+/* ── Office / Factory Location Column ──────────────────── */
+.diwali-address-group {
+  margin-bottom: 14px;
+}
+
+.diwali-address-group strong {
+  display: block;
+  color: #ffffff;
+  font-size: 13.5px;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.diwali-address-group p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 12.5px;
+  line-height: 1.5;
   margin: 0;
 }
 
-.spp-footer-links li {
-  margin-bottom: 12px;
-}
-
-.spp-footer-links li a {
-  color: #9ca3af;
-  font-size: 13.5px;
-  font-weight: 400;
+.diwali-address-group a {
+  color: #ffe066;
   text-decoration: none;
-  transition: all 0.25s ease;
+  font-size: 12px;
+  font-weight: 600;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
+  margin-top: 3px;
+  transition: color 0.2s ease;
 }
 
-.spp-footer-links li a::before {
-  content: '';
-  display: inline-block;
-  width: 0;
-  height: 1.5px;
-  background: #f39c12;
-  transition: width 0.25s ease;
+.diwali-address-group a:hover {
+  color: #ffffff;
+  text-decoration: underline;
 }
 
-.spp-footer-links li a:hover {
-  color: #f39c12;
-  transform: translateX(4px);
-}
-
-.spp-footer-links li a:hover::before {
-  width: 12px;
-}
-
-/* ── Contact Column ───────────────────────────────────── */
-.spp-footer-contact-item {
+/* ── Column 4: Yellow CTA Button & Social Icons ────────── */
+.diwali-actions-col {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 20px;
+  gap: 16px;
 }
 
-.spp-footer-contact-icon {
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  background: rgba(243, 156, 18, 0.1);
-  border: 1px solid rgba(243, 156, 18, 0.2);
-  border-radius: 10px;
-  display: flex;
+/* The Sunny Yellow Franchise-Style Button */
+.diwali-yellow-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #f39c12;
-  font-size: 16px;
+  gap: 8px;
+  background: #ffde59;
+  color: #6a0e16;
+  font-size: 13.5px;
+  font-weight: 800;
+  padding: 12px 26px;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  transition: all 0.25s ease;
+  letter-spacing: 0.3px;
+  text-transform: capitalize;
+  border: 1px solid #ffd53d;
+}
+
+.diwali-yellow-btn:hover {
+  background: #ffffff;
+  color: #b71c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+/* White Round Social Icons Row */
+.diwali-social-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.diwali-social-btn {
+  width: 34px;
+  height: 34px;
+  background: #ffffff;
+  color: #b71c1c;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.diwali-social-btn:hover {
+  background: #ffde59;
+  color: #890f1b;
+  transform: translateY(-3px) scale(1.08);
+}
+
+/* WhatsApp / Price List Action Pill */
+.diwali-app-callout {
+  margin-top: 2px;
+}
+
+.diwali-app-title {
+  color: #ffe066;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.diwali-badges-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.diwali-store-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 11.5px;
+  text-decoration: none;
   transition: all 0.25s ease;
 }
 
-.spp-footer-contact-item:hover .spp-footer-contact-icon {
-  background: #f39c12;
-  color: #ffffff;
-  border-color: #f39c12;
+.diwali-store-badge:hover {
+  background: rgba(0, 0, 0, 0.55);
+  border-color: #ffe066;
+  color: #ffe066;
+  transform: translateY(-2px);
 }
 
-.spp-footer-contact-info {
+.diwali-store-badge i {
+  font-size: 17px;
+  color: #25d366;
+}
+
+.diwali-store-badge .badge-text {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  line-height: 1.2;
 }
 
-.spp-footer-contact-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: #6b7280;
+.diwali-store-badge .badge-text small {
+  font-size: 9px;
+  opacity: 0.8;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
 }
 
-.spp-footer-contact-value {
-  font-size: 14px;
-  color: #e5e7eb;
-  text-decoration: none;
-  transition: color 0.2s ease;
-  line-height: 1.5;
-}
-
-.spp-footer-contact-value:hover {
-  color: #f39c12;
-}
-
-/* Hours mini card */
-.spp-footer-hours-card {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 10px;
-  padding: 14px 16px;
-  margin-top: 8px;
-}
-
-.spp-footer-hours-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px 0;
-  font-size: 13px;
-}
-
-.spp-footer-hours-row .spp-day {
-  color: #9ca3af;
-}
-
-.spp-footer-hours-row .spp-time {
-  color: #e5e7eb;
-  font-weight: 500;
-}
-
-.spp-footer-hours-row .spp-time.spp-highlight {
-  color: #f39c12;
-  font-weight: 600;
-}
-
-.spp-footer-diwali-note {
-  margin-top: 10px;
+.diwali-store-badge .badge-text strong {
   font-size: 12px;
-  color: #f87171;
-  font-style: italic;
-  display: flex;
-  align-items: center;
-  gap: 5px;
 }
 
-/* ── Footer Divider ───────────────────────────────────── */
-.spp-footer-divider {
-  max-width: 1260px;
-  margin: 48px auto 0;
-  border: none;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.07);
-}
-
-/* ── Footer Bottom Bar ────────────────────────────────── */
-.spp-footer-bottom {
-  max-width: 1260px;
-  margin: 0 auto;
-  padding: 22px 0;
+/* ── Bottom Bar ────────────────────────────────────────── */
+.diwali-footer-bottom {
+  max-width: 1300px;
+  margin: 30px auto 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.85);
 }
 
-.spp-footer-copyright {
-  font-size: 12.5px;
-  color: #6b7280;
-  line-height: 1.5;
-}
-
-.spp-footer-copyright a {
-  color: #9ca3af;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.spp-footer-copyright a:hover {
-  color: #f39c12;
-}
-
-.spp-footer-bottom-links {
+.diwali-footer-bottom-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 14px;
 }
 
-.spp-footer-bottom-links a {
-  font-size: 12.5px;
-  color: #6b7280;
+.diwali-footer-bottom-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.diwali-footer-bottom-right a {
+  color: #ffe066;
   text-decoration: none;
-  transition: color 0.2s ease;
+  font-weight: 600;
 }
 
-.spp-footer-bottom-links a:hover {
-  color: #f39c12;
+.diwali-footer-bottom-right a:hover {
+  text-decoration: underline;
+}
+
+/* Little Round Avatar Mascot in Bottom Right */
+.diwali-bottom-avatar {
+  width: 28px;
+  height: 28px;
+  background: #ffffff;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  border: 1.5px solid #ffde59;
+}
+
+.diwali-bottom-avatar img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
 }
 
 /* ========================================================
-   Responsive
+   Responsive Media Queries
    ======================================================== */
-@media screen and (max-width: 1080px) {
-  .spp-footer-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
+@media screen and (max-width: 1100px) {
+  .diwali-footer-inner {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 28px;
+  }
+  .diwali-mascot-col {
+    grid-column: span 3;
+    order: -1;
+    margin-bottom: 10px;
+  }
+  .diwali-mascot-img {
+    width: 100px;
+    height: 120px;
   }
 }
 
 @media screen and (max-width: 768px) {
-  .spp-footer {
-    padding: 50px 20px 0;
+  .diwali-footer-scallop-top {
+    height: 40px;
   }
-
-  .spp-footer-grid {
+  .diwali-footer-scallop-top svg {
+    height: 40px;
+  }
+  .diwali-footer-inner {
     grid-template-columns: 1fr;
-    gap: 36px;
+    text-align: center;
+    gap: 24px;
   }
-
-  .spp-footer-cta-strip {
-    padding: 32px 20px;
+  .diwali-mascot-col {
+    grid-column: span 1;
   }
-
-  .spp-footer-cta-inner h3 {
-    font-size: 22px;
+  .diwali-footer-links-list li a:hover {
+    transform: none;
   }
-
-  .spp-footer-bottom {
+  .diwali-actions-col {
+    align-items: center;
+  }
+  .diwali-social-row {
+    justify-content: center;
+  }
+  .diwali-badges-wrap {
+    align-items: center;
+  }
+  .diwali-footer-bottom {
     flex-direction: column;
     text-align: center;
-    padding: 18px 0;
-  }
-
-  .spp-footer-bottom-links {
-    justify-content: center;
-  }
-
-  .spp-trust-badges {
-    justify-content: center;
-  }
-
-  .spp-footer-socials {
-    justify-content: center;
-  }
-
-  .spp-footer-brand .spp-footer-tagline {
-    max-width: 100%;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .spp-footer-cta-btns {
-    flex-direction: column;
-  }
-
-  .spp-cta-btn-order,
-  .spp-cta-btn-whatsapp {
-    width: 100%;
     justify-content: center;
   }
 }

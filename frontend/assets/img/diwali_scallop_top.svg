@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 90" preserveAspectRatio="none" style="display:block; width:100%; height:auto;">
+    <defs>
+      <linearGradient id="diwaliScallopGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+        <stop offset="0%" stop-color="#c62828" />
+        <stop offset="100%" stop-color="#b71c1c" />
+      </linearGradient>
+    </defs>
+    <!-- Scalloped wave fill -->
+    <path d="M 0,90 L 0,45 A 60,35 0 0,1 120,45 A 60,35 0 0,1 240,45 A 60,35 0 0,1 360,45 A 60,35 0 0,1 480,45 A 60,35 0 0,1 600,45 A 60,35 0 0,1 720,45 A 60,35 0 0,1 840,45 A 60,35 0 0,1 960,45 A 60,35 0 0,1 1080,45 A 60,35 0 0,1 1200,45 A 60,35 0 0,1 1320,45 A 60,35 0 0,1 1440,45 L 1440,90 Z" fill="url(#diwaliScallopGrad)" />
+    <!-- Decorative diyas and sparkles on peaks -->
+    
+      <!-- Diya at x=60 -->
+      <g transform="translate(44, -2)">
+        <!-- Glow filter / halo -->
+        <circle cx="16" cy="4" r="12" fill="#ffd700" opacity="0.35" filter="blur(3px)" />
+        <!-- Flame -->
+        <path d="M 16,0 C 13,4 12,8 14,11 C 15,12 17,12 18,11 C 20,8 19,4 16,0 Z" fill="#ff7a00" />
+        <path d="M 16,3 C 14.5,5 14,7 15,9 C 15.5,9.5 16.5,9.5 17,9 C 18,7 17.5,5 16,3 Z" fill="#ffea00" />
+        <!-- Diya Bowl -->
+        <path d="M 6,11 C 6,17 26,17 26,11 C 26,9 6,9 6,11 Z" fill="#c26a20" />
+        <ellipse cx="16" cy="11" rx="10" ry="2.5" fill="#e88c3a" />
+        <!-- Base rim -->
+        <path d="M 9,14 C 11,16 21,16 23,14" stroke="#8a430e" stroke-width="1.5" fill="none" />
+      </g>
+    
+      <!-- Diya at x=300 -->
+      <g transform="translate(284, -2)">
+        <!-- Glow filter / halo -->
+        <circle cx="16" cy="4" r="12" fill="#ffd700" opacity="0.35" filter="blur(3px)" />
+        <!-- Flame -->
+        <path d="M 16,0 C 13,4 12,8 14,11 C 15,12 17,12 18,11 C 20,8 19,4 16,0 Z" fill="#ff7a00" />
+        <path d="M 16,3 C 14.5,5 14,7 15,9 C 15.5,9.5 16.5,9.5 17,9 C 18,7 17.5,5 16,3 Z" fill="#ffea00" />
+        <!-- Diya Bowl -->
+        <path d="M 6,11 C 6,17 26,17 26,11 C 26,9 6,9 6,11 Z" fill="#c26a20" />
+        <ellipse cx="16" cy="11" rx="10" ry="2.5" fill="#e88c3a" />
+        <!-- Base rim -->
+        <path d="M 9,14 C 11,16 21,16 23,14" stroke="#8a430e" stroke-width="1.5" fill="none" />
+      </g>
+    
+      <!-- Diya at x=540 -->
+      <g transform="translate(524, -2)">
+        <!-- Glow filter / halo -->
+        <circle cx="16" cy="4" r="12" fill="#ffd700" opacity="0.35" filter="blur(3px)" />
+        <!-- Flame -->
+        <path d="M 16,0 C 13,4 12,8 14,11 C 15,12 17,12 18,11 C 20,8 19,4 16,0 Z" fill="#ff7a00" />
+        <path d="M 16,3 C 14.5,5 14,7 15,9 C 15.5,9.5 16.5,9.5 17,9 C 18,7 17.5,5 16,3 Z" fill="#ffea00" />
+        <!-- Diya Bowl -->
+        <path d="M 6,11 C 6,17 26,17 26,11 C 26,9 6,9 6,11 Z" fill="#c26a20" />
+        <ellipse cx="16" cy="11" rx="10" ry="2.5" fill="#e88c3a" />
+        <!-- Base rim -->
+        <path d="M 9,14 C 11,16 21,16 23,14" stroke="#8a430e" stroke-width="1.5" fill="none" />
+      </g>
+    
+      <!-- Diya at x=780 -->
+      <g transform="translate(764, -2)">
+        <!-- Glow filter / halo -->
+        <circle cx="16" cy="4" r="12" fill="#ffd700" opacity="0.35" filter="blur(3px)" />
+        <!-- Flame -->
+        <path d="M 16,0 C 13,4 12,8 14,11 C 15,12 17,12 18,11 C 20,8 19,4 16,0 Z" fill="#ff7a00" />
+        <path d="M 16,3 C 14.5,5 14,7 15,9 C 15.5,9.5 16.5,9.5 17,9 C 18,7 17.5,5 16,3 Z" fill="#ffea00" />
+        <!-- Diya Bowl -->
+        <path d="M 6,11 C 6,17 26,17 26,11 C 26,9 6,9 6,11 Z" fill="#c26a20" />
+        <ellipse cx="16" cy="11" rx="10" ry="2.5" fill="#e88c3a" />
+        <!-- Base rim -->
+        <path d="M 9,14 C 11,16 21,16 23,14" stroke="#8a430e" stroke-width="1.5" fill="none" />
+      </g>
+    
+      <!-- Diya at x=900 -->
+      <g transform="translate(884, -2)">
+        <!-- Glow filter / halo -->
+        <circle cx="16" cy="4" r="12" fill="#ffd700" opacity="0.35" filter="blur(3px)" />
+        <!-- Flame -->
+        <path d="M 16,0 C 13,4 12,8 14,11 C 15,12 17,12 18,11 C 20,8 19,4 16,0 Z" fill="#ff7a00" />
+        <path d="M 16,3 C 14.5,5 14,7 15,9 C 15.5,9.5 16.5,9.5 17,9 C 18,7 17.5,5 16,3 Z" fill="#ffea00" />
+        <!-- Diya Bowl -->
+        <path d="M 6,11 C 6,17 26,17 26,11 C 26,9 6,9 6,11 Z" fill="#c26a20" />
+        <ellipse cx="16" cy="11" rx="10" ry="2.5" fill="#e88c3a" />
+        <!-- Base rim -->
+        <path d="M 9,14 C 11,16 21,16 23,14" stroke="#8a430e" stroke-width="1.5" fill="none" />
+      </g>
+    
+      <!-- Diya at x=1140 -->
+      <g transform="translate(1124, -2)">
+        <!-- Glow filter / halo -->
+        <circle cx="16" cy="4" r="12" fill="#ffd700" opacity="0.35" filter="blur(3px)" />
+        <!-- Flame -->
+        <path d="M 16,0 C 13,4 12,8 14,11 C 15,12 17,12 18,11 C 20,8 19,4 16,0 Z" fill="#ff7a00" />
+        <path d="M 16,3 C 14.5,5 14,7 15,9 C 15.5,9.5 16.5,9.5 17,9 C 18,7 17.5,5 16,3 Z" fill="#ffea00" />
+        <!-- Diya Bowl -->
+        <path d="M 6,11 C 6,17 26,17 26,11 C 26,9 6,9 6,11 Z" fill="#c26a20" />
+        <ellipse cx="16" cy="11" rx="10" ry="2.5" fill="#e88c3a" />
+        <!-- Base rim -->
+        <path d="M 9,14 C 11,16 21,16 23,14" stroke="#8a430e" stroke-width="1.5" fill="none" />
+      </g>
+    
+      <!-- Diya at x=1380 -->
+      <g transform="translate(1364, -2)">
+        <!-- Glow filter / halo -->
+        <circle cx="16" cy="4" r="12" fill="#ffd700" opacity="0.35" filter="blur(3px)" />
+        <!-- Flame -->
+        <path d="M 16,0 C 13,4 12,8 14,11 C 15,12 17,12 18,11 C 20,8 19,4 16,0 Z" fill="#ff7a00" />
+        <path d="M 16,3 C 14.5,5 14,7 15,9 C 15.5,9.5 16.5,9.5 17,9 C 18,7 17.5,5 16,3 Z" fill="#ffea00" />
+        <!-- Diya Bowl -->
+        <path d="M 6,11 C 6,17 26,17 26,11 C 26,9 6,9 6,11 Z" fill="#c26a20" />
+        <ellipse cx="16" cy="11" rx="10" ry="2.5" fill="#e88c3a" />
+        <!-- Base rim -->
+        <path d="M 9,14 C 11,16 21,16 23,14" stroke="#8a430e" stroke-width="1.5" fill="none" />
+      </g>
+    
+      <!-- Sparkle at x=180 -->
+      <g transform="translate(172, 8)">
+        <path d="M 8,0 L 9.5,6 L 16,8 L 9.5,10 L 8,16 L 6.5,10 L 0,8 L 6.5,6 Z" fill="#ffd700" opacity="0.85" />
+        <circle cx="8" cy="8" r="2" fill="#ffffff" />
+      </g>
+    
+      <!-- Sparkle at x=420 -->
+      <g transform="translate(412, 8)">
+        <path d="M 8,0 L 9.5,6 L 16,8 L 9.5,10 L 8,16 L 6.5,10 L 0,8 L 6.5,6 Z" fill="#ffd700" opacity="0.85" />
+        <circle cx="8" cy="8" r="2" fill="#ffffff" />
+      </g>
+    
+      <!-- Sparkle at x=660 -->
+      <g transform="translate(652, 8)">
+        <path d="M 8,0 L 9.5,6 L 16,8 L 9.5,10 L 8,16 L 6.5,10 L 0,8 L 6.5,6 Z" fill="#ffd700" opacity="0.85" />
+        <circle cx="8" cy="8" r="2" fill="#ffffff" />
+      </g>
+    
+      <!-- Sparkle at x=1020 -->
+      <g transform="translate(1012, 8)">
+        <path d="M 8,0 L 9.5,6 L 16,8 L 9.5,10 L 8,16 L 6.5,10 L 0,8 L 6.5,6 Z" fill="#ffd700" opacity="0.85" />
+        <circle cx="8" cy="8" r="2" fill="#ffffff" />
+      </g>
+    
+      <!-- Sparkle at x=1260 -->
+      <g transform="translate(1252, 8)">
+        <path d="M 8,0 L 9.5,6 L 16,8 L 9.5,10 L 8,16 L 6.5,10 L 0,8 L 6.5,6 Z" fill="#ffd700" opacity="0.85" />
+        <circle cx="8" cy="8" r="2" fill="#ffffff" />
+      </g>
+    
+  </svg>

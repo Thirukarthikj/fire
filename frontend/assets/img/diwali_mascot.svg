@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" width="130" height="160" style="display:block; margin: 0 auto; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.2));">
+  <defs>
+    <!-- Sparkler sparkle glow -->
+    <radialGradient id="sparkGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff59d" stop-opacity="1"/>
+      <stop offset="40%" stop-color="#ffb300" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#ff6f00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dhotiGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb300"/>
+      <stop offset="100%" stop-color="#f57f17"/>
+    </linearGradient>
+    <linearGradient id="kurtaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd54f"/>
+      <stop offset="100%" stop-color="#ffca28"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Big Sparkler Burst in Hand -->
+  <g transform="translate(125, 45)">
+    <circle cx="0" cy="0" r="32" fill="url(#sparkGlow)" />
+    <!-- Sparks shooting out -->
+    <path d="M 0,-24 L 2,-8 L 0,0 L -2,-8 Z" fill="#ffffff"/>
+    <path d="M 0,24 L 2,8 L 0,0 L -2,8 Z" fill="#ffffff"/>
+    <path d="M -24,0 L -8,2 L 0,0 L -8,-2 Z" fill="#ffffff"/>
+    <path d="M 24,0 L 8,2 L 0,0 L 8,-2 Z" fill="#ffffff"/>
+    <path d="M -16,-16 L -5,-5 L 0,0 L -5,-5 Z" fill="#fff59d"/>
+    <path d="M 16,16 L 5,5 L 0,0 L 5,5 Z" fill="#fff59d"/>
+    <path d="M -16,16 L -5,5 L 0,0 L -5,5 Z" fill="#fff59d"/>
+    <path d="M 16,-16 L 5,-5 L 0,0 L 5,-5 Z" fill="#fff59d"/>
+    <!-- Yellow star center -->
+    <circle cx="0" cy="0" r="5" fill="#ffffff"/>
+    <!-- Sparkler rod -->
+    <line x1="0" y1="0" x2="-22" y2="40" stroke="#757575" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Mascot Body -->
+  <!-- Legs -->
+  <rect x="62" y="145" width="12" height="30" rx="6" fill="#f5d0a9"/>
+  <rect x="86" y="145" width="12" height="30" rx="6" fill="#f5d0a9"/>
+  <!-- Mojaris / Traditional Shoes -->
+  <path d="M 58,172 C 58,168 76,168 76,172 L 78,176 C 78,178 56,178 56,176 Z" fill="#d84315"/>
+  <path d="M 82,172 C 82,168 100,168 100,172 L 102,176 C 102,178 80,178 80,176 Z" fill="#d84315"/>
+
+  <!-- Festive Dhoti / Pants -->
+  <path d="M 56,118 C 56,118 70,122 80,122 C 90,122 104,118 104,118 L 100,148 C 94,152 86,152 80,146 C 74,152 66,152 60,148 Z" fill="url(#dhotiGrad)"/>
+  <!-- Gold sash border -->
+  <path d="M 58,118 C 70,124 90,124 102,118" stroke="#ffeb3b" stroke-width="3" fill="none"/>
+
+  <!-- Left Arm (waving joyfully) -->
+  <path d="M 58,88 C 42,92 34,78 30,70" stroke="#f5d0a9" stroke-width="10" stroke-linecap="round" fill="none"/>
+  <!-- Left Hand -->
+  <circle cx="28" cy="68" r="7" fill="#f5d0a9"/>
+
+  <!-- Festive Kurta -->
+  <path d="M 52,82 L 64,124 L 96,124 L 108,82 C 98,78 62,78 52,82 Z" fill="url(#kurtaGrad)"/>
+  <!-- Kurta decorative buttons & neckline -->
+  <path d="M 74,80 C 74,88 86,88 86,80" stroke="#c62828" stroke-width="2.5" fill="none"/>
+  <circle cx="80" cy="94" r="2" fill="#c62828"/>
+  <circle cx="80" cy="103" r="2" fill="#c62828"/>
+  <circle cx="80" cy="112" r="2" fill="#c62828"/>
+
+  <!-- Right Arm (holding sparkler) -->
+  <path d="M 102,88 C 112,88 116,84 104,80" stroke="#f5d0a9" stroke-width="9" stroke-linecap="round" fill="none"/>
+  <!-- Right Hand -->
+  <circle cx="104" cy="84" r="6" fill="#f5d0a9"/>
+
+  <!-- Head & Neck -->
+  <rect x="74" y="68" width="12" height="14" fill="#f5d0a9"/>
+  <!-- Face -->
+  <circle cx="80" cy="54" r="22" fill="#f5d0a9"/>
+
+  <!-- Hair (cute celebratory style) -->
+  <path d="M 58,50 C 58,28 102,28 102,50 C 96,38 64,38 58,50 Z" fill="#3e2723"/>
+  <path d="M 58,46 C 56,40 64,34 72,36 C 80,32 92,34 98,40 C 102,46 100,52 100,52 C 94,42 66,42 58,46 Z" fill="#2d1d19"/>
+
+  <!-- Cute Eyes (sparkling with joy) -->
+  <ellipse cx="73" cy="52" rx="3.5" ry="4.5" fill="#1b1b1b"/>
+  <circle cx="74.5" cy="50.5" r="1.5" fill="#ffffff"/>
+  <ellipse cx="87" cy="52" rx="3.5" ry="4.5" fill="#1b1b1b"/>
+  <circle cx="88.5" cy="50.5" r="1.5" fill="#ffffff"/>
+
+  <!-- Cheerful Smile -->
+  <path d="M 74,62 Q 80,68 86,62" stroke="#b71c1c" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+  <!-- Rosy Cheeks -->
+  <circle cx="68" cy="57" r="3.5" fill="#ff8a80" opacity="0.6"/>
+  <circle cx="92" cy="57" r="3.5" fill="#ff8a80" opacity="0.6"/>
+
+  <!-- Festive Bindi / Tilak (Traditional Indian celebration mark) -->
+  <ellipse cx="80" cy="44" rx="2" ry="3.5" fill="#d32f2f"/>
+  <circle cx="80" cy="44" r="1" fill="#ffeb3b"/>
+</svg>
