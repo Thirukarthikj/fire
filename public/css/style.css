@@ -2480,3 +2480,432 @@ textarea.form-control {
     gap: 4px 10px;
   }
 }
+
+/* ==========================================================================
+   SIVA'S PYRO PARADISE INSPIRED DESIGN SYSTEM
+   Visual-first, minimal text clutter, high-impact imagery, simple & direct
+   ========================================================================== */
+
+/* 1. Dramatic Photographic Hero */
+.pyro-hero {
+  position: relative;
+  background: linear-gradient(rgba(10, 15, 30, 0.74), rgba(10, 15, 30, 0.88)),
+              url('https://images.unsplash.com/photo-1498931299472-f7a63a5a1cfa?w=1600&auto=format&fit=crop&q=80') center/cover no-repeat;
+  color: #ffffff;
+  padding: 68px 0 76px;
+  text-align: center;
+  border-bottom: 3px solid #dc2626;
+}
+
+.pyro-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #dc2626;
+  color: #ffffff;
+  padding: 6px 18px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.35);
+}
+
+.pyro-hero-title {
+  font-size: clamp(2.2rem, 5.2vw, 3.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.pyro-hero-title span {
+  color: #fbbf24;
+}
+
+.pyro-hero-subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #f1f5f9;
+  font-weight: 500;
+  max-width: 680px;
+  margin: 0 auto 28px;
+  line-height: 1.5;
+}
+
+.pyro-hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 36px;
+}
+
+.pyro-btn-primary {
+  background: #dc2626;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 13px 28px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+  transition: all var(--transition-fast);
+}
+
+.pyro-btn-primary:hover {
+  background: #b91c1c;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.5);
+}
+
+.pyro-btn-outline {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 13px 26px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(4px);
+  transition: all var(--transition-fast);
+}
+
+.pyro-btn-outline:hover {
+  background: #ffffff;
+  color: #0f172a !important;
+  border-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+.pyro-btn-whatsapp {
+  background: #16a34a;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 13px 26px;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35);
+  transition: all var(--transition-fast);
+}
+
+.pyro-btn-whatsapp:hover {
+  background: #15803d;
+  transform: translateY(-2px);
+}
+
+.pyro-hero-trust {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.pyro-trust-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.pyro-trust-pill span {
+  color: #fbbf24;
+  font-weight: 800;
+}
+
+/* 2. Image-Rich Category Grid (Cracker Collections) */
+.pyro-category-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.pyro-cat-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-xs);
+}
+
+.pyro-cat-card:hover {
+  transform: translateY(-4px);
+  border-color: #dc2626;
+  box-shadow: 0 12px 24px -4px rgba(220, 38, 38, 0.14);
+}
+
+.pyro-cat-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  background: #0f172a;
+}
+
+.pyro-cat-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.pyro-cat-card:hover .pyro-cat-img-wrap img {
+  transform: scale(1.08);
+}
+
+.pyro-cat-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.03em;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.pyro-cat-body {
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.pyro-cat-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.pyro-cat-sub {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin-bottom: 12px;
+}
+
+.pyro-cat-cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #dc2626;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.pyro-cat-card:hover .pyro-cat-cta {
+  color: #b91c1c;
+}
+
+/* 3. Support Grid (Customer Support, Order Confirm, Payment, Dispatch) */
+.pyro-support-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.pyro-support-card {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 20px;
+  text-align: center;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-xs);
+}
+
+.pyro-support-card:hover {
+  transform: translateY(-2px);
+  border-color: #dc2626;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+}
+
+.pyro-support-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fef2f2;
+  color: #dc2626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-weight: 800;
+  font-size: 1rem;
+}
+
+.pyro-support-title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.pyro-support-phone {
+  font-size: 0.88rem;
+  color: #475569;
+  font-weight: 600;
+  margin-bottom: 12px;
+  display: block;
+}
+
+.pyro-support-btn {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #dc2626;
+  background: #fef2f2;
+  padding: 5px 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.pyro-support-btn:hover {
+  background: #dc2626;
+  color: #ffffff;
+}
+
+/* 4. Download Price List Card */
+.pyro-download-box {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  border-radius: var(--radius-xl);
+  padding: 44px;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.pyro-download-left {
+  max-width: 600px;
+}
+
+.pyro-download-badge {
+  display: inline-block;
+  background: #dc2626;
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+  letter-spacing: 0.05em;
+}
+
+.pyro-download-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.pyro-download-desc {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  margin-bottom: 22px;
+}
+
+.pyro-download-right {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 26px 36px;
+  text-align: center;
+}
+
+/* 5. Floating WhatsApp Button */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 995;
+  background: #25d366;
+  color: #ffffff !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  text-decoration: none;
+  box-shadow: 0 4px 18px rgba(37, 211, 102, 0.45);
+  transition: all var(--transition-fast);
+}
+
+.floating-whatsapp:hover {
+  background: #20ba5a;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(37, 211, 102, 0.55);
+}
+
+@media (max-width: 1024px) {
+  .pyro-category-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pyro-support-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .pyro-category-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .pyro-cat-img-wrap {
+    height: 130px;
+  }
+  .pyro-cat-body {
+    padding: 10px 12px;
+  }
+  .pyro-cat-title {
+    font-size: 0.92rem;
+  }
+  .pyro-support-grid {
+    grid-template-columns: 1fr;
+  }
+  .pyro-download-box {
+    padding: 24px;
+    text-align: center;
+  }
+  .pyro-download-left {
+    max-width: 100%;
+  }
+  .pyro-download-right {
+    width: 100%;
+  }
+}
