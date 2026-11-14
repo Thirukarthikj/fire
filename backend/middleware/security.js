@@ -9,8 +9,8 @@ const securityHeaders = helmet({
       frameSrc: ["'self'"],
       imgSrc: ["'self'", "data:", "blob:", "https://images.unsplash.com", "https://placehold.co", "https://d8j0ntlcm91z4.cloudfront.net", "https://res.cloudinary.com", "https://*.cloudinary.com"],
       mediaSrc: ["'self'", "https://d8j0ntlcm91z4.cloudfront.net", "https://res.cloudinary.com", "https://*.cloudinary.com", "data:", "blob:"],
-      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
-      fontSrc: ["'self'", "https://fonts.gstatic.com"],
+      styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com", "https://maxcdn.bootstrapcdn.com"],
+      fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com", "https://maxcdn.bootstrapcdn.com"],
       connectSrc: ["'self'"]
     }
   },
