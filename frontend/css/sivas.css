@@ -2003,6 +2003,7 @@
     text-align: center;
     color: #666;
 }
+} /* End of @media screen and (max-width: 768px) */
 
 /* Floating Order Button (Siva's Pyro Paradise Signature) */
 .floating-img-wrapper {
@@ -2203,13 +2204,11 @@
   max-height: 960px;
   overflow: hidden;
   background: #080c16;
-  padding-top: 80px;
-  display: flex;
-  align-items: center;
 }
 
 .hero-slider-track {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
 }
@@ -2221,18 +2220,21 @@
   height: 100%;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1), visibility 1s;
+  pointer-events: none;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
+  z-index: 1;
 }
 
 .hero-slide.active {
-  opacity: 1;
-  visibility: visible;
-  z-index: 2;
+  opacity: 1 !important;
+  visibility: visible !important;
+  pointer-events: auto !important;
+  z-index: 2 !important;
 }
 
 .hero-slide::before {
@@ -2241,16 +2243,16 @@
   inset: 0;
   background: linear-gradient(
     90deg,
-    rgba(10, 15, 29, 0.94) 0%,
-    rgba(10, 15, 29, 0.82) 36%,
-    rgba(10, 15, 29, 0.48) 68%,
-    rgba(10, 15, 29, 0.28) 100%
+    rgba(8, 12, 22, 0.94) 0%,
+    rgba(8, 12, 22, 0.82) 36%,
+    rgba(8, 12, 22, 0.48) 68%,
+    rgba(8, 12, 22, 0.28) 100%
   ),
   linear-gradient(
     180deg,
-    rgba(10, 15, 29, 0.5) 0%,
+    rgba(8, 12, 22, 0.5) 0%,
     transparent 35%,
-    rgba(10, 15, 29, 0.7) 100%
+    rgba(8, 12, 22, 0.7) 100%
   );
   z-index: 1;
 }
@@ -2259,9 +2261,9 @@
   position: relative;
   z-index: 3;
   width: 100%;
-  max-width: 1320px;
+  max-width: 1360px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 100px 48px 40px 48px;
 }
 
 .hero-slide-inner {
