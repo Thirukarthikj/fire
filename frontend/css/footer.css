@@ -1,0 +1,353 @@
+/* ========================================================
+   Siva's Pyro Paradise - Universal Luxury Footer Stylesheet
+   Matches Exact Reference Design: media_1794650584060_c9a9c593.png
+   ======================================================== */
+
+.main-footer-wrapper {
+  width: 100% !important;
+  height: auto !important;
+  margin: 60px 0 0 0 !important;
+  padding: 55px 0 0 0 !important;
+  background: #1a1a1a !important;
+  color: #ffffff !important;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  position: relative !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+.main-footer-wrapper * {
+  box-sizing: border-box;
+}
+
+.main-footer-wrapper .footer-content-inner {
+  max-width: 1350px !important;
+  width: 94% !important;
+  margin: 0 auto !important;
+  padding: 0 15px 45px 15px !important;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: space-between !important;
+  align-items: flex-start !important;
+  flex-wrap: wrap !important;
+  gap: 30px !important;
+  box-sizing: border-box !important;
+  height: auto !important;
+}
+
+/* Individual Columns */
+.main-footer-wrapper .footer-col {
+  padding: 0 !important;
+  margin: 0 !important;
+  flex: 1 1 200px;
+  min-width: 180px;
+}
+
+.main-footer-wrapper .footer-col.about-col {
+  flex: 1.3 1 240px;
+  max-width: 320px;
+}
+
+.main-footer-wrapper .footer-col.location-col {
+  flex: 1.3 1 240px;
+  max-width: 320px;
+}
+
+.main-footer-wrapper .footer-col.links-col {
+  flex: 0.9 1 160px;
+  max-width: 220px;
+}
+
+.main-footer-wrapper .footer-col.hours-col {
+  flex: 1.2 1 230px;
+  max-width: 290px;
+}
+
+.main-footer-wrapper .footer-col.contact-col {
+  flex: 1.3 1 240px;
+  max-width: 310px;
+}
+
+/* Column Headings */
+.main-footer-wrapper .footer-heading {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  color: #ffffff !important;
+  margin: 0 0 22px 0 !important;
+  position: relative !important;
+  padding-bottom: 8px !important;
+  letter-spacing: 0.3px;
+}
+
+.main-footer-wrapper .footer-heading::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 40px !important;
+  height: 3px !important;
+  background: #ff9900 !important;
+  border-radius: 2px !important;
+}
+
+/* Col 1: Brand & Social */
+.main-footer-wrapper .footer-logo {
+  max-width: 180px !important;
+  height: auto !important;
+  margin-bottom: 18px !important;
+  display: block !important;
+}
+
+.main-footer-wrapper .brand-desc {
+  font-size: 13.5px !important;
+  line-height: 1.65 !important;
+  color: #b3b3b3 !important;
+  margin: 0 0 20px 0 !important;
+}
+
+.main-footer-wrapper .social-links {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: center !important;
+}
+
+.main-footer-wrapper .social-links a {
+  background: #ff9900 !important;
+  color: #ffffff !important;
+  width: 36px !important;
+  height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  font-size: 14px !important;
+  text-decoration: none !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 10px rgba(255, 153, 0, 0.25) !important;
+}
+
+.main-footer-wrapper .social-links a:hover {
+  transform: translateY(-4px) !important;
+  background: #e68a00 !important;
+  box-shadow: 0 6px 14px rgba(255, 153, 0, 0.4) !important;
+}
+
+/* Col 2: Location Card */
+.main-footer-wrapper .location-card {
+  background: #232323 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  padding: 18px 20px !important;
+  margin-top: 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+.main-footer-wrapper .location-card:hover {
+  background: rgba(255, 153, 0, 0.06) !important;
+  border-color: #ff9900 !important;
+  transform: translateY(-3px) !important;
+}
+
+.main-footer-wrapper .map-icon-wrapper {
+  font-size: 24px !important;
+  color: #ff9900 !important;
+  margin-bottom: 10px !important;
+  display: block !important;
+}
+
+.main-footer-wrapper .address-details p {
+  font-size: 13px !important;
+  color: #b3b3b3 !important;
+  margin: 3px 0 !important;
+  line-height: 1.45 !important;
+}
+
+.main-footer-wrapper .address-details strong {
+  color: #ffffff !important;
+  display: block !important;
+  margin-bottom: 4px !important;
+  font-size: 13.5px !important;
+}
+
+.main-footer-wrapper .map-link {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-top: 12px !important;
+  color: #ff9900 !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  transition: color 0.3s ease !important;
+}
+
+.main-footer-wrapper .map-link:hover {
+  color: #ffffff !important;
+  text-shadow: 0 0 6px #ff9900 !important;
+}
+
+/* Col 3: Quick Links */
+.main-footer-wrapper .footer-menu {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.main-footer-wrapper .footer-menu li {
+  margin-bottom: 11px !important;
+}
+
+.main-footer-wrapper .footer-menu li a {
+  color: #b3b3b3 !important;
+  text-decoration: none !important;
+  font-size: 13.5px !important;
+  transition: all 0.25s ease !important;
+  display: inline-block !important;
+}
+
+.main-footer-wrapper .footer-menu li a:hover {
+  color: #ff9900 !important;
+  padding-left: 6px !important;
+}
+
+/* Col 4: Business Hours */
+.main-footer-wrapper .hours-list {
+  margin-top: 0 !important;
+}
+
+.main-footer-wrapper .hour-item {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding: 9px 0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  font-size: 13px !important;
+}
+
+.main-footer-wrapper .hour-item .day {
+  color: #b3b3b3 !important;
+  font-weight: 500 !important;
+}
+
+.main-footer-wrapper .hour-item .time {
+  color: #ffffff !important;
+  font-weight: 600 !important;
+}
+
+.main-footer-wrapper .hour-item .time.highlight {
+  color: #ff9900 !important;
+  font-weight: 700 !important;
+}
+
+.main-footer-wrapper .seasonal-note {
+  margin-top: 14px !important;
+  font-size: 12px !important;
+  color: #ff9900 !important;
+  font-style: italic !important;
+  opacity: 0.95 !important;
+}
+
+/* Col 5: Get in Touch Cards */
+.main-footer-wrapper .contact-mini-card {
+  background: #232323 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-left: 4px solid #ff9900 !important;
+  border-radius: 12px !important;
+  padding: 13px 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 14px !important;
+  margin-bottom: 12px !important;
+  transition: all 0.3s ease !important;
+}
+
+.main-footer-wrapper .contact-mini-card:hover {
+  background: rgba(255, 255, 255, 0.09) !important;
+  transform: translateX(4px) !important;
+}
+
+.main-footer-wrapper .mini-icon {
+  font-size: 18px !important;
+  color: #ff9900 !important;
+  flex-shrink: 0 !important;
+}
+
+.main-footer-wrapper .mini-text {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 3px !important;
+}
+
+.main-footer-wrapper .mini-text span,
+.main-footer-wrapper .mini-text a {
+  color: #ffffff !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  text-decoration: none !important;
+  line-height: 1.4 !important;
+  transition: color 0.2s ease !important;
+}
+
+.main-footer-wrapper .mini-text a:hover {
+  color: #ff9900 !important;
+}
+
+/* Bottom Bar */
+.main-footer-wrapper .footer-bottom {
+  width: 100% !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  padding: 22px 20px !important;
+  text-align: center !important;
+  background: #141414 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: auto !important;
+}
+
+.main-footer-wrapper .footer-bottom p {
+  font-size: 12.5px !important;
+  color: #888888 !important;
+  margin: 0 !important;
+  line-height: 1.5 !important;
+  text-align: center !important;
+}
+
+/* Responsive Breakpoints */
+@media screen and (max-width: 1100px) {
+  .main-footer-wrapper .footer-content-inner {
+    gap: 35px 25px !important;
+  }
+  .main-footer-wrapper .footer-col.about-col,
+  .main-footer-wrapper .footer-col.location-col {
+    flex: 1 1 45% !important;
+    max-width: 50% !important;
+  }
+  .main-footer-wrapper .footer-col.links-col,
+  .main-footer-wrapper .footer-col.hours-col,
+  .main-footer-wrapper .footer-col.contact-col {
+    flex: 1 1 30% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main-footer-wrapper {
+    margin-top: 40px !important;
+    padding-top: 40px !important;
+  }
+  .main-footer-wrapper .footer-content-inner {
+    flex-direction: column !important;
+    gap: 30px !important;
+    padding-bottom: 30px !important;
+  }
+  .main-footer-wrapper .footer-col {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex: 1 1 100% !important;
+  }
+  .main-footer-wrapper .location-card,
+  .main-footer-wrapper .contact-mini-card {
+    max-width: 100% !important;
+  }
+}
