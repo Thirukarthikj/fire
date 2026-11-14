@@ -12,25 +12,55 @@
   <link rel="stylesheet" href="/css/responsive.css">
     <link rel="stylesheet" href="/assets/css/footer.css?v=20261114_03">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/assets/css/navbar.css?v=20261114_01" />
 </head>
 <body>
   <div id="notification-container"></div>
 
   <!-- Checkout Focused Header -->
-  <header class="header" id="main-header" style="position: sticky; top: 0; background: #ffffff; border-bottom: 1px solid #e2e8f0; height: auto; padding: 14px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); z-index: 1000;">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-      <a href="/" class="brand-logo">
-        <span class="brand-logo-icon">🎆</span>
-        <div class="brand-logo-text">
-          <span class="brand-name">Fire<span class="brand-name-accent">crackers</span></span>
-          <span class="brand-sub">SIVAKASI DIRECT WHOLESALE</span>
+    <!-- Mobile Navigation Header -->
+    <nav class="spp-main-header">
+      <div class="spp-nav-container">
+        <div class="spp-brand-logo">
+          <a href="/index.html"><img src="/assets/img/new logo.png" alt="Siva's Pyro Paradise"></a>
         </div>
-      </a>
-      <div style="font-size: 0.85rem; font-weight: 700; color: #15803d; display: flex; align-items: center; gap: 6px; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 6px 14px; border-radius: var(--radius-full);">
-        256-Bit SSL Encrypted Checkout
+        <ul class="spp-nav-menu-list" id="sppMobileMenu">
+          <li class="spp-menu-item"><a href="/index.html" class="spp-menu-link ">Home</a></li>
+          <li class="spp-menu-item"><a href="/ordernow.html" class="spp-menu-link active">Order Now</a></li>
+          <li class="spp-menu-item"><a href="/aboutus.html" class="spp-menu-link ">About Us</a></li>
+          <li class="spp-menu-item"><a href="/services.html" class="spp-menu-link ">Services</a></li>
+          <li class="spp-menu-item"><a href="/safetytips.html" class="spp-menu-link ">Safety Tips</a></li>
+          <li class="spp-menu-item"><a href="/shipping.html" class="spp-menu-link ">Shipping</a></li>
+          <li class="spp-menu-item"><a href="/contact.html" class="spp-menu-link ">Contact</a></li>
+          <li class="spp-menu-item"><a href="/download.html" class="spp-menu-link ">Download</a></li>
+        </ul>
+        <div class="spp-hamburger-trigger" id="sppNavToggle" aria-label="Toggle navigation">
+          <span class="spp-bar"></span>
+          <span class="spp-bar"></span>
+          <span class="spp-bar"></span>
+        </div>
       </div>
-    </div>
-  </header>
+    </nav>
+
+    <!-- Desktop Navbar (Matches User Reference Image) -->
+    <header class="navbar">
+      <div class="subnavbar">
+        <div class="logo">
+          <a href="/index.html"><img src="/assets/img/new logo.png" alt="Siva's Pyro Paradise"></a>
+        </div>
+        <nav class="links">
+          <a href="/index.html" class="">Home</a>
+          <a href="/ordernow.html" class="active">Order Now</a>
+          <a href="/aboutus.html" class="">About Us</a>
+          <a href="/services.html" class="">Services</a>
+          <a href="/safetytips.html" class="">Safety Tips</a>
+          <a href="/shipping.html" class="">Shipping</a>
+          <a href="/contact.html" class="">Contact</a>
+          <a href="/download.html" class="">Download</a>
+          <a href="https://wa.me/919655982583?text=Hi%2C%20I%20have%20an%20inquiry%20about%20Diwali%20crackers" target="_blank" rel="noopener" class="nav-whatsapp-pill"><i class="fab fa-brands fa-whatsapp"></i> WhatsApp Enquiry</a>
+        </nav>
+      </div>
+    </header>
 
   <main class="main">
     <div class="container section">
@@ -347,5 +377,6 @@
       Checkout.init();
     });
   </script>
+    <script src="/script.js"></script>
 </body>
 </html>

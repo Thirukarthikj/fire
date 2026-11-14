@@ -1,0 +1,294 @@
+/* ========================================================
+   Siva's Pyro Paradise — Luxury Dark Header & Navbar Stylesheet
+   Matches User Reference Image (White Logo Capsule + Links + WhatsApp Pill)
+   v20261114_01
+   ======================================================== */
+
+/* ── Desktop Navbar ───────────────────────────────────── */
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: rgba(8, 12, 22, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 14px 40px;
+  height: auto;
+  overflow: visible;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+/* For Index Home Hero Overlay */
+.navbar.home-hero-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50;
+  background: linear-gradient(180deg, rgba(8, 12, 22, 0.94) 0%, rgba(8, 12, 22, 0.5) 60%, transparent 100%);
+  padding: 18px 48px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.subnavbar {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* White Capsule Logo Card (Matches Screenshot Exactly) */
+.navbar .logo {
+  background: #ffffff;
+  padding: 6px 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+  height: 52px;
+  width: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.navbar .logo a {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+}
+
+.navbar .logo img {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Center Navigation Links */
+.navbar .links {
+  width: auto;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.navbar .links a {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14.5px;
+  font-weight: 500;
+  text-decoration: none;
+  padding-bottom: 4px;
+  position: relative;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+
+.navbar .links a:hover,
+.navbar .links a.active {
+  color: #ffffff;
+}
+
+.navbar .links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2.5px;
+  background-color: #fb923c;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.navbar .links a:hover::after,
+.navbar .links a.active::after {
+  width: 100%;
+}
+
+.navbar .links a.active {
+  font-weight: 600;
+}
+
+/* Glassmorphic WhatsApp Enquiry Pill Button */
+.nav-whatsapp-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1.5px solid rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 6px;
+  color: #ffffff !important;
+  font-size: 13.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  margin-left: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-whatsapp-pill i {
+  color: #25d366;
+  font-size: 1.15rem;
+}
+
+.nav-whatsapp-pill:hover {
+  background: rgba(37, 211, 102, 0.2);
+  border-color: rgba(37, 211, 102, 0.7);
+  color: #ffffff !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.3);
+}
+
+/* ── Mobile Navigation Header ──────────────────────────── */
+.spp-main-header {
+  display: none;
+  height: 70px;
+  width: 100%;
+  background: rgba(8, 12, 22, 0.96);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.spp-nav-container {
+  max-width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.spp-brand-logo {
+  background: #ffffff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  display: inline-flex;
+  align-items: center;
+}
+
+.spp-brand-logo img {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.spp-hamburger-trigger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}
+
+.spp-bar {
+  width: 24px;
+  height: 2.5px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.spp-hamburger-trigger.spp-cross-icon .spp-bar:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.spp-hamburger-trigger.spp-cross-icon .spp-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.spp-hamburger-trigger.spp-cross-icon .spp-bar:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+.spp-nav-menu-list {
+  display: none;
+}
+
+/* ── Responsive Breakpoints ────────────────────────────── */
+@media screen and (max-width: 1100px) {
+  .navbar {
+    padding: 12px 24px;
+  }
+  .navbar .links {
+    gap: 16px;
+  }
+  .navbar .links a {
+    font-size: 13.5px;
+  }
+  .nav-whatsapp-pill {
+    padding: 8px 14px;
+    font-size: 12.5px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .navbar {
+    display: none !important;
+  }
+  .spp-main-header {
+    display: block !important;
+  }
+  .spp-hamburger-trigger {
+    display: flex !important;
+  }
+  .spp-nav-menu-list {
+    display: flex !important;
+    position: fixed;
+    top: 70px;
+    right: -100%;
+    width: 270px;
+    height: calc(100vh - 70px);
+    background: #0d121c;
+    flex-direction: column;
+    padding: 28px 22px;
+    transition: right 0.35s ease;
+    box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    list-style: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .spp-nav-menu-list.spp-is-active {
+    right: 0;
+  }
+  .spp-menu-item {
+    margin-bottom: 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 10px;
+  }
+  .spp-menu-link {
+    font-size: 15px;
+    font-weight: 600;
+    color: #f3f4f6;
+    text-decoration: none;
+    display: block;
+    transition: color 0.2s ease;
+  }
+  .spp-menu-link:hover,
+  .spp-menu-link.active {
+    color: #fb923c;
+  }
+}
