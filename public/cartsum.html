@@ -32,8 +32,13 @@
     <link rel="stylesheet" href="/assets/css/cartsum.css?v=20261114_01" />
     <link rel="stylesheet" href="/assets/css/footer.css?v=20261114_03" />
 
-    <!-- jsPDF Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <!-- jsPDF Library (Local first with CDN fallback) -->
+    <script src="/assets/js/jspdf.umd.min.js"></script>
+    <script>
+      if (!window.jspdf) {
+        document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"><\/script>');
+      }
+    </script>
   </head>
   <body>
 
@@ -481,20 +486,53 @@
 
             if (data.success) {
               console.log("Bill No:", billNo);
-              generatePDF(customerDetails, cartDetails, totalAmount, currentTime, billNo);
+
+              // Clear cart from sessionStorage now that order is secured
+              sessionStorage.removeItem("cartDetails");
+              sessionStorage.removeItem("totalAmount");
+
+              // Cache completed order info for instant display on success screen
+              sessionStorage.setItem("lastCompletedOrder", JSON.stringify({
+                billNo,
+                customerName: customerDetails.name,
+                mobile: customerDetails.mobile,
+                address: customerDetails.address,
+                city: customerDetails.city,
+                pincode: customerDetails.pincode,
+                totalAmount: totalAmount || (data.data ? data.data.total : 0),
+                items: cartDetails || []
+              }));
+
+              // Attempt client-side PDF generation & email acknowledgment
+              try {
+                if (window.jspdf && window.jspdf.jsPDF) {
+                  generatePDF(customerDetails, cartDetails, totalAmount, currentTime, billNo);
+                } else {
+                  hideLoadingIndicator();
+                  window.location.href = `orderedsuccessfully.html?billNo=${encodeURIComponent(billNo)}`;
+                }
+              } catch (pdfErr) {
+                console.warn("PDF generation notice:", pdfErr);
+                hideLoadingIndicator();
+                window.location.href = `orderedsuccessfully.html?billNo=${encodeURIComponent(billNo)}`;
+              }
             } else {
               hideLoadingIndicator();
-              alert("Order failed.");
+              alert("Order failed: " + (data.message || "Please check details."));
             }
           } catch (error) {
             hideLoadingIndicator();
-            console.error(error);
+            console.error("Order submission error:", error);
             alert("Order failed. Please try again.");
           }
         });
 
         function generatePDF(customerDetails, cartDetails, totalAmount, orderTime, billNo) {
-          const { jsPDF } = window.jspdf;
+          const { jsPDF } = (window.jspdf || {});
+          if (!jsPDF) {
+            window.location.href = `orderedsuccessfully.html?billNo=${encodeURIComponent(billNo)}`;
+            return;
+          }
           const doc = new jsPDF();
 
           const pageHeight = doc.internal.pageSize.height;
@@ -536,7 +574,8 @@
           }
 
           function sanitizeText(text) {
-            return text.toString().replace(/[^\x00-\x7F]/g, "");
+            if (text === null || text === undefined) return "";
+            return String(text).replace(/[^\x00-\x7F]/g, "");
           }
 
           function wrapText(text, columnWidth) {
@@ -667,7 +706,7 @@
           drawFooter();
 
           const pdfOutput = doc.output('blob');
-          sendEmail(pdfOutput, customerDetails.email);
+          sendEmail(pdfOutput, customerDetails.email, billNo);
         }
 
         function showLoadingIndicator() {
@@ -680,12 +719,13 @@
           document.getElementById("loading-overlay").style.display = "none";
         }
 
-        function sendEmail(pdf, customerEmail) {
+        function sendEmail(pdf, customerEmail, confirmedBillNo) {
           showLoadingIndicator();
 
+          const targetUrl = confirmedBillNo ? `orderedsuccessfully.html?billNo=${encodeURIComponent(confirmedBillNo)}` : "orderedsuccessfully.html";
           const formData = new FormData();
-          formData.append("pdf", pdf);
-          formData.append("customerEmail", customerEmail);
+          if (pdf) formData.append("pdf", pdf);
+          if (customerEmail) formData.append("customerEmail", customerEmail);
 
           fetch("/send-email", {
             method: "POST",
@@ -705,15 +745,15 @@
               headers: { Accept: "application/json" },
             }).then(r => r.json());
           })
-          .then((data) => {
+          .then(() => {
             hideLoadingIndicator();
-            window.location.href = "orderedsuccessfully.html";
+            window.location.href = targetUrl;
           })
           .catch((error) => {
             hideLoadingIndicator();
             console.warn("Email warning:", error);
             // Still proceed to success page since order is confirmed in MongoDB!
-            window.location.href = "orderedsuccessfully.html";
+            window.location.href = targetUrl;
           });
         }
       });

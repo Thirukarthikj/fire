@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="Order Confirmed | Sivakasi Firecrackers">
+    <meta name="description" content="Your Diwali crackers wholesale order has been confirmed successfully direct from our Sivakasi factory.">
+    <link rel="icon" href="/assets/img/favicon.png" type="image/png" />
+    <title>Order Placed Successfully — Sivakasi Firecrackers</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/assets/css/navbar.css?v=20261114_01" />
+    <link rel="stylesheet" href="/assets/css/footer.css?v=20261114_03" />
+
+    <style>
+      .success-page-wrapper {
+        min-height: calc(100vh - 220px);
+        background: radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.08) 0%, #f8fafc 60%);
+        padding: 40px 20px 80px;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .success-card {
+        background: #ffffff;
+        max-width: 680px;
+        width: 100%;
+        border-radius: 20px;
+        padding: 44px 36px;
+        text-align: center;
+        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+        border: 1px solid #e2e8f0;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .success-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 5px;
+        background: linear-gradient(90deg, #16a34a, #f59e0b, #ea580c, #16a34a);
+      }
+
+      .success-icon-wrap {
+        width: 90px;
+        height: 90px;
+        margin: 0 auto 20px;
+        background: linear-gradient(135deg, #dcfce7 0%, #bbf7d0 100%);
+        border: 3px solid #86efac;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 42px;
+        color: #15803d;
+        box-shadow: 0 10px 25px rgba(22, 163, 74, 0.2);
+        animation: successPulse 2s infinite ease-in-out;
+      }
+
+      @keyframes successPulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+
+      .success-title {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-size: 32px;
+        font-weight: 800;
+        color: #0f172a;
+        margin: 0 0 10px;
+      }
+
+      .success-title span {
+        color: #16a34a;
+      }
+
+      .success-subtitle {
+        font-family: 'Poppins', sans-serif;
+        font-size: 15px;
+        color: #64748b;
+        margin: 0 0 28px;
+        line-height: 1.6;
+      }
+
+      .order-info-pill {
+        background: #f8fafc;
+        border: 1.5px dashed #cbd5e1;
+        border-radius: 12px;
+        padding: 20px;
+        margin-bottom: 28px;
+        text-align: left;
+      }
+
+      .info-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 0;
+        font-family: 'Poppins', sans-serif;
+        font-size: 14px;
+        color: #334155;
+      }
+
+      .info-row:not(:last-child) {
+        border-bottom: 1px solid #f1f5f9;
+      }
+
+      .info-label {
+        font-weight: 500;
+        color: #64748b;
+      }
+
+      .info-val {
+        font-weight: 700;
+        color: #0f172a;
+      }
+
+      .info-bill-no {
+        color: #ea580c;
+        font-family: monospace;
+        font-size: 16px;
+      }
+
+      .success-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+      }
+
+      .btn-whatsapp-confirm {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #25d366;
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 13px 24px;
+        border-radius: 50px;
+        text-decoration: none;
+        box-shadow: 0 8px 18px rgba(37, 211, 102, 0.35);
+        transition: transform 0.2s, background 0.2s;
+      }
+
+      .btn-whatsapp-confirm:hover {
+        background: #20bd5a;
+        transform: translateY(-2px);
+      }
+
+      .btn-catalog-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #0f172a;
+        color: #ffffff;
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        padding: 13px 24px;
+        border-radius: 50px;
+        text-decoration: none;
+        transition: transform 0.2s, background 0.2s;
+      }
+
+      .btn-catalog-back:hover {
+        background: #1e293b;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 600px) {
+        .success-card {
+          padding: 30px 20px;
+        }
+        .success-title {
+          font-size: 26px;
+        }
+        .btn-whatsapp-confirm,
+        .btn-catalog-back {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+
+    <!-- Desktop Navbar -->
+    <header class="navbar">
+      <div class="subnavbar">
+        <div class="logo">
+          <a href="/index.html"><img src="/assets/img/new logo.png" alt="Sivakasi Firecrackers"></a>
+        </div>
+        <nav class="links">
+          <a href="/index.html">Home</a>
+          <a href="/ordernow.html">Order Now</a>
+          <a href="/aboutus.html">About Us</a>
+          <a href="/services.html">Services</a>
+          <a href="/safetytips.html">Safety Tips</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/download.html">Download</a>
+          <a href="https://wa.me/919876543210?text=Hi%2C%20I%20have%20an%20inquiry%20about%20my%20Diwali%20order" target="_blank" rel="noopener" class="nav-whatsapp-pill"><i class="fab fa-brands fa-whatsapp"></i> WhatsApp Enquiry</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="success-page-wrapper">
+      <div class="success-card">
+        <div class="success-icon-wrap">
+          <i class="fas fa-check"></i>
+        </div>
+
+        <h1 class="success-title">Order Placed <span>Successfully!</span></h1>
+        <p class="success-subtitle">
+          Thank you for choosing Sivakasi Firecrackers! Your festive pyrotechnics order has been received and registered at our Sivakasi dispatch hub.
+        </p>
+
+        <div class="order-info-pill">
+          <div class="info-row">
+            <span class="info-label">Bill / Reference Number</span>
+            <span class="info-val info-bill-no" id="order-bill-no">Loading...</span>
+          </div>
+          <div class="info-row" id="row-customer-name" style="display: none;">
+            <span class="info-label">Recipient Name</span>
+            <span class="info-val" id="order-customer-name"></span>
+          </div>
+          <div class="info-row" id="row-delivery-city" style="display: none;">
+            <span class="info-label">Delivery Destination</span>
+            <span class="info-val" id="order-delivery-city"></span>
+          </div>
+          <div class="info-row" id="row-order-total" style="display: none;">
+            <span class="info-label">Total Amount</span>
+            <span class="info-val" style="color: #16a34a;" id="order-total-val"></span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Dispatch Status</span>
+            <span class="info-val" style="color: #0284c7;"><i class="fas fa-box"></i> Direct Factory Packing</span>
+          </div>
+        </div>
+
+        <div class="success-actions">
+          <a href="#" id="whatsapp-order-btn" target="_blank" rel="noopener noreferrer" class="btn-whatsapp-confirm">
+            <i class="fab fa-whatsapp"></i> Confirm on WhatsApp
+          </a>
+          <a href="/ordernow.html" class="btn-catalog-back">
+            <i class="fas fa-shopping-bag"></i> Continue Shopping
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scalloped Diwali Footer -->
+    <footer class="diwali-footer-wrapper">
+      <div class="diwali-footer-scallop-top">
+        <img src="/assets/img/diwali_scallop_top.svg" alt="Festive Diwali Scallop Border" style="width: 100%; height: 100%; display: block; object-fit: fill;" />
+      </div>
+      <div class="diwali-footer-body">
+        <div class="diwali-footer-inner">
+          <div class="diwali-footer-col">
+            <ul class="diwali-footer-links-list">
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/ordernow.html">Order Online</a></li>
+              <li><a href="/contact.html">Contact Us</a></li>
+            </ul>
+            <div class="diwali-contact-block">
+              <div class="diwali-contact-line">Phone: <a href="tel:+919876543210" class="diwali-yellow-highlight">+91 98765 43210</a></div>
+              <div class="diwali-contact-line">Email: <a href="mailto:sivaksifirecrackers@gmail.com" class="diwali-yellow-highlight">sivaksifirecrackers@gmail.com</a></div>
+            </div>
+          </div>
+          <div class="diwali-footer-col diwali-mascot-col">
+            <img src="/assets/img/diwali_mascot.svg" alt="Mascot" class="diwali-mascot-img" />
+            <span class="diwali-mascot-badge">✨ Happy Diwali ✨</span>
+          </div>
+          <div class="diwali-footer-col">
+            <div class="diwali-address-group">
+              <strong>Main Factory Outlet:</strong>
+              <p>Sivakasi to Sattur Main Road, Konampatti, Sivakasi - 626189</p>
+            </div>
+          </div>
+        </div>
+        <div class="diwali-footer-bottom">
+          <div class="diwali-footer-bottom-left">
+            <span>&copy; 2026 Sivakasi Firecrackers, All Rights Reserved.</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        let billNo = urlParams.get("billNo");
+
+        let savedOrder = null;
+        try {
+          savedOrder = JSON.parse(sessionStorage.getItem("lastCompletedOrder"));
+        } catch (e) {}
+
+        if (!billNo && savedOrder && savedOrder.billNo) {
+          billNo = savedOrder.billNo;
+        }
+
+        const billEl = document.getElementById("order-bill-no");
+        if (billNo) {
+          billEl.textContent = billNo;
+        } else {
+          billEl.textContent = "ORD-SIV-CONFIRMED";
+        }
+
+        if (savedOrder) {
+          if (savedOrder.customerName) {
+            document.getElementById("order-customer-name").textContent = savedOrder.customerName;
+            document.getElementById("row-customer-name").style.display = "flex";
+          }
+          if (savedOrder.city) {
+            document.getElementById("order-delivery-city").textContent = savedOrder.city + (savedOrder.pincode ? ` (${savedOrder.pincode})` : "");
+            document.getElementById("row-delivery-city").style.display = "flex";
+          }
+          if (savedOrder.totalAmount) {
+            document.getElementById("order-total-val").textContent = `₹${savedOrder.totalAmount}`;
+            document.getElementById("row-order-total").style.display = "flex";
+          }
+        }
+
+        const waBtn = document.getElementById("whatsapp-order-btn");
+        const orderText = `Hi Sivakasi Firecrackers, I placed an online order (${billNo || 'Festive Order'}). Please share dispatch status.`;
+        waBtn.href = `https://wa.me/919876543210?text=${encodeURIComponent(orderText)}`;
+      });
+    </script>
+  </body>
+</html>
