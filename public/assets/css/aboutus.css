@@ -331,10 +331,13 @@ a {
 }
 
 .about-hero-container {
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0;
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 .hero-pill-badge {
@@ -464,12 +467,15 @@ a {
 }
 
 .about-heritage-container {
-  max-width: 1240px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0;
   display: grid;
   grid-template-columns: 1.05fr 1.15fr;
   gap: 60px;
   align-items: center;
+  box-sizing: border-box;
 }
 
 /* Left Image Box */
@@ -678,11 +684,14 @@ a {
 }
 
 .about-stats-container {
-  max-width: 1240px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 30px;
+  box-sizing: border-box;
 }
 
 .stat-card {
@@ -739,8 +748,11 @@ a {
 }
 
 .about-pillars-container {
-  max-width: 1240px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .section-header-centered {
@@ -867,15 +879,17 @@ a {
 }
 
 .safety-pledge-container {
-  max-width: 1240px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
   background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
   border: 2px dashed #fed7aa;
   border-radius: var(--spp-radius-lg);
-  padding: 45px 50px;
+  padding: 45px 30px;
   display: flex;
   align-items: center;
   gap: 36px;
+  box-sizing: border-box;
 }
 
 .safety-pledge-icon {
@@ -929,10 +943,13 @@ a {
 }
 
 .about-cta-container {
-  max-width: 860px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  padding: 0 20px;
+  margin: 0;
   position: relative;
   z-index: 2;
+  box-sizing: border-box;
 }
 
 .cta-tagline {

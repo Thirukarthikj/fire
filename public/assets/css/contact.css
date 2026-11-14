@@ -211,13 +211,15 @@
 }
 /* Main Wrapper - 1200px Fixed */
 .contact-page-wrapper {
-    width: 1200px;
-    margin: 60px auto;
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    margin: 50px 20px;
     background: #fff;
     border-radius: 40px;
     overflow: hidden;
     box-shadow: 0 50px 100px rgba(0,0,0,0.05);
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 .contact-inner {

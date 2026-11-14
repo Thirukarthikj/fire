@@ -1770,9 +1770,11 @@
    Modern Product Card & Category Layout (Matching Reference Screenshot)
    ========================================================================== */
 .order-catalog-wrapper {
-  max-width: 1400px;
-  margin: 30px auto 120px auto;
+  max-width: 100%;
+  width: 100%;
+  margin: 20px 0 120px 0;
   padding: 0 20px;
+  box-sizing: border-box;
 }
 
 /* Category Quick Navigation Bar (Sticky under header) */
@@ -1901,8 +1903,9 @@
 /* Product Cards Grid */
 .product-cards-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 16px;
+  width: 100%;
 }
 
 /* Individual Product Card (Exact Match to Image) */
@@ -2088,18 +2091,21 @@
   width: 100%;
   background: #ffffff;
   box-shadow: 0 -4px 25px rgba(0, 0, 0, 0.12);
-  padding: 12px 24px;
+  padding: 12px 20px;
   z-index: 9999;
   border-top: 1.5px solid #f1ece4;
+  box-sizing: border-box;
 }
 
 .sticky-order-inner {
-  max-width: 1360px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
+  box-sizing: border-box;
 }
 
 .sticky-summary-info {

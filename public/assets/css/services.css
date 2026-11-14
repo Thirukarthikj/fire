@@ -212,13 +212,13 @@
 
 /* Container Wrapper */
 .services-container {
-    width: 1200px;
-    margin: 50px auto;
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    margin: 50px 20px;
     font-family: 'Poppins', sans-serif;
     background: #ffffff;
-    padding: 60px;
-    border-radius: 50px;
-    /* box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px; */
+    padding: 60px 40px;
+    border-radius: 40px;
     box-shadow: 0 30px 100px rgba(0,0,0,0.03);
     box-sizing: border-box;
 }

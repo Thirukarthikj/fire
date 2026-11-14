@@ -212,14 +212,13 @@
 
 /* Main Wrapper - 1200px Fixed */
 .offers-pricelist-wrapper {
-    width: 1200px;
-    margin: 60px auto;
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    margin: 50px 20px;
     display: flex;
-    background: #ffffff;
-    border-radius: 40px;
-    overflow: hidden;
-    box-shadow: 0 40px 100px rgba(0,0,0,0.06);
+    gap: 40px;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 .offers-zone, .pricelist-zone {

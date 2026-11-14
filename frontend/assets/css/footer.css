@@ -35,18 +35,22 @@
 .diwali-footer-body {
   background: linear-gradient(180deg, #b71c1c 0%, #a01422 60%, #890f1b 100%);
   color: #ffffff;
-  padding: 20px 24px 30px;
+  padding: 24px 20px 30px;
   position: relative;
   z-index: 1;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .diwali-footer-inner {
-  max-width: 1300px;
-  margin: 0 auto;
+  max-width: 100%;
+  width: 100%;
+  margin: 0;
   display: grid;
   grid-template-columns: 1.15fr 1.15fr 0.9fr 1.5fr 1.1fr;
   align-items: center;
   gap: 32px;
+  box-sizing: border-box;
 }
 
 /* ── Typography & Links ────────────────────────────────── */
@@ -308,8 +312,9 @@
 
 /* ── Bottom Bar ────────────────────────────────────────── */
 .diwali-footer-bottom {
-  max-width: 1300px;
-  margin: 30px auto 0;
+  max-width: 100%;
+  width: 100%;
+  margin: 30px 0 0 0;
   padding-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
@@ -319,6 +324,7 @@
   gap: 12px;
   font-size: 12px;
   color: rgba(255, 255, 255, 0.85);
+  box-sizing: border-box;
 }
 
 .diwali-footer-bottom-left {

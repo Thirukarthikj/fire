@@ -212,14 +212,15 @@
 
 /* Safety Page Wrapper - 1200px Fixed */
 .safety-page-wrapper {
-    width: 1200px;
-    margin: 50px auto;
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    margin: 50px 20px;
     background: #fff;
     border-radius: 40px;
-    padding: 60px;
+    overflow: hidden;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.03);
+    font-family: 'Poppins', sans-serif;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Roboto, sans-serif;
-    /* box-shadow: 0 40px 100px rgba(0,0,0,0.05); */
 }
 
 /* Header */

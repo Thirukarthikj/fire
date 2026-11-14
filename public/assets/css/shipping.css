@@ -213,14 +213,15 @@
 
 /* Container - 1200px Fixed */
 .shipping-page-wrapper {
-    width: 1200px;
-    margin: 50px auto;
+    width: calc(100% - 40px);
+    max-width: calc(100% - 40px);
+    margin: 50px 20px;
     background: #ffffff;
     border-radius: 40px;
-    padding: 60px;
-    box-sizing: border-box;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.03);
+    overflow: hidden;
     font-family: 'Poppins', sans-serif;
-    /* box-shadow: 0 40px 100px rgba(0,0,0,0.04); */
+    box-sizing: border-box;
 }
 
 /* Header */

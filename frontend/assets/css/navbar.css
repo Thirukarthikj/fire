@@ -14,7 +14,7 @@
   background: rgba(8, 12, 22, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  padding: 14px 40px;
+  padding: 14px 20px;
   height: auto;
   overflow: visible;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -33,17 +33,20 @@
   width: 100%;
   z-index: 50;
   background: linear-gradient(180deg, rgba(8, 12, 22, 0.94) 0%, rgba(8, 12, 22, 0.5) 60%, transparent 100%);
-  padding: 18px 48px;
+  padding: 18px 20px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-sizing: border-box;
 }
 
 .subnavbar {
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  box-sizing: border-box;
 }
 
 /* White Capsule Logo Card (Matches Screenshot Exactly) */
@@ -291,4 +294,104 @@
   .spp-menu-link.active {
     color: #fb923c;
   }
+}
+
+/* ========================================================
+   UNIVERSAL FULL SCREEN SPACE & 20PX MARGIN/PADDING STANDARD
+   Applies across ALL pages: Home, Order Now, About Us, Subpages, Cart, Checkout
+   ======================================================== */
+html, body {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  box-sizing: border-box !important;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Mobile Header Full-Width with 20px padding */
+.spp-main-header {
+  width: 100% !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+}
+
+.spp-nav-container {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Master container expansion to full width with 20px side margins/padding */
+.container,
+.order-catalog-wrapper,
+.collections-container,
+.collections-showcase-section,
+.bestsellers-box,
+.about-heritage-container,
+.about-stats-container,
+.about-pillars-container,
+.safety-pledge-container,
+.about-cta-container,
+.about-hero-container,
+.sticky-order-inner,
+.sticky-order-bar,
+.checkout-container,
+.feature-highlight-section,
+.safety-header,
+.shipping-header,
+.offers-zone,
+.pricelist-zone,
+.glass-bar,
+.download-section {
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* Standalone content sections sitting directly inside body */
+.services-container,
+.safety-page-wrapper,
+.shipping-page-wrapper,
+.offers-pricelist-wrapper,
+.contact-page-wrapper {
+  max-width: calc(100% - 40px) !important;
+  width: calc(100% - 40px) !important;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Side padding on collections & order wrappers */
+.collections-container,
+.order-catalog-wrapper {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Hero sliders 20px left/right alignment */
+.hero-slide-content {
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
+}
+
+/* Layout container standard (20px left & right padding) */
+.container {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  box-sizing: border-box !important;
 }
